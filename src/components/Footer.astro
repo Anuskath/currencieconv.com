@@ -3,51 +3,53 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-canvas-soft dark:bg-slate-900 border-t border-hairline mt-12 sm:mt-16 md:mt-20">
-  <div class="container-app py-8 sm:py-12">
+  <div class="container-app py-8 sm:py-12 px-4 sm:px-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8">
       <!-- Brand -->
       <div>
         <div class="flex items-center gap-2 mb-4">
-          <div class="w-8 h-8 bg-gradient-develop rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-sm">CC</span>
+          <div class="w-8 h-8 bg-gradient-develop rounded-lg flex items-center justify-center shadow-sm">
+            <span class="text-white font-bold text-sm font-mono">CC</span>
           </div>
           <span class="font-semibold text-primary">CurrencieConv</span>
         </div>
-        <p class="text-xs sm:text-sm text-mute">
-          Real-time currency converter with accurate exchange rates.
+        <p class="text-xs sm:text-sm text-mute leading-relaxed mb-3">
+          Free online currency converter with real-time exchange rates. Convert USD to EUR, USD to INR, and 150+ world currencies instantly.
+        </p>
+        <p class="text-xs text-mute font-mono">
+          Founded by <span class="text-primary font-medium">Anuska Rani</span>
         </p>
       </div>
 
-      <!-- Product -->
+      <!-- Tools & Rates -->
       <div>
-        <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Product</h4>
+        <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Converter Tools</h4>
         <ul class="space-y-1.5 sm:space-y-2">
-          <li><a href="/" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Converter</a></li>
-          <li><a href="/rates" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Live Rates</a></li>
-          <li><a href="/history" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">History</a></li>
-          <li><a href="/about" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">About</a></li>
+          <li><a href="/" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Currency Converter</a></li>
+          <li><a href="/rates" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Live Exchange Rates</a></li>
+          <li><a href="/currencies/USD" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">US Dollar (USD)</a></li>
+          <li><a href="/currencies/EUR" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Euro (EUR)</a></li>
+          <li><a href="/currencies/INR" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Indian Rupee (INR)</a></li>
         </ul>
       </div>
 
-      <!-- Resources -->
+      <!-- Company & Info -->
       <div>
-        <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Resources</h4>
+        <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Company & Info</h4>
         <ul class="space-y-1.5 sm:space-y-2">
-          <li><a href="/faq" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">FAQ</a></li>
-          <li><a href="/currencies" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Currencies</a></li>
-          <li><a href="/blog" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Blog</a></li>
-          <li><a href="/api" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">API</a></li>
+          <li><a href="/about" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">About Us</a></li>
+          <li><a href="/faq" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">FAQ & Help</a></li>
+          <li><a href="/contact" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Contact Support</a></li>
         </ul>
       </div>
 
       <!-- Legal -->
       <div>
-        <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Legal</h4>
+        <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Legal & Privacy</h4>
         <ul class="space-y-1.5 sm:space-y-2">
-          <li><a href="/privacy" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Privacy</a></li>
-          <li><a href="/terms" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Terms</a></li>
-          <li><a href="/contact" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Contact</a></li>
-          <li><a href="/sitemap" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Sitemap</a></li>
+          <li><a href="/privacy" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Terms of Service</a></li>
+          <li><a href="/contact" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Feedback & Inquiries</a></li>
         </ul>
       </div>
     </div>
@@ -58,12 +60,12 @@ const currentYear = new Date().getFullYear();
     <!-- Bottom -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <p class="text-xs sm:text-sm text-mute text-center sm:text-left">
-        © {currentYear} CurrencieConv by Anuska Rani. All rights reserved.
+        © {currentYear} CurrencieConv by Anuska Rani. All rights reserved. Free online currency converter tool.
       </p>
       <div class="flex gap-4 sm:gap-6 justify-center sm:justify-end">
-        <a href="https://twitter.com" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Twitter</a>
-        <a href="https://github.com" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">GitHub</a>
-        <a href="https://linkedin.com" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">LinkedIn</a>
+        <a href="/privacy" class="text-xs text-mute hover:text-primary transition-colors">Privacy</a>
+        <a href="/terms" class="text-xs text-mute hover:text-primary transition-colors">Terms</a>
+        <a href="/contact" class="text-xs text-mute hover:text-primary transition-colors">Contact</a>
       </div>
     </div>
   </div>

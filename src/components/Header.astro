@@ -7,8 +7,9 @@ const { currentPath = '/' } = Astro.props;
 
 const navItems = [
   { label: 'Converter', href: '/' },
-  { label: 'Rates', href: '/rates' },
+  { label: 'Live Rates', href: '/rates' },
   { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
   { label: 'FAQ', href: '/faq' },
 ];
 ---
@@ -16,21 +17,24 @@ const navItems = [
 <header class="bg-canvas/90 border-b border-hairline sticky top-0 z-50 backdrop-blur-sm dark:bg-slate-950/90">
   <div class="container-app py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2">
-      <div class="w-8 h-8 bg-gradient-develop rounded-lg flex items-center justify-center">
-        <span class="text-white font-bold text-sm">CC</span>
+    <a href="/" class="flex items-center gap-2 group">
+      <div class="w-8 h-8 bg-gradient-develop rounded-lg flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+        <span class="text-white font-bold text-sm font-mono">CC</span>
       </div>
-      <span class="font-semibold text-primary hidden sm:inline">CurrencieConv</span>
+      <div class="flex flex-col">
+        <span class="font-bold text-base text-primary tracking-tight leading-tight">CurrencieConv</span>
+        <span class="text-[10px] text-mute font-mono hidden sm:inline -mt-0.5">by Anuska Rani</span>
+      </div>
     </a>
 
     <!-- Navigation -->
-    <nav class="hidden md:flex items-center gap-8">
+    <nav class="hidden md:flex items-center gap-6">
       {navItems.map((item) => (
         <a
           href={item.href}
           class={`text-sm font-medium transition-colors ${
             currentPath === item.href
-              ? 'text-link'
+              ? 'text-link font-semibold'
               : 'text-body hover:text-primary'
           }`}
         >
@@ -39,7 +43,7 @@ const navItems = [
       ))}
     </nav>
 
-    <!-- Dark Mode Toggle & Mobile menu -->
+    <!-- Dark Mode Toggle & Mobile Menu Trigger -->
     <div class="flex items-center gap-2">
       <button 
         id="darkModeToggle" 
@@ -55,24 +59,48 @@ const navItems = [
         </svg>
       </button>
 
-      <button class="md:hidden p-2 hover:bg-canvas-soft dark:hover:bg-slate-800 rounded-lg transition-colors text-primary">
+      <button 
+        id="mobileMenuBtn"
+        class="md:hidden p-2 hover:bg-canvas-soft dark:hover:bg-slate-800 rounded-lg transition-colors text-primary"
+        aria-label="Toggle navigation menu"
+      >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
     </div>
   </div>
+
+  <!-- Mobile Nav Drawer -->
+  <div id="mobileMenu" class="hidden md:hidden border-t border-hairline bg-canvas dark:bg-slate-950 px-4 py-3 space-y-1">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+          currentPath === item.href
+            ? 'bg-link-bg-soft text-link font-semibold dark:bg-blue-900/30'
+            : 'text-body hover:bg-canvas-soft dark:hover:bg-slate-800'
+        }`}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
 </header>
 
 <script>
   import { toggleDarkMode, initDarkMode } from '../utils/darkMode';
 
-  // Initialize dark mode on page load
   initDarkMode();
 
-  // Setup toggle button
   const toggleBtn = document.getElementById('darkModeToggle');
   toggleBtn?.addEventListener('click', () => {
     toggleDarkMode();
+  });
+
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
   });
 </script>

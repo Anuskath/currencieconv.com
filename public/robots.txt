@@ -1,28 +1,11 @@
-# robots.txt for currencieconv.com
-
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /private
-Disallow: /*.json
-Disallow: /*.xml
 
-# Specific crawl delay for polite crawling
-Crawl-delay: 1
+# Disallow administrative and temporary files
+Disallow: /_astro/
+Disallow: /api/
 
-# Allow all search engines access to assets
-Allow: /styles/
-Allow: /scripts/
-Allow: /images/
-Allow: /assets/
-
-# Sitemap location
+# Host & Sitemap location
+Host: https://currencieconv.com
 Sitemap: https://currencieconv.com/sitemap.xml
-
-# Google-specific
-User-agent: Googlebot
-Allow: /
-
-# Bing-specific
-User-agent: Bingbot
-Allow: /

@@ -34,6 +34,16 @@ const ogImageUrl = `${siteUrl}/og-image.png`;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-3N2NT7C30R"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-3N2NT7C30R');
+		</script>
+
 		<!-- Primary SEO Meta Tags -->
 		<title>{title}</title>
 		<meta name="title" content={title} />

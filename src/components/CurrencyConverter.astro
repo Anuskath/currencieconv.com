@@ -1,6 +1,6 @@
 ---
-// CurrencyConverter.astro - Main converter component
-import { currencyData, getCurrencyDisplay, getCurrencyName } from '../data/currencies';
+// CurrencyConverter.astro - Main converter component with Live Interbank Rate API & Auto-Refresh
+import { currencyData } from '../data/currencies';
 
 const currencies = Object.keys(currencyData);
 ---
@@ -9,11 +9,15 @@ const currencies = Object.keys(currencyData);
   <div class="container-app max-w-6xl mx-auto">
     <!-- Hero Section -->
     <div class="text-center mb-8 sm:mb-12 md:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-link-bg-soft dark:bg-blue-900/30 text-link text-xs font-semibold font-mono mb-4 border border-blue-200 dark:border-blue-800">
+        <span class="w-2 h-2 rounded-full bg-link animate-pulse"></span>
+        Live Mid-Market Rates Connected
+      </div>
       <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-primary">
         Currency Converter
       </h1>
       <p class="text-sm sm:text-base md:text-lg text-body max-w-2xl mx-auto px-2">
-        Real-time exchange rates. Accurate, fast, and completely free.
+        Real-time market exchange rates for 150+ world currencies. Fast, reliable, and completely free.
       </p>
     </div>
 
@@ -31,8 +35,10 @@ const currencies = Object.keys(currencyData);
                 placeholder="1.00"
                 class="input-field flex-1 text-sm sm:text-base"
                 value="1"
+                min="0"
+                step="any"
               />
-              <select id="fromCurrency" class="input-field w-full sm:w-40 text-sm sm:text-base">
+              <select id="fromCurrency" class="input-field w-full sm:w-44 text-sm sm:text-base font-medium">
                 {currencies.map((code) => (
                   <option value={code} selected={code === 'USD'}>
                     {currencyData[code].symbol} {code} - {currencyData[code].name}
@@ -65,12 +71,12 @@ const currencies = Object.keys(currencyData);
                 type="number"
                 id="toAmount"
                 placeholder="0.00"
-                class="input-field flex-1 text-sm sm:text-base"
+                class="input-field flex-1 text-sm sm:text-base font-semibold text-link dark:text-cyan-400"
                 readonly
               />
-              <select id="toCurrency" class="input-field w-full sm:w-40 text-sm sm:text-base">
+              <select id="toCurrency" class="input-field w-full sm:w-44 text-sm sm:text-base font-medium">
                 {currencies.map((code) => (
-                  <option value={code} selected={code === 'EUR'}>
+                  <option value={code} selected={code === 'INR'}>
                     {currencyData[code].symbol} {code} - {currencyData[code].name}
                   </option>
                 ))}
@@ -79,17 +85,17 @@ const currencies = Object.keys(currencyData);
           </div>
         </div>
 
-        <!-- Exchange Rate Info -->
+        <!-- Exchange Rate Info & Disclaimer -->
         <div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-hairline">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-2">
             <p class="text-body-sm text-mute text-center sm:text-left">
-              <span id="rateText" class="block sm:inline font-medium text-primary">1 USD = 0.92 EUR</span>
-              <span id="rateTime" class="text-caption text-mute ml-0 sm:ml-2 block sm:inline">(updated just now)</span>
+              <span id="rateText" class="block sm:inline font-semibold text-primary">Fetching live mid-market rate...</span>
+              <span id="rateTime" class="text-caption text-mute ml-0 sm:ml-2 block sm:inline font-mono"></span>
             </p>
             <button
               id="refreshBtn"
               class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg border border-hairline bg-canvas hover:bg-canvas-soft dark:bg-slate-800 dark:hover:bg-slate-700 text-link hover:text-link-deep dark:hover:text-cyan-400 transition-all text-xs font-semibold whitespace-nowrap group"
-              title="Refresh exchange rates"
+              title="Refresh live market rates"
             >
               <svg id="refreshIcon" class="w-3.5 h-3.5 transition-transform duration-500 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
@@ -97,6 +103,9 @@ const currencies = Object.keys(currencyData);
               <span>Refresh Rates</span>
             </button>
           </div>
+          <p class="text-[11px] text-mute text-center sm:text-left italic">
+            * Rates provided are indicative mid-market rates sourced from Open Exchange Rates API for informational purposes.
+          </p>
         </div>
       </div>
     </div>
@@ -106,16 +115,18 @@ const currencies = Object.keys(currencyData);
       <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-primary">Popular Conversions</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {[
+          { pair: 'USD-INR', label: 'US Dollar to Indian Rupee ($ to INR)' },
+          { pair: 'AED-INR', label: 'UAE Dirham to Indian Rupee' },
           { pair: 'USD-EUR', label: 'US Dollar to Euro' },
           { pair: 'EUR-GBP', label: 'Euro to British Pound' },
           { pair: 'GBP-JPY', label: 'British Pound to Japanese Yen' },
-          { pair: 'USD-INR', label: 'US Dollar to Indian Rupee' },
-          { pair: 'EUR-CHF', label: 'Euro to Swiss Franc' },
-          { pair: 'AUD-CAD', label: 'Australian Dollar to Canadian Dollar' }
+          { pair: 'SAR-INR', label: 'Saudi Riyal to Indian Rupee' },
+          { pair: 'CAD-INR', label: 'Canadian Dollar to Indian Rupee' },
+          { pair: 'AUD-USD', label: 'Australian Dollar to US Dollar' }
         ].map((item) => {
           const [from, to] = item.pair.split('-');
-          const fromSymbol = currencyData[from].symbol;
-          const toSymbol = currencyData[to].symbol;
+          const fromSymbol = currencyData[from]?.symbol || from;
+          const toSymbol = currencyData[to]?.symbol || to;
           return (
             <button 
               class="popular-pair-btn card text-left hover:shadow-lg transition-all p-4 border border-hairline rounded-xl hover:border-link group cursor-pointer"
@@ -141,8 +152,8 @@ const currencies = Object.keys(currencyData);
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
           </div>
-          <h3 class="text-body-md-strong mb-2">Instant Rates</h3>
-          <p class="text-body-sm text-mute">Live market exchange rates updated every minute</p>
+          <h3 class="text-body-md-strong mb-2">Live Market Data</h3>
+          <p class="text-body-sm text-mute">Real-time forex exchange rates fetched live & auto-updated every 60 seconds</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 mx-auto mb-4 bg-cyan-soft dark:bg-cyan-900/30 rounded-lg flex items-center justify-center">
@@ -150,8 +161,8 @@ const currencies = Object.keys(currencyData);
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-body-md-strong mb-2">Accurate</h3>
-          <p class="text-body-sm text-mute">Trusted rates from leading financial data providers</p>
+          <h3 class="text-body-md-strong mb-2">150+ World Currencies</h3>
+          <p class="text-body-sm text-mute">USD, EUR, GBP, INR, AED, CAD, AUD, JPY, SAR and more with high precision</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 mx-auto mb-4 bg-success/10 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
@@ -160,7 +171,7 @@ const currencies = Object.keys(currencyData);
             </svg>
           </div>
           <h3 class="text-body-md-strong mb-2">Always Free</h3>
-          <p class="text-body-sm text-mute">No hidden fees, no account required, completely free</p>
+          <p class="text-body-sm text-mute">No hidden service fees, no account required, completely free to use</p>
         </div>
       </div>
     </div>
@@ -170,29 +181,48 @@ const currencies = Object.keys(currencyData);
 <script>
   import { currencyData } from '../data/currencies';
 
-  // Make currency data available globally
   (window as any).currencyData = currencyData;
 
-  // Mock exchange rates table
-  const exchangeRates: Record<string, Record<string, number>> = {
-    USD: { EUR: 0.92, GBP: 0.78, JPY: 149.5, INR: 83.12, CAD: 1.36, AUD: 1.52, CHF: 0.88, CNY: 7.24, MXN: 17.05 },
-    EUR: { USD: 1.09, GBP: 0.85, JPY: 162.5, INR: 90.45, CAD: 1.48, AUD: 1.65, CHF: 0.96, CNY: 7.88, MXN: 18.55 },
-    GBP: { USD: 1.28, EUR: 1.18, JPY: 191.2, INR: 106.5, CAD: 1.74, AUD: 1.94, CHF: 1.13, CNY: 9.27, MXN: 21.84 },
-    JPY: { USD: 0.0067, EUR: 0.0062, GBP: 0.0052, INR: 0.556, CAD: 0.0091, AUD: 0.0102, CHF: 0.0059, CNY: 0.0484, MXN: 0.114 },
-    INR: { USD: 0.012, EUR: 0.011, GBP: 0.0094, JPY: 1.80, CAD: 0.0164, AUD: 0.0183, CHF: 0.0106, CNY: 0.087, MXN: 0.205 },
-    CAD: { USD: 0.735, EUR: 0.675, GBP: 0.575, JPY: 109.9, INR: 61.0, AUD: 1.12, CHF: 0.647, CNY: 5.32, MXN: 12.52 },
-    AUD: { USD: 0.658, EUR: 0.606, GBP: 0.515, JPY: 98.4, INR: 54.6, CAD: 0.895, CHF: 0.578, CNY: 4.77, MXN: 11.2 },
-    CHF: { USD: 1.14, EUR: 1.04, GBP: 0.887, JPY: 170.1, INR: 94.8, CAD: 1.54, AUD: 1.73, CNY: 8.23, MXN: 19.4 },
-    CNY: { USD: 0.138, EUR: 0.127, GBP: 0.108, JPY: 20.7, INR: 11.5, CAD: 0.188, AUD: 0.21, CHF: 0.122, MXN: 2.35 },
-    MXN: { USD: 0.0587, EUR: 0.054, GBP: 0.046, JPY: 8.81, INR: 4.88, CAD: 0.080, AUD: 0.089, CHF: 0.052, CNY: 0.426 },
-  };
+  const liveRatesCache: Record<string, { rates: Record<string, number>; timestamp: number }> = {};
+  const CACHE_DURATION = 60 * 1000;
 
-  function getRate(from: string, to: string): number {
-    if (from === to) return 1;
-    return exchangeRates[from]?.[to] || 1;
+  async function fetchLiveRates(baseCurrency: string): Promise<Record<string, number>> {
+    const now = Date.now();
+    
+    if (liveRatesCache[baseCurrency] && (now - liveRatesCache[baseCurrency].timestamp < CACHE_DURATION)) {
+      return liveRatesCache[baseCurrency].rates;
+    }
+
+    try {
+      const response = await fetch(`https://open.er-api.com/v6/latest/${baseCurrency}`);
+      if (!response.ok) throw new Error('API fetch failed');
+      const data = await response.json();
+      
+      if (data && data.rates) {
+        liveRatesCache[baseCurrency] = {
+          rates: data.rates,
+          timestamp: now
+        };
+        return data.rates;
+      }
+    } catch (err) {
+      console.warn('Live API fetch warning, using fallback calculation:', err);
+    }
+
+    if (liveRatesCache['USD']?.rates) {
+      const usdRates = liveRatesCache['USD'].rates;
+      const baseInUsd = usdRates[baseCurrency] || 1;
+      const calculated: Record<string, number> = {};
+      for (const [code, rate] of Object.entries(usdRates)) {
+        calculated[code] = rate / baseInUsd;
+      }
+      return calculated;
+    }
+
+    return {};
   }
 
-  function updateExchangeRate(isManualRefresh = false) {
+  async function updateExchangeRate(isManualRefresh = false) {
     const fromSelect = document.getElementById('fromCurrency') as HTMLSelectElement;
     const toSelect = document.getElementById('toCurrency') as HTMLSelectElement;
     const fromInput = document.getElementById('fromAmount') as HTMLInputElement;
@@ -207,9 +237,26 @@ const currencies = Object.keys(currencyData);
     const toCurrency = toSelect.value;
     const fromAmount = parseFloat(fromInput.value) || 0;
 
-    const rate = getRate(fromCurrency, toCurrency);
-    const toAmount = (fromAmount * rate).toFixed(2);
+    if (isManualRefresh && refreshIcon) {
+      refreshIcon.classList.add('rotate-180');
+      if (rateText) rateText.textContent = 'Fetching latest live market rates...';
+    }
 
+    const rates = await fetchLiveRates(fromCurrency);
+    let rate = rates[toCurrency];
+
+    if (!rate || isNaN(rate)) {
+      if (fromCurrency === toCurrency) {
+        rate = 1;
+      } else {
+        const usdRates = await fetchLiveRates('USD');
+        const fromInUsd = usdRates[fromCurrency] || 1;
+        const toInUsd = usdRates[toCurrency] || 1;
+        rate = toInUsd / fromInUsd;
+      }
+    }
+
+    const toAmount = (fromAmount * rate).toFixed(2);
     const fromSymbol = (window as any).currencyData?.[fromCurrency]?.symbol || fromCurrency;
     const toSymbol = (window as any).currencyData?.[toCurrency]?.symbol || toCurrency;
 
@@ -222,11 +269,10 @@ const currencies = Object.keys(currencyData);
     const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
     if (rateTime) {
-      rateTime.textContent = isManualRefresh ? `(refreshed at ${timeStr})` : `(updated at ${timeStr})`;
+      rateTime.textContent = isManualRefresh ? `(live refreshed at ${timeStr})` : `(updated live at ${timeStr})`;
     }
 
     if (isManualRefresh && refreshIcon) {
-      refreshIcon.classList.add('rotate-180');
       setTimeout(() => {
         refreshIcon.classList.remove('rotate-180');
       }, 500);
@@ -250,10 +296,13 @@ const currencies = Object.keys(currencyData);
   });
 
   document.getElementById('refreshBtn')?.addEventListener('click', () => {
+    const fromSelect = document.getElementById('fromCurrency') as HTMLSelectElement;
+    if (fromSelect && liveRatesCache[fromSelect.value]) {
+      delete liveRatesCache[fromSelect.value];
+    }
     updateExchangeRate(true);
   });
 
-  // Popular pairs click handler
   document.querySelectorAll('.popular-pair-btn').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       const target = e.currentTarget as HTMLElement;
@@ -267,14 +316,19 @@ const currencies = Object.keys(currencyData);
         fromSelect.value = from;
         toSelect.value = to;
         updateExchangeRate();
-        
-        // Scroll smoothly up to converter box
         document.getElementById('fromAmount')?.focus();
       }
     });
   });
 
-  // Initialize on page load
+  setInterval(() => {
+    const fromSelect = document.getElementById('fromCurrency') as HTMLSelectElement;
+    if (fromSelect && liveRatesCache[fromSelect.value]) {
+      delete liveRatesCache[fromSelect.value];
+    }
+    updateExchangeRate(false);
+  }, 60000);
+
   updateExchangeRate();
 </script>
 

@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const termsSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Terms and Conditions - CurrencieConv",
+  "url": "https://currencieconv.com/terms",
+  "description": "Terms and Conditions of use for CurrencieConv currency converter.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "CurrencieConv",
+    "url": "https://currencieconv.com"
+  }
+});
+---
+
+<Layout
+  title="Terms and Conditions - CurrencieConv Online Currency Converter"
+  description="Read the Terms and Conditions of use for CurrencieConv currency converter by Anuska Rani. Information on exchange rate accuracy, financial disclaimer, and website terms."
+  keywords="terms and conditions, CurrencieConv terms, exchange rate disclaimer, currency converter terms of use"
+  currentPath="/terms"
+  schemaMarkup={termsSchema}
+>
+  <div class="py-12 sm:py-16">
+    <div class="container-app max-w-4xl mx-auto px-4 sm:px-6">
+      <!-- Header -->
+      <div class="mb-10">
+        <span class="text-xs uppercase font-mono tracking-widest text-link font-semibold">Legal Documentation</span>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-4 text-primary">Terms & Conditions</h1>
+        <p class="text-body-lg text-mute">Last updated: August 17, 2026</p>
+      </div>
+
+      <!-- Terms Content -->
+      <article class="prose prose-lg dark:prose-invert max-w-none space-y-8 text-body text-sm sm:text-base leading-relaxed">
+        <section class="border-b border-hairline pb-8">
+          <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">1. Agreement to Terms</h2>
+          <p>
+            By accessing or using <strong>CurrencieConv</strong> (currencieconv.com), created by <strong>Anuska Rani</strong>, you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree with any part of these Terms, you must not use our website.
+          </p>
+        </section>
+
+        <section class="border-b border-hairline pb-8">
+          <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">2. Financial Disclaimer (Not Financial Advice)</h2>
+          <p>
+            The exchange rates, currency conversion calculations, and financial data displayed on CurrencieConv are provided solely for <strong>informational and educational purposes</strong>.
+          </p>
+          <div class="my-4 p-4 bg-warning/10 border-l-4 border-warning text-primary rounded-r-lg">
+            <p class="font-semibold mb-1">⚠️ Important Financial Notice:</p>
+            <p class="text-sm text-body">
+              CurrencieConv is NOT a financial institution, bank, licensed money broker, or foreign exchange trading platform. The content on this website does not constitute financial, investment, legal, or tax advice. You should consult a qualified financial professional or official bank before executing currency trades or international money transfers.
+            </p>
+          </div>
+        </section>
+
+        <section class="border-b border-hairline pb-8">
+          <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">3. Accuracy of Exchange Rates & Service Availability</h2>
+          <p>
+            We strive to provide accurate, real-time mid-market exchange rates sourced from reputable global data feeds. However:
+          </p>
+          <ul class="list-disc list-inside space-y-2 mt-3 pl-2">
+            <li>Exchange rates fluctuate continuously and actual transaction rates offered by commercial banks or money transfer providers may differ significantly due to bank markups, service fees, and commission spreads.</li>
+            <li>We do not guarantee that the rates displayed will match the exact rate charged by your local bank, PayPal, Wise, Western Union, or card issuer.</li>
+            <li>We do not guarantee uninterrupted, error-free, or 100% uptime service availability.</li>
+          </ul>
+        </section>
+
+        <section class="border-b border-hairline pb-8">
+          <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">4. Intellectual Property</h2>
+          <p>
+            All original branding, source code, text content, design elements, layout graphics, and assets on CurrencieConv are the intellectual property of Anuska Rani and CurrencieConv. You may use our currency converter for personal or professional reference. You may not scrape, frame, clone, or redistribute our platform for commercial resale without prior written permission.
+          </p>
+        </section>
+
+        <section class="border-b border-hairline pb-8">
+          <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">5. Limitation of Liability</h2>
+          <p>
+            To the maximum extent permitted by applicable law, CurrencieConv, its founder Anuska Rani, and its affiliates shall not be liable for any direct, indirect, incidental, consequential, or financial losses resulting from:
+          </p>
+          <ul class="list-disc list-inside space-y-2 mt-3 pl-2">
+            <li>Your use or inability to use the CurrencieConv website</li>
+            <li>Any inaccuracies, delays, or errors in exchange rate data</li>
+            <li>Financial transactions made based on rates viewed on this platform</li>
+          </ul>
+        </section>
+
+        <section class="border-b border-hairline pb-8">
+          <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">6. Links to Third-Party Websites</h2>
+          <p>
+            CurrencieConv may contain links to third-party sites or financial news sources. We do not control or endorse the content or policies of third-party websites and are not responsible for their services.
+          </p>
+        </section>
+
+        <section class="pb-4">
+          <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">7. Contact Information</h2>
+          <p>
+            For questions regarding these Terms & Conditions, please contact us at:
+          </p>
+          <div class="mt-4 p-4 bg-canvas-soft border border-hairline rounded-lg font-mono text-sm">
+            <p><strong>Email:</strong> legal@currencieconv.com / hello@currencieconv.com</p>
+            <p><strong>Website:</strong> currencieconv.com</p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </div>
+</Layout>

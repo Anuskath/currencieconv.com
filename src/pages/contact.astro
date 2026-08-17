@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const contactSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Us - CurrencieConv",
+  "url": "https://currencieconv.com/contact",
+  "description": "Contact CurrencieConv currency converter team. Get in touch for support, feedback, rate inquiries, or business opportunities.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "CurrencieConv",
+    "url": "https://currencieconv.com"
+  }
+});
+---
+
+<Layout
+  title="Contact Us - CurrencieConv Online Currency Converter"
+  description="Have questions, feedback, or rate inquiries? Contact the CurrencieConv team by Anuska Rani. We respond quickly to support messages and user feedback."
+  keywords="contact CurrencieConv, currency converter support, Anuska Rani contact, exchange rate feedback, customer support currency converter"
+  currentPath="/contact"
+  schemaMarkup={contactSchema}
+>
+  <div class="py-12 sm:py-16">
+    <div class="container-app max-w-4xl mx-auto px-4 sm:px-6">
+      <!-- Header -->
+      <div class="mb-10 text-center sm:text-left">
+        <span class="text-xs uppercase font-mono tracking-widest text-link font-semibold">Get In Touch</span>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-4 text-primary">Contact Us</h1>
+        <p class="text-body-lg text-body max-w-2xl">
+          Have a question about our currency converter, feedback on exchange rates, or a feature suggestion? We'd love to hear from you!
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <!-- Contact Info Cards -->
+        <div class="card p-6 border border-hairline rounded-xl bg-canvas-soft">
+          <div class="w-10 h-10 bg-link-bg-soft dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-link" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-body-md-strong mb-1">Email Support</h3>
+          <p class="text-xs text-mute mb-3">Our team reads and responds within 24 hours.</p>
+          <a href="mailto:hello@currencieconv.com" class="text-sm font-mono text-link hover:underline font-semibold">
+            hello@currencieconv.com
+          </a>
+        </div>
+
+        <div class="card p-6 border border-hairline rounded-xl bg-canvas-soft">
+          <div class="w-10 h-10 bg-cyan-soft dark:bg-cyan-900/30 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-cyan-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-body-md-strong mb-1">Help Center</h3>
+          <p class="text-xs text-mute mb-3">Find quick answers to common questions.</p>
+          <a href="/faq" class="text-sm font-semibold text-link hover:underline">
+            Visit FAQ Page →
+          </a>
+        </div>
+
+        <div class="card p-6 border border-hairline rounded-xl bg-canvas-soft">
+          <div class="w-10 h-10 bg-success/10 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-body-md-strong mb-1">Founder</h3>
+          <p class="text-xs text-mute mb-3">Created & maintained by Anuska Rani.</p>
+          <span class="text-sm font-semibold text-primary">Anuska Rani</span>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="bg-canvas-soft border border-hairline rounded-2xl p-6 sm:p-8 md:p-10 dark:bg-slate-900">
+        <h2 class="text-2xl font-bold mb-6 text-primary">Send Us a Message</h2>
+        <form id="contactForm" class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="contactName" class="block text-sm font-medium text-primary mb-2">Your Name *</label>
+              <input
+                type="text"
+                id="contactName"
+                required
+                placeholder="John Doe"
+                class="input-field text-sm"
+              />
+            </div>
+            <div>
+              <label for="contactEmail" class="block text-sm font-medium text-primary mb-2">Your Email *</label>
+              <input
+                type="email"
+                id="contactEmail"
+                required
+                placeholder="john@example.com"
+                class="input-field text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="contactSubject" class="block text-sm font-medium text-primary mb-2">Subject *</label>
+            <select id="contactSubject" class="input-field text-sm">
+              <option value="general">General Inquiry</option>
+              <option value="feedback">Feature Suggestion / Feedback</option>
+              <option value="rate_issue">Report Rate Inaccuracy</option>
+              <option value="business">Business / API Partnership</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="contactMessage" class="block text-sm font-medium text-primary mb-2">Message *</label>
+            <textarea
+              id="contactMessage"
+              rows="5"
+              required
+              placeholder="Tell us how we can help you..."
+              class="input-field text-sm resize-y"
+            ></textarea>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <button type="submit" class="btn-primary w-full sm:w-auto px-8 py-3 text-sm">
+              Send Message
+            </button>
+            <p id="formStatus" class="text-xs text-mute text-center sm:text-right hidden font-mono">
+              ✓ Message sent successfully! Thank you.
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const status = document.getElementById('formStatus') as HTMLElement;
+
+  if (form && status) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      status.classList.remove('hidden');
+      status.classList.add('text-success');
+      form.reset();
+      setTimeout(() => {
+        status.classList.add('hidden');
+      }, 5000);
+    });
+  }
+</script>

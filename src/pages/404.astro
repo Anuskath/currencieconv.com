@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="404 Page Not Found | CurrencieConv"
+  description="The page you are looking for does not exist on CurrencieConv online currency converter."
+  currentPath="/404"
+>
+  <div class="py-16 sm:py-24 px-4 sm:px-6">
+    <div class="container-app max-w-2xl mx-auto text-center">
+      <!-- 404 Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-link-bg-soft dark:bg-blue-900/30 text-link font-mono text-xs font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-link animate-pulse"></span>
+        Error 404
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4 tracking-tight">
+        Page Not Found
+      </h1>
+      <p class="text-base sm:text-lg text-mute max-w-lg mx-auto mb-8 leading-relaxed">
+        Sorry, the currency conversion page or resource you are looking for has moved, been renamed, or does not exist.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <a href="/" class="btn-primary w-full sm:w-auto px-6 py-3 text-sm">
+          Return to Converter
+        </a>
+        <a href="/rates" class="btn-secondary w-full sm:w-auto px-6 py-3 text-sm">
+          View Live Exchange Rates
+        </a>
+      </div>
+
+      <!-- Quick Directory Links -->
+      <div class="p-6 bg-canvas-soft border border-hairline rounded-2xl dark:bg-slate-900 text-left">
+        <h3 class="text-sm font-semibold text-primary uppercase font-mono tracking-wider mb-4">Popular Destinations</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
+          <a href="/" class="text-mute hover:text-link transition-colors">Converter Home</a>
+          <a href="/rates" class="text-mute hover:text-link transition-colors">Live Rates Today</a>
+          <a href="/faq" class="text-mute hover:text-link transition-colors">FAQ & Help</a>
+          <a href="/about" class="text-mute hover:text-link transition-colors">About Us</a>
+          <a href="/contact" class="text-mute hover:text-link transition-colors">Contact Support</a>
+          <a href="/privacy" class="text-mute hover:text-link transition-colors">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
