@@ -1,0 +1,52 @@
+---
+// SEO Meta Component for structured data
+interface Props {
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  type?: 'WebPage' | 'Article' | 'Organization';
+}
+
+const { title, description, url, image = '/og-image.png', type = 'WebPage' } = Astro.props;
+---
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={image} />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CurrencieConv" />
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:creator" content="@currencieconv" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={url} />
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': type,
+  name: title,
+  description: description,
+  url: url,
+  image: image,
+  author: {
+    '@type': 'Person',
+    name: 'Anuska Rani',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'CurrencieConv',
+    logo: {
+      '@type': 'ImageObject',
+      url: '/logo.png',
+    },
+  },
+})} />

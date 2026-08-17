@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    question: "What is the best currency converter app?",
+    answer: "CurrencieConv is one of the best free currency converter tools available online. It provides real-time interbank exchange rates for over 150 currencies with zero hidden fees. Unlike many currency converter apps that add markup spreads or require paid subscriptions, CurrencieConv is completely free, works on any device with a browser, and updates rates every 60 seconds. Other popular options include XE, Wise (formerly TransferWise), and OANDA — but CurrencieConv stands out for its clean, ad-free interface and transparent mid-market rates."
+  },
+  {
+    question: "How does the Google currency converter compare to CurrencieConv?",
+    answer: "Google's built-in currency converter is convenient for quick searches, but it has limitations. Google does not always display the most up-to-date interbank rates, does not show historical trends, and provides limited currency pair options. CurrencieConv offers more accurate real-time exchange rates updated every minute, supports 150+ currencies, provides detailed currency profile pages, and is purpose-built as a dedicated currency conversion tool. For serious conversions — especially when comparing bank markups — CurrencieConv gives you more transparency and precision."
+  },
+  {
+    question: "What is a currency exchange rate?",
+    answer: "A currency exchange rate is the price of one country's currency expressed in terms of another country's currency. For example, if the USD to INR rate is 83.12, that means 1 US Dollar equals 83.12 Indian Rupees. Exchange rates fluctuate constantly based on supply and demand in the global forex market, central bank policies, inflation data, interest rates, geopolitical events, and trade balances. CurrencieConv shows the mid-market rate — the real exchange rate without any bank or service markup."
+  },
+  {
+    question: "What is the currency exchange rate today?",
+    answer: "Currency exchange rates change every minute during active forex trading hours. To check the latest currency exchange rate today, simply use CurrencieConv's converter tool on the home page. Select your source and target currencies to see the live rate instantly. You can also visit our Live Rates page for a comprehensive overview of all major currency pairs and their current values, including USD to EUR, USD to INR, GBP to USD, EUR to GBP, and more."
+  },
+  {
+    question: "How do I convert currency from Dubai (AED) to India (INR)?",
+    answer: "To convert AED (United Arab Emirates Dirham) to INR (Indian Rupee), use CurrencieConv's converter on the home page. Select AED as your source currency and INR as your target currency, enter the amount you want to convert, and get your result instantly. The AED to INR rate fluctuates daily — CurrencieConv shows the real-time interbank rate so you know exactly how much your Dirhams are worth in Rupees before visiting a money exchange or bank."
+  },
+  {
+    question: "Can CurrencieConv convert all currencies in the world?",
+    answer: "CurrencieConv supports over 150 world currencies, covering every major currency (USD, EUR, GBP, JPY, CHF, CAD, AUD), popular emerging-market currencies (INR, BRL, MXN, ZAR, TRY, THB, IDR), and many more. This includes currencies from Asia, Europe, Africa, the Americas, and Oceania. If you need to convert any commonly traded currency, CurrencieConv has you covered with accurate, real-time exchange rates."
+  },
+  {
+    question: "How does CurrencieConv compare to OANDA's currency converter?",
+    answer: "Both CurrencieConv and OANDA provide currency conversion tools, but there are key differences. OANDA's interface is cluttered with ads and promotional content for their trading platform, making it slower to use. CurrencieConv offers a clean, ad-free, Vercel-inspired design that loads instantly. OANDA sometimes displays rates with hidden spreads for their trading clients, while CurrencieConv always shows the transparent mid-market interbank rate. CurrencieConv is also 100% free with no account required, whereas OANDA pushes users toward their paid trading services."
+  },
+  {
+    question: "Is there a currency converter app I can use on my phone?",
+    answer: "CurrencieConv works as a fully responsive web app on any mobile device — no app download required. Simply open currencieconv.com in your phone's browser (Chrome, Safari, Firefox, etc.) and it works like a native app. You can also add it to your home screen for instant access: on iPhone, tap Share → Add to Home Screen; on Android, tap the three-dot menu → Add to Home Screen. This gives you a one-tap currency converter without using storage space on your device."
+  },
+  {
+    question: "What is a currency converter?",
+    answer: "A currency converter is a tool that calculates the exchange rate between two currencies. It tells you how much of one currency you need to get a specific amount of another currency based on current market rates. CurrencieConv is an online currency converter that uses real-time interbank exchange rates — the same rates that major financial institutions use — to give you the most accurate conversion results possible, completely free of charge."
+  },
+  {
+    question: "Are your exchange rates accurate?",
+    answer: "Yes! Our exchange rates are updated every minute from leading financial data providers. We pull real-time interbank rates used by major financial institutions to ensure accuracy. The rates you see on CurrencieConv are the true mid-market rates — the midpoint between buy and sell prices on the global forex market — without any markup or hidden spread added."
+  },
+  {
+    question: "Do you charge any fees for currency conversion?",
+    answer: "No. CurrencieConv is completely free to use. There are no hidden fees, no subscriptions, and no account required. We believe everyone should have access to accurate exchange rate information. Our currency converter calculator provides transparent, real-time rates at zero cost."
+  },
+  {
+    question: "How often are exchange rates updated on CurrencieConv?",
+    answer: "Exchange rates on CurrencieConv are updated every minute during forex trading hours. The forex market operates 24 hours a day, 5 days a week (Monday through Friday). This ensures you always have the most current market rates when you need to check the currency rate today or convert currency online free."
+  },
+  {
+    question: "Why are rates on CurrencieConv different from my bank?",
+    answer: "Banks and money exchange services add markups (typically 2–5%) to the mid-market rate to make a profit. CurrencieConv shows the true mid-market interbank rate without any markup. This means the rate you see on CurrencieConv is the real exchange rate — and the difference between our rate and your bank's rate is essentially the fee your bank charges you. Use CurrencieConv to compare and see how much you could save."
+  },
+  {
+    question: "What is the best time to exchange currency?",
+    answer: "Currency markets are most liquid during the overlap of UK and US trading hours (1pm to 5pm GMT / 8am to 12pm EST). During these times, you will find tighter spreads and more competitive exchange rates. Rates can be more volatile during major economic announcements (like central bank interest rate decisions or jobs reports). For the most accurate currency rate today, check CurrencieConv during active trading hours."
+  },
+  {
+    question: "How do I convert USD to INR or $ to INR?",
+    answer: "To convert USD to INR (US Dollar to Indian Rupee), go to CurrencieConv's home page, select USD as the source currency, select INR as the target currency, enter the amount (for example, 1 for checking 1$ to INR), and the result appears instantly. You can also check the $ to INR rate on our Live Rates page. CurrencieConv shows the real-time interbank US$ to INR rate updated every minute."
+  },
+  {
+    question: "Can I use CurrencieConv for business?",
+    answer: "Absolutely! CurrencieConv is used by businesses, travelers, freelancers, and individuals worldwide for quick and accurate currency conversions. Business owners use it to verify international invoice amounts, compare bank exchange rate quotes, and track currency conversion rates over time. Our accurate, real-time forex converter data helps you make informed financial decisions."
+  }
+];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+});
+---
+
+<Layout
+  title="Currency Converter FAQ - Frequently Asked Questions | CurrencieConv"
+  description="Frequently asked questions about our free online currency converter. Learn how exchange rates work, how to convert USD to EUR, USD to INR, dollar to rupee, and more. Compare CurrencieConv vs OANDA, Google, and other currency converter apps."
+  keywords="currency converter FAQ, best currency converter app, Google currency converter, currency exchange rate, currency exchange rate today, currency converter dubai to india, all currency converter, currency converter OANDA, currency converter app, free currency converter, online currency converter, how to convert currency"
+  currentPath="/faq"
+  schemaMarkup={faqSchema}
+>
+  <div class="py-12 sm:py-16">
+    <div class="container-app">
+      <!-- Header -->
+      <div class="max-w-3xl mb-12">
+        <h1 class="text-display-lg mb-4">Currency Converter FAQ — Frequently Asked Questions</h1>
+        <p class="text-body-lg text-body">
+          Everything you need to know about CurrencieConv, how our online currency converter works, exchange rates, and how we compare to other currency converter apps like Google, OANDA, and more.
+        </p>
+      </div>
+
+      <!-- FAQ List -->
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((faq) => (
+          <details class="group border border-hairline rounded-lg overflow-hidden hover:border-link-bg-soft transition-colors">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-body-md-strong flex items-center justify-between hover:bg-canvas-soft">
+              {faq.question}
+              <svg class="w-5 h-5 text-mute group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+            </summary>
+            <div class="px-6 py-4 bg-canvas-soft border-t border-hairline text-body-md text-body">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-16 max-w-3xl bg-canvas-soft border border-hairline rounded-lg p-8 text-center">
+        <h2 class="text-display-md mb-4">Didn't find what you're looking for?</h2>
+        <p class="text-body-md text-body mb-6">
+          We're here to help! Reach out to our support team.
+        </p>
+        <a href="mailto:hello@currencieconv.com" class="btn-primary inline-block">
+          Contact Support
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

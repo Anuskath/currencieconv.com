@@ -1,0 +1,70 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-canvas-soft dark:bg-slate-900 border-t border-hairline mt-12 sm:mt-16 md:mt-20">
+  <div class="container-app py-8 sm:py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-gradient-develop rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">CC</span>
+          </div>
+          <span class="font-semibold text-primary">CurrencieConv</span>
+        </div>
+        <p class="text-xs sm:text-sm text-mute">
+          Real-time currency converter with accurate exchange rates.
+        </p>
+      </div>
+
+      <!-- Product -->
+      <div>
+        <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Product</h4>
+        <ul class="space-y-1.5 sm:space-y-2">
+          <li><a href="/" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Converter</a></li>
+          <li><a href="/rates" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Live Rates</a></li>
+          <li><a href="/history" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">History</a></li>
+          <li><a href="/about" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">About</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Resources</h4>
+        <ul class="space-y-1.5 sm:space-y-2">
+          <li><a href="/faq" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">FAQ</a></li>
+          <li><a href="/currencies" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Currencies</a></li>
+          <li><a href="/blog" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Blog</a></li>
+          <li><a href="/api" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">API</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Legal</h4>
+        <ul class="space-y-1.5 sm:space-y-2">
+          <li><a href="/privacy" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Privacy</a></li>
+          <li><a href="/terms" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Terms</a></li>
+          <li><a href="/contact" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Contact</a></li>
+          <li><a href="/sitemap" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-hairline my-6 sm:my-8"></div>
+
+    <!-- Bottom -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <p class="text-xs sm:text-sm text-mute text-center sm:text-left">
+        © {currentYear} CurrencieConv by Anuska Rani. All rights reserved.
+      </p>
+      <div class="flex gap-4 sm:gap-6 justify-center sm:justify-end">
+        <a href="https://twitter.com" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Twitter</a>
+        <a href="https://github.com" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">GitHub</a>
+        <a href="https://linkedin.com" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>

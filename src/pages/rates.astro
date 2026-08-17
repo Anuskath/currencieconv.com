@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const popularPairs = [
+  { from: 'USD', to: 'EUR', rate: 0.92, change: '+0.5%' },
+  { from: 'EUR', to: 'GBP', rate: 0.85, change: '-0.2%' },
+  { from: 'GBP', to: 'JPY', rate: 191.2, change: '+1.2%' },
+  { from: 'USD', to: 'INR', rate: 83.12, change: '+0.8%' },
+  { from: 'EUR', to: 'CHF', rate: 0.96, change: '-0.1%' },
+  { from: 'AUD', to: 'CAD', rate: 0.895, change: '+0.3%' },
+];
+
+const allCurrencies = [
+  { code: 'USD', name: 'United States Dollar', symbol: '$' },
+  { code: 'EUR', name: 'Euro', symbol: '€' },
+  { code: 'GBP', name: 'British Pound', symbol: '£' },
+  { code: 'JPY', name: 'Japanese Yen', symbol: '¥' },
+  { code: 'INR', name: 'Indian Rupee', symbol: '₹' },
+  { code: 'CAD', name: 'Canadian Dollar', symbol: '$' },
+  { code: 'AUD', name: 'Australian Dollar', symbol: 'A$' },
+  { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF' },
+  { code: 'CNY', name: 'Chinese Yuan', symbol: '¥' },
+  { code: 'MXN', name: 'Mexican Peso', symbol: '$' },
+];
+---
+
+<Layout
+  title="Live Currency Exchange Rates Today - Real-Time Forex Rates | CurrencieConv"
+  description="Check live currency exchange rates for USD, EUR, GBP, INR, JPY and 150+ world currencies. Real-time forex converter rates updated every minute. Free currency rate today lookup — $ to INR rate, USD to EUR, dollar to rupee and more by Anuska Rani."
+  keywords="currency exchange rate, currency exchange rate today, currency rate today, live currency converter, real time currency converter, forex converter, currency conversion rates, usd to eur, usd to inr, $ to inr, $ to inr rate, usd to gbp, euro to dollar, dollar to rupee, accurate currency converter, currency converter live rates"
+  currentPath="/rates"
+>
+  <div class="py-12 sm:py-16">
+    <div class="container-app">
+      <!-- Header -->
+      <div class="mb-12">
+        <h1 class="text-display-lg mb-4">Live Currency Exchange Rates Today</h1>
+        <p class="text-body-lg text-body max-w-2xl">
+          Track real-time currency exchange rates for all major world currencies. Our live currency converter rates are updated every minute from trusted forex data providers — perfect for checking the currency rate today, $ to INR rate, USD to EUR, dollar to rupee, and 150+ currency pairs before making international transfers or travel plans.
+        </p>
+      </div>
+
+      <!-- Popular Pairs -->
+      <div class="mb-16">
+        <h2 class="text-display-md mb-6">Popular Currency Pairs</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {popularPairs.map((pair) => (
+            <div class="card">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <p class="text-body-md-strong">{pair.from} → {pair.to}</p>
+                  <p class="text-body-sm text-mute">Exchange rate</p>
+                </div>
+                <span class={`badge ${pair.change.startsWith('+') ? 'bg-success/10 text-success' : 'bg-error-soft text-error'}`}>
+                  {pair.change}
+                </span>
+              </div>
+              <p class="text-display-sm text-link font-semibold">{pair.rate.toFixed(4)}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- All Currencies -->
+      <div>
+        <h2 class="text-display-md mb-6">All Currencies</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {allCurrencies.map((currency) => (
+            <a href={`/currencies/${currency.code}`} class="card group">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-body-md-strong group-hover:text-link transition-colors">{currency.symbol} {currency.code}</p>
+                  <p class="text-body-sm text-mute">{currency.name}</p>
+                </div>
+                <svg class="w-5 h-5 text-mute group-hover:text-link transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Info Section -->
+      <div class="mt-16 pt-16 border-t border-hairline">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-body-md-strong mb-2">What are Exchange Rates?</h3>
+            <p class="text-body-sm text-mute">
+              Exchange rates represent how much of one currency you need to exchange for another. Rates fluctuate based on market demand and economic factors.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-body-md-strong mb-2">Real-time Updates</h3>
+            <p class="text-body-sm text-mute">
+              Our rates are updated every minute from leading financial data providers, ensuring you always get accurate information.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-body-md-strong mb-2">Best Trading Times</h3>
+            <p class="text-body-sm text-mute">
+              Currency markets are most liquid during UK and US trading hours (8am GMT to 5pm EST), offering better rates and tighter spreads.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

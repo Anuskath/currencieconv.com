@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const currencies = [
+    { code: 'USD', name: 'United States Dollar', country: 'United States', symbol: '$' },
+    { code: 'EUR', name: 'Euro', country: 'Eurozone', symbol: '€' },
+    { code: 'GBP', name: 'British Pound Sterling', country: 'United Kingdom', symbol: '£' },
+    { code: 'JPY', name: 'Japanese Yen', country: 'Japan', symbol: '¥' },
+    { code: 'INR', name: 'Indian Rupee', country: 'India', symbol: '₹' },
+    { code: 'CAD', name: 'Canadian Dollar', country: 'Canada', symbol: '$' },
+    { code: 'AUD', name: 'Australian Dollar', country: 'Australia', symbol: 'A$' },
+    { code: 'CHF', name: 'Swiss Franc', country: 'Switzerland', symbol: 'CHF' },
+    { code: 'CNY', name: 'Chinese Yuan', country: 'China', symbol: '¥' },
+    { code: 'MXN', name: 'Mexican Peso', country: 'Mexico', symbol: '$' },
+  ];
+
+  return currencies.map(currency => ({
+    params: { code: currency.code },
+    props: currency,
+  }));
+}
+
+const { code, name, country, symbol } = Astro.props;
+
+const conversionRates: Record<string, number> = {
+  USD: 1,
+  EUR: 0.92,
+  GBP: 0.78,
+  JPY: 149.5,
+  INR: 83.12,
+  CAD: 1.36,
+  AUD: 1.52,
+  CHF: 0.88,
+  CNY: 7.24,
+  MXN: 17.05,
+};
+
+const topPairs = Object.entries(conversionRates)
+  .filter(([key]) => key !== code)
+  .slice(0, 6)
+  .map(([currency, rate]) => ({
+    to: currency,
+    rate: (rate / (conversionRates[code] || 1)).toFixed(4)
+  }));
+---
+
+<Layout
+  title={`${name} (${code}) Converter - Live ${code} Exchange Rate Today | CurrencieConv`}
+  description={`Convert ${name} (${code}) to USD, EUR, GBP, INR and 150+ currencies with live exchange rates. Free ${code} currency converter calculator with real-time ${code} conversion rates updated every minute. Check ${code} currency rate today.`}
+  keywords={`${code} converter, ${code} to USD, ${code} exchange rate, ${name} converter, convert ${code}, ${code} currency rate today, live ${code} rate, ${code} to EUR, ${code} to INR, currency converter online, free currency converter, currency exchange rate`}
+  currentPath={`/currencies/${code}`}
+>
+  <div class="py-12 sm:py-16">
+    <div class="container-app">
+      <!-- Header -->
+      <div class="mb-12">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-16 h-16 bg-gradient-develop rounded-lg flex items-center justify-center">
+            <span class="text-white text-display-md font-bold">{symbol}</span>
+          </div>
+          <div>
+            <h1 class="text-display-lg">{name}</h1>
+            <p class="text-body-lg text-mute">{code} • {country}</p>
+          </div>
+        </div>
+        <p class="text-body-lg text-body max-w-2xl">
+          Learn about {name} ({code}) and convert it to other currencies. Check live rates, historical data, and currency information.
+        </p>
+      </div>
+
+      <!-- Quick Conversions -->
+      <div class="mb-16">
+        <h2 class="text-display-md mb-6">Quick Conversions from {code}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {topPairs.map((pair) => (
+            <div class="card">
+              <div class="flex items-center justify-between mb-4">
+                <p class="text-body-md-strong">1 {code}</p>
+                <p class="text-body-sm text-mute">{pair.to}</p>
+              </div>
+              <p class="text-display-sm text-link font-semibold">{pair.rate}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Information -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div>
+          <h2 class="text-display-md mb-6">About {name}</h2>
+          <div class="space-y-4 text-body-md text-body">
+            <p>
+              The {name} is the official currency of {country}. Each {code} note and coin is issued by the central banking authorities.
+            </p>
+            <p>
+              {name}s are traded globally in foreign exchange markets, making it one of the most actively traded currencies worldwide.
+            </p>
+            <p>
+              Exchange rates fluctuate based on supply and demand in the market, economic factors, interest rates, and geopolitical events.
+            </p>
+          </div>
+        </div>
+        <div>
+          <h2 class="text-display-md mb-6">Currency Details</h2>
+          <div class="space-y-3">
+            <div class="card">
+              <p class="text-body-sm text-mute">Code</p>
+              <p class="text-body-md-strong">{code}</p>
+            </div>
+            <div class="card">
+              <p class="text-body-sm text-mute">Country</p>
+              <p class="text-body-md-strong">{country}</p>
+            </div>
+            <div class="card">
+              <p class="text-body-sm text-mute">Symbol</p>
+              <p class="text-body-md-strong">{symbol}</p>
+            </div>
+            <div class="card">
+              <p class="text-body-sm text-mute">Type</p>
+              <p class="text-body-md-strong">Fiat Currency</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="max-w-2xl bg-canvas-soft border border-hairline rounded-lg p-8">
+        <h2 class="text-display-md mb-4">Convert {code} Now</h2>
+        <p class="text-body-md text-body mb-6">
+          Use our free currency converter to convert {code} to any other currency at live market rates.
+        </p>
+        <a href="/?from={code}" class="btn-primary inline-block">
+          Open Converter
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

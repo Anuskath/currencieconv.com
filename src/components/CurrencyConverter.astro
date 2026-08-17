@@ -1,0 +1,291 @@
+---
+// CurrencyConverter.astro - Main converter component
+import { currencyData, getCurrencyDisplay, getCurrencyName } from '../data/currencies';
+
+const currencies = Object.keys(currencyData);
+---
+
+<div class="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
+  <div class="container-app max-w-6xl mx-auto">
+    <!-- Hero Section -->
+    <div class="text-center mb-8 sm:mb-12 md:mb-16">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-primary">
+        Currency Converter
+      </h1>
+      <p class="text-sm sm:text-base md:text-lg text-body max-w-2xl mx-auto px-2">
+        Real-time exchange rates. Accurate, fast, and completely free.
+      </p>
+    </div>
+
+    <!-- Converter Box -->
+    <div class="max-w-2xl mx-auto mb-12 px-4 sm:px-0">
+      <div class="bg-canvas-soft border border-hairline rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] dark:bg-slate-900">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+          <!-- From Currency -->
+          <div class="flex flex-col">
+            <label for="fromAmount" class="text-body-sm-strong text-primary mb-2">From</label>
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input
+                type="number"
+                id="fromAmount"
+                placeholder="1.00"
+                class="input-field flex-1 text-sm sm:text-base"
+                value="1"
+              />
+              <select id="fromCurrency" class="input-field w-full sm:w-40 text-sm sm:text-base">
+                {currencies.map((code) => (
+                  <option value={code} selected={code === 'USD'}>
+                    {currencyData[code].symbol} {code} - {currencyData[code].name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <!-- Swap Button -->
+          <div class="flex items-end justify-center md:justify-center pb-0">
+            <button
+              id="swapBtn"
+              class="w-full sm:w-auto px-3 sm:px-4 py-3 border border-hairline rounded-lg hover:bg-canvas-soft dark:hover:bg-slate-800 transition-all text-primary flex items-center justify-center gap-2 group"
+              title="Swap currencies"
+              aria-label="Swap currencies"
+            >
+              <svg class="w-5 h-5 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6-4v12m0 0l4-4m-4 4l-4-4"></path>
+              </svg>
+              <span class="md:hidden text-sm font-medium">Swap Currencies</span>
+            </button>
+          </div>
+
+          <!-- To Currency -->
+          <div class="flex flex-col">
+            <label for="toAmount" class="text-body-sm-strong text-primary mb-2">To</label>
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input
+                type="number"
+                id="toAmount"
+                placeholder="0.00"
+                class="input-field flex-1 text-sm sm:text-base"
+                readonly
+              />
+              <select id="toCurrency" class="input-field w-full sm:w-40 text-sm sm:text-base">
+                {currencies.map((code) => (
+                  <option value={code} selected={code === 'EUR'}>
+                    {currencyData[code].symbol} {code} - {currencyData[code].name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exchange Rate Info -->
+        <div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-hairline">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p class="text-body-sm text-mute text-center sm:text-left">
+              <span id="rateText" class="block sm:inline font-medium text-primary">1 USD = 0.92 EUR</span>
+              <span id="rateTime" class="text-caption text-mute ml-0 sm:ml-2 block sm:inline">(updated just now)</span>
+            </p>
+            <button
+              id="refreshBtn"
+              class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg border border-hairline bg-canvas hover:bg-canvas-soft dark:bg-slate-800 dark:hover:bg-slate-700 text-link hover:text-link-deep dark:hover:text-cyan-400 transition-all text-xs font-semibold whitespace-nowrap group"
+              title="Refresh exchange rates"
+            >
+              <svg id="refreshIcon" class="w-3.5 h-3.5 transition-transform duration-500 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              <span>Refresh Rates</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popular Conversions -->
+    <div class="max-w-2xl mx-auto mb-12 sm:mb-16 px-4 sm:px-0">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-primary">Popular Conversions</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+        {[
+          { pair: 'USD-EUR', label: 'US Dollar to Euro' },
+          { pair: 'EUR-GBP', label: 'Euro to British Pound' },
+          { pair: 'GBP-JPY', label: 'British Pound to Japanese Yen' },
+          { pair: 'USD-INR', label: 'US Dollar to Indian Rupee' },
+          { pair: 'EUR-CHF', label: 'Euro to Swiss Franc' },
+          { pair: 'AUD-CAD', label: 'Australian Dollar to Canadian Dollar' }
+        ].map((item) => {
+          const [from, to] = item.pair.split('-');
+          const fromSymbol = currencyData[from].symbol;
+          const toSymbol = currencyData[to].symbol;
+          return (
+            <button 
+              class="popular-pair-btn card text-left hover:shadow-lg transition-all p-4 border border-hairline rounded-xl hover:border-link group cursor-pointer"
+              data-from={from}
+              data-to={to}
+            >
+              <p class="text-base sm:text-lg font-semibold text-primary mb-1 group-hover:text-link transition-colors">
+                {fromSymbol} {from} → {toSymbol} {to}
+              </p>
+              <p class="text-xs sm:text-sm text-mute">{item.label}</p>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="max-w-3xl mx-auto px-4 sm:px-0">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+        <div class="text-center">
+          <div class="w-12 h-12 mx-auto mb-4 bg-link-bg-soft dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-link" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-body-md-strong mb-2">Instant Rates</h3>
+          <p class="text-body-sm text-mute">Live market exchange rates updated every minute</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 mx-auto mb-4 bg-cyan-soft dark:bg-cyan-900/30 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-cyan-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-body-md-strong mb-2">Accurate</h3>
+          <p class="text-body-sm text-mute">Trusted rates from leading financial data providers</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 mx-auto mb-4 bg-success/10 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-body-md-strong mb-2">Always Free</h3>
+          <p class="text-body-sm text-mute">No hidden fees, no account required, completely free</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { currencyData } from '../data/currencies';
+
+  // Make currency data available globally
+  (window as any).currencyData = currencyData;
+
+  // Mock exchange rates table
+  const exchangeRates: Record<string, Record<string, number>> = {
+    USD: { EUR: 0.92, GBP: 0.78, JPY: 149.5, INR: 83.12, CAD: 1.36, AUD: 1.52, CHF: 0.88, CNY: 7.24, MXN: 17.05 },
+    EUR: { USD: 1.09, GBP: 0.85, JPY: 162.5, INR: 90.45, CAD: 1.48, AUD: 1.65, CHF: 0.96, CNY: 7.88, MXN: 18.55 },
+    GBP: { USD: 1.28, EUR: 1.18, JPY: 191.2, INR: 106.5, CAD: 1.74, AUD: 1.94, CHF: 1.13, CNY: 9.27, MXN: 21.84 },
+    JPY: { USD: 0.0067, EUR: 0.0062, GBP: 0.0052, INR: 0.556, CAD: 0.0091, AUD: 0.0102, CHF: 0.0059, CNY: 0.0484, MXN: 0.114 },
+    INR: { USD: 0.012, EUR: 0.011, GBP: 0.0094, JPY: 1.80, CAD: 0.0164, AUD: 0.0183, CHF: 0.0106, CNY: 0.087, MXN: 0.205 },
+    CAD: { USD: 0.735, EUR: 0.675, GBP: 0.575, JPY: 109.9, INR: 61.0, AUD: 1.12, CHF: 0.647, CNY: 5.32, MXN: 12.52 },
+    AUD: { USD: 0.658, EUR: 0.606, GBP: 0.515, JPY: 98.4, INR: 54.6, CAD: 0.895, CHF: 0.578, CNY: 4.77, MXN: 11.2 },
+    CHF: { USD: 1.14, EUR: 1.04, GBP: 0.887, JPY: 170.1, INR: 94.8, CAD: 1.54, AUD: 1.73, CNY: 8.23, MXN: 19.4 },
+    CNY: { USD: 0.138, EUR: 0.127, GBP: 0.108, JPY: 20.7, INR: 11.5, CAD: 0.188, AUD: 0.21, CHF: 0.122, MXN: 2.35 },
+    MXN: { USD: 0.0587, EUR: 0.054, GBP: 0.046, JPY: 8.81, INR: 4.88, CAD: 0.080, AUD: 0.089, CHF: 0.052, CNY: 0.426 },
+  };
+
+  function getRate(from: string, to: string): number {
+    if (from === to) return 1;
+    return exchangeRates[from]?.[to] || 1;
+  }
+
+  function updateExchangeRate(isManualRefresh = false) {
+    const fromSelect = document.getElementById('fromCurrency') as HTMLSelectElement;
+    const toSelect = document.getElementById('toCurrency') as HTMLSelectElement;
+    const fromInput = document.getElementById('fromAmount') as HTMLInputElement;
+    const toInput = document.getElementById('toAmount') as HTMLInputElement;
+    const rateText = document.getElementById('rateText') as HTMLElement;
+    const rateTime = document.getElementById('rateTime') as HTMLElement;
+    const refreshIcon = document.getElementById('refreshIcon') as HTMLElement;
+
+    if (!fromSelect || !toSelect || !fromInput || !toInput) return;
+
+    const fromCurrency = fromSelect.value;
+    const toCurrency = toSelect.value;
+    const fromAmount = parseFloat(fromInput.value) || 0;
+
+    const rate = getRate(fromCurrency, toCurrency);
+    const toAmount = (fromAmount * rate).toFixed(2);
+
+    const fromSymbol = (window as any).currencyData?.[fromCurrency]?.symbol || fromCurrency;
+    const toSymbol = (window as any).currencyData?.[toCurrency]?.symbol || toCurrency;
+
+    toInput.value = toAmount;
+    if (rateText) {
+      rateText.textContent = `1 ${fromSymbol} ${fromCurrency} = ${rate.toFixed(4)} ${toSymbol} ${toCurrency}`;
+    }
+
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+    if (rateTime) {
+      rateTime.textContent = isManualRefresh ? `(refreshed at ${timeStr})` : `(updated at ${timeStr})`;
+    }
+
+    if (isManualRefresh && refreshIcon) {
+      refreshIcon.classList.add('rotate-180');
+      setTimeout(() => {
+        refreshIcon.classList.remove('rotate-180');
+      }, 500);
+    }
+  }
+
+  // Event listeners
+  document.getElementById('fromAmount')?.addEventListener('input', () => updateExchangeRate());
+  document.getElementById('fromCurrency')?.addEventListener('change', () => updateExchangeRate());
+  document.getElementById('toCurrency')?.addEventListener('change', () => updateExchangeRate());
+
+  document.getElementById('swapBtn')?.addEventListener('click', () => {
+    const fromSelect = document.getElementById('fromCurrency') as HTMLSelectElement;
+    const toSelect = document.getElementById('toCurrency') as HTMLSelectElement;
+    if (fromSelect && toSelect) {
+      const temp = fromSelect.value;
+      fromSelect.value = toSelect.value;
+      toSelect.value = temp;
+      updateExchangeRate();
+    }
+  });
+
+  document.getElementById('refreshBtn')?.addEventListener('click', () => {
+    updateExchangeRate(true);
+  });
+
+  // Popular pairs click handler
+  document.querySelectorAll('.popular-pair-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLElement;
+      const from = target.getAttribute('data-from');
+      const to = target.getAttribute('data-to');
+      
+      const fromSelect = document.getElementById('fromCurrency') as HTMLSelectElement;
+      const toSelect = document.getElementById('toCurrency') as HTMLSelectElement;
+
+      if (from && to && fromSelect && toSelect) {
+        fromSelect.value = from;
+        toSelect.value = to;
+        updateExchangeRate();
+        
+        // Scroll smoothly up to converter box
+        document.getElementById('fromAmount')?.focus();
+      }
+    });
+  });
+
+  // Initialize on page load
+  updateExchangeRate();
+</script>
+
+<style>
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+</style>

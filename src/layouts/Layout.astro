@@ -1,23 +1,91 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+	keywords?: string;
+	currentPath?: string;
+	canonicalUrl?: string;
+	ogType?: string;
+	schemaMarkup?: string;
+}
+
+const { 
+	title = 'Currency Converter Online - Free Real-time Exchange Rates | CurrencieConv',
+	description = 'Free online currency converter with live exchange rates. Convert USD to EUR, USD to INR, dollar to rupee, euro to dollar and 150+ currencies instantly. Accurate real-time currency converter calculator by Anuska Rani.',
+	keywords = 'currency converter, currency converter online, online currency converter, usd to eur, usd to inr, dollar to rupee, euro to dollar, currency exchange rate, live currency converter, money converter online, forex converter, dollar to euro converter, currency converter calculator, real time currency converter, free currency converter, usd to gbp, inr to usd, currency conversion rates, best currency converter, currency converter live rates, accurate currency converter, world currency converter, foreign exchange converter, convert currency online free, currency rate today, international currency converter, usd to jpy converter, currency converter with live rates, online money exchange calculator, $ to inr, 1$ to inr, us$ to inr, $ to inr rate',
+	currentPath = '/',
+	canonicalUrl = '',
+	ogType = 'website',
+	schemaMarkup = ''
+} = Astro.props;
+
+const siteUrl = 'https://currencieconv.com';
+const fullCanonical = canonicalUrl || `${siteUrl}${currentPath}`;
+const ogImageUrl = `${siteUrl}/og-image.png`;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<!-- Primary SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="author" content="Anuska Rani" />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<link rel="canonical" href={fullCanonical} />
+		
+		<!-- Open Graph / Facebook Meta Tags -->
+		<meta property="og:type" content={ogType} />
+		<meta property="og:url" content={fullCanonical} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:site_name" content="CurrencieConv" />
+		<meta property="og:locale" content="en_US" />
+		
+		<!-- Twitter Card Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={fullCanonical} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
+		<meta name="twitter:creator" content="@currencieconv" />
+		
+		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		
+		<!-- Generator -->
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<!-- Schema.org JSON-LD (page-specific, passed as prop) -->
+		{schemaMarkup && <script type="application/ld+json" set:html={schemaMarkup} />}
+		
+		<!-- Dark Mode Script (runs before page renders) -->
+		<script>
+			const isDark = localStorage.getItem('darkMode') === 'true' || 
+									(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+			if (isDark) {
+				document.documentElement.classList.add('dark');
+			}
+		</script>
 	</head>
-	<body>
-		<slot />
+	<body class="bg-canvas text-primary flex flex-col min-h-screen">
+		<Header currentPath={currentPath} />
+		<main class="flex-1">
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

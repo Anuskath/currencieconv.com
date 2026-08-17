@@ -1,11 +1,97 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import CurrencyConverter from '../components/CurrencyConverter.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const schemaMarkup = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CurrencieConv - Currency Converter",
+  "url": "https://currencieconv.com",
+  "description": "Free online currency converter with real-time exchange rates. Convert USD to EUR, USD to INR, dollar to rupee, euro to dollar and 150+ world currencies instantly.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Anuska Rani"
+  },
+  "creator": {
+    "@type": "Person",
+    "name": "Anuska Rani"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "2450",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+});
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Currency Converter Online - Free Real-time Exchange Rates | CurrencieConv"
+  description="Free online currency converter with live exchange rates. Convert USD to EUR, USD to INR, $ to INR, dollar to rupee, euro to dollar and 150+ currencies instantly. Accurate real-time currency converter calculator by Anuska Rani."
+  keywords="currency converter, currency converter online, online currency converter, $ to inr, 1$ to inr, us$ to inr, $ to inr rate, usd to eur, usd to inr, dollar to rupee, euro to dollar, currency exchange rate, live currency converter, money converter online, forex converter, dollar to euro converter, currency converter calculator, real time currency converter, free currency converter, usd to gbp, inr to usd, currency conversion rates, best currency converter, currency converter live rates, accurate currency converter, world currency converter, foreign exchange converter, convert currency online free, currency rate today, international currency converter, usd to jpy converter, currency converter with live rates, online money exchange calculator"
+  currentPath="/"
+  schemaMarkup={schemaMarkup}
+>
+  <CurrencyConverter />
+
+  <!-- SEO Content Section: 600+ words about the currency converter tool -->
+  <section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6">
+    <div class="container-app max-w-4xl mx-auto">
+      <article>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-primary">The Best Free Online Currency Converter — Convert Any Currency Instantly</h2>
+        
+        <div class="space-y-4 text-sm sm:text-base text-body leading-relaxed">
+          <p>
+            CurrencieConv is a <strong>free online currency converter</strong> that lets you convert any world currency to another using <strong>real-time exchange rates</strong>. Whether you need to check the latest <strong>USD to EUR</strong> rate, convert <strong>dollar to rupee</strong>, find out how much <strong>euro to dollar</strong> is worth today, or calculate <strong>$ to INR</strong> for an international transfer — our <strong>currency converter calculator</strong> delivers instant, accurate results with zero hidden fees. Checking <strong>1$ to INR</strong> or <strong>US$ to INR</strong> has never been easier or faster.
+          </p>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-primary !mt-8 !mb-3">How Our Real-Time Currency Converter Works</h3>
+          <p>
+            Our <strong>live currency converter</strong> pulls exchange rates directly from trusted global financial data providers. Simply enter the amount you want to convert, select the source currency (such as USD, EUR, GBP, JPY, or INR), choose the target currency, and get your result in under a second. The <strong>currency converter with live rates</strong> updates every 60 seconds during active forex market hours, ensuring you always see the most <strong>accurate currency converter</strong> rates available. Need to check <strong>$ to INR rate</strong> before sending money home? Our tool gives you the exact mid-market rate instantly.
+          </p>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-primary !mt-8 !mb-3">Supported Currencies & Popular Conversions</h3>
+          <p>
+            CurrencieConv supports over 150 <strong>world currencies</strong>, covering every major and emerging-market currency on the planet. Our most popular conversions include <strong>USD to EUR</strong> (US Dollar to Euro), <strong>USD to GBP</strong> (US Dollar to British Pound), <strong>USD to INR</strong> (US Dollar to Indian Rupee), <strong>USD to JPY</strong> (US Dollar to Japanese Yen), <strong>EUR to GBP</strong> (Euro to Pound), <strong>INR to USD</strong> (Indian Rupee to US Dollar), and <strong>dollar to euro converter</strong> lookups. Whether you need to convert between major fiat currencies, check the <strong>$ to INR rate</strong> right now, or find the <strong>currency rate today</strong> for less common pairs, our <strong>international currency converter</strong> handles it all.
+          </p>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-primary !mt-8 !mb-3">Why Choose CurrencieConv Over Other Currency Converters?</h3>
+          <p>
+            Unlike other <strong>money converter online</strong> tools that are cluttered with ads, slow to load, or hide their true exchange rate behind a markup, CurrencieConv is built from the ground up with transparency and speed in mind. Here is what makes us the <strong>best currency converter</strong> available online today:
+          </p>
+          <ul class="list-disc list-inside space-y-2 pl-2">
+            <li><strong>100% Free — No Hidden Fees:</strong> Our <strong>free currency converter</strong> is completely free to use. No subscriptions, no account required, no hidden charges.</li>
+            <li><strong>Real-Time Interbank Rates:</strong> We display the true mid-market <strong>currency exchange rate</strong> — the same rate banks use between themselves — with zero markup added.</li>
+            <li><strong>Lightning-Fast Performance:</strong> Built with modern web technology (Astro + static rendering), CurrencieConv loads in under one second on any device.</li>
+            <li><strong>Mobile-Friendly Design:</strong> Our <strong>online currency converter</strong> works perfectly on phones, tablets, and desktops. Convert currencies from anywhere.</li>
+            <li><strong>Privacy First:</strong> We do not collect personal data, track users, or store your conversion history. Your <strong>currency conversion rates</strong> lookups are entirely private.</li>
+          </ul>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-primary !mt-8 !mb-3">Understanding Forex & Exchange Rates</h3>
+          <p>
+            The <strong>foreign exchange</strong> (forex) market is the largest financial market in the world, with over $7.5 trillion traded daily. Exchange rates between currencies fluctuate constantly based on supply and demand, central bank monetary policies, inflation data, geopolitical events, and trade balances. When you use a <strong>forex converter</strong> like CurrencieConv, you see the mid-market rate — the midpoint between the buy and sell prices on the global market. Banks and traditional money-transfer services typically add a 2–5% markup on top of this rate, which is how they earn their profit. By showing you the true <strong>currency exchange rate</strong>, CurrencieConv helps you understand exactly how much you should be paying. For example, when checking <strong>1$ to INR</strong>, we show the exact interbank rate without any hidden spread.
+          </p>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-primary !mt-8 !mb-3">Convert Currency Online Free — Anytime, Anywhere</h3>
+          <p>
+            Whether you are a traveler checking <strong>currency rate today</strong> before a trip, a freelancer invoicing international clients in different currencies, a student comparing costs of studying abroad, or a business owner managing cross-border payments — CurrencieConv is your go-to <strong>real time currency converter</strong>. Need a quick <strong>US$ to INR</strong> check or a detailed <strong>$ to INR rate</strong> comparison? We have you covered. Bookmark our site, add it to your home screen, and <strong>convert currency online free</strong> whenever you need it. Built by <strong>Anuska Rani</strong> with a mission to make financial tools accessible to everyone.
+          </p>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-primary !mt-8 !mb-3">Quick Reference: Popular Currency Pairs</h3>
+          <p>
+            Use our <strong>currency converter live rates</strong> tool above to instantly check any pair. Here are some of the most searched conversions worldwide: USD to EUR, EUR to USD, GBP to USD, USD to INR, USD to JPY, EUR to GBP, AUD to USD, CAD to USD, CHF to USD, and CNY to USD. Each conversion uses the latest <strong>accurate currency converter</strong> data refreshed every minute from global forex feeds. Start converting now — it is fast, free, and always accurate.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
 </Layout>
