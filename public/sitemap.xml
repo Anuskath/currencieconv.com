@@ -2,43 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Main Pages -->
   <url>
-    <loc>https://currencieconv.com/</loc>
+    <loc>https://www.currencieconv.com/</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/rates</loc>
+    <loc>https://www.currencieconv.com/rates</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/about</loc>
+    <loc>https://www.currencieconv.com/about</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/faq</loc>
+    <loc>https://www.currencieconv.com/faq</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/contact</loc>
+    <loc>https://www.currencieconv.com/contact</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/privacy</loc>
+    <loc>https://www.currencieconv.com/privacy</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/terms</loc>
+    <loc>https://www.currencieconv.com/terms</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
@@ -46,61 +46,61 @@
 
   <!-- Currency Profile Pages -->
   <url>
-    <loc>https://currencieconv.com/currencies/USD</loc>
+    <loc>https://www.currencieconv.com/currencies/USD</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/currencies/EUR</loc>
+    <loc>https://www.currencieconv.com/currencies/EUR</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/currencies/GBP</loc>
+    <loc>https://www.currencieconv.com/currencies/GBP</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/currencies/INR</loc>
+    <loc>https://www.currencieconv.com/currencies/INR</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/currencies/JPY</loc>
+    <loc>https://www.currencieconv.com/currencies/JPY</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/currencies/CAD</loc>
+    <loc>https://www.currencieconv.com/currencies/CAD</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/currencies/AUD</loc>
+    <loc>https://www.currencieconv.com/currencies/AUD</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/currencies/CHF</loc>
+    <loc>https://www.currencieconv.com/currencies/CHF</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/currencies/CNY</loc>
+    <loc>https://www.currencieconv.com/currencies/CNY</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/currencies/MXN</loc>
+    <loc>https://www.currencieconv.com/currencies/MXN</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -108,7 +108,7 @@
 
   <!-- Free Widget Generator Page -->
   <url>
-    <loc>https://currencieconv.com/widget</loc>
+    <loc>https://www.currencieconv.com/widget</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -116,73 +116,73 @@
 
   <!-- Top High-Traffic Currency Pair Pages -->
   <url>
-    <loc>https://currencieconv.com/usd-to-inr</loc>
+    <loc>https://www.currencieconv.com/usd-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/aed-to-inr</loc>
+    <loc>https://www.currencieconv.com/aed-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/eur-to-usd</loc>
+    <loc>https://www.currencieconv.com/eur-to-usd</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/gbp-to-inr</loc>
+    <loc>https://www.currencieconv.com/gbp-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/cad-to-inr</loc>
+    <loc>https://www.currencieconv.com/cad-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/sar-to-inr</loc>
+    <loc>https://www.currencieconv.com/sar-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/aud-to-inr</loc>
+    <loc>https://www.currencieconv.com/aud-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/jpy-to-inr</loc>
+    <loc>https://www.currencieconv.com/jpy-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/chf-to-inr</loc>
+    <loc>https://www.currencieconv.com/chf-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/sgd-to-inr</loc>
+    <loc>https://www.currencieconv.com/sgd-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/kwd-to-inr</loc>
+    <loc>https://www.currencieconv.com/kwd-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://currencieconv.com/qar-to-inr</loc>
+    <loc>https://www.currencieconv.com/qar-to-inr</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.95</priority>

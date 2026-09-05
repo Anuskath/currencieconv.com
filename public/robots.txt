@@ -7,5 +7,5 @@ Disallow: /_astro/
 Disallow: /api/
 
 # Host & Sitemap location
-Host: https://currencieconv.com
-Sitemap: https://currencieconv.com/sitemap.xml
+Host: https://www.currencieconv.com
+Sitemap: https://www.currencieconv.com/sitemap.xml

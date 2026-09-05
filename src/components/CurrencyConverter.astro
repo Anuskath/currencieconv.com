@@ -385,7 +385,7 @@ const currencies = Object.keys(currencyData);
     const copyBtnText = document.getElementById('copyBtnText');
 
     if (fromInput && toInput && fromSelect && toSelect) {
-      const textToCopy = `${fromInput.value} ${fromSelect.value} = ${toInput.value} ${toSelect.value} (via https://currencieconv.com)`;
+      const textToCopy = `${fromInput.value} ${fromSelect.value} = ${toInput.value} ${toSelect.value} (via https://www.currencieconv.com)`;
       navigator.clipboard.writeText(textToCopy).then(() => {
         if (copyBtnText) {
           copyBtnText.textContent = 'Copied!';

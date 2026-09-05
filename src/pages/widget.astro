@@ -8,7 +8,7 @@ const schemaMarkup = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "CurrencieConv Free Currency Converter Widget",
-  "url": "https://currencieconv.com/widget",
+  "url": "https://www.currencieconv.com/widget",
   "description": "Free embeddable currency converter widget for your website or blog. Easily customize themes and default currencies to show real-time exchange rates to your visitors.",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "All",
@@ -179,7 +179,7 @@ const schemaMarkup = JSON.stringify({
       const theme = themeRadio.value;
 
       const widthAttr = width.endsWith('%') ? width : `${width}px`;
-      const iframeUrl = `https://currencieconv.com/widget-frame?from=${from}&to=${to}&theme=${theme}`;
+      const iframeUrl = `https://www.currencieconv.com/widget-frame?from=${from}&to=${to}&theme=${theme}`;
       const embedSnippet = `<iframe src="${iframeUrl}" width="${widthAttr}" height="${height}px" frameborder="0" scrolling="no" style="border:none; overflow:hidden; border-radius:12px;" title="Live Currency Converter Widget by CurrencieConv"></iframe>`;
 
       embedArea.value = embedSnippet;
