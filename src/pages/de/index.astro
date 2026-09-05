@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CurrencyConverter from '../../components/CurrencyConverter.astro';
+import { translations } from '../../i18n/translations';
+
+const t = translations.de;
+
+const schemaMarkup = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CurrencieConv - Währungsrechner Online",
+  "url": "https://www.currencieconv.com/de",
+  "description": t.meta.description,
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+});
+---
+
+<Layout
+  title={t.meta.title}
+  description={t.meta.description}
+  keywords={t.meta.keywords}
+  currentPath="/de"
+  lang="de"
+  schemaMarkup={schemaMarkup}
+>
+  <CurrencyConverter lang="de" defaultFrom="EUR" defaultTo="USD" />
+
+  <!-- SEO Content Section in German -->
+  <section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6">
+    <div class="container-app max-w-4xl mx-auto">
+      <article>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-primary">{t.article.mainTitle}</h2>
+        
+        <div class="space-y-4 text-sm sm:text-base text-body leading-relaxed">
+          <p>{t.article.intro}</p>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-primary !mt-8 !mb-3">{t.article.sec1Title}</h3>
+          <p>{t.article.sec1Text}</p>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-primary !mt-8 !mb-3">{t.article.sec2Title}</h3>
+          <p>{t.article.sec2Text}</p>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-primary !mt-8 !mb-3">{t.article.sec3Title}</h3>
+          <ul class="list-disc list-inside space-y-2 pl-2">
+            {t.article.sec3Points.map(point => (
+              <li>{point}</li>
+            ))}
+          </ul>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-primary !mt-8 !mb-3">{t.article.faqTitle}</h3>
+          <div class="space-y-4">
+            {t.article.faqs.map(faq => (
+              <div class="bg-canvas-soft dark:bg-slate-900 p-4 rounded-xl border border-hairline">
+                <h4 class="font-semibold text-primary mb-1">{faq.q}</h4>
+                <p class="text-sm text-mute">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</Layout>

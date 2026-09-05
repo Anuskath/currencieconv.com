@@ -1,25 +1,44 @@
 ---
 // CurrencyConverter.astro - Main converter component with Live Interbank Rate API & Auto-Refresh
 import { currencyData } from '../data/currencies';
+import { translations, type Locale } from '../i18n/translations';
 
+interface Props {
+  lang?: string;
+  defaultFrom?: string;
+  defaultTo?: string;
+  hideHero?: boolean;
+}
+
+const { 
+  lang = 'en', 
+  defaultFrom = 'USD', 
+  defaultTo = 'INR', 
+  hideHero = false 
+} = Astro.props;
+
+const currentLocale = (lang in translations ? lang : 'en') as Locale;
+const t = translations[currentLocale];
 const currencies = Object.keys(currencyData);
 ---
 
 <div class="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
   <div class="container-app max-w-6xl mx-auto">
     <!-- Hero Section -->
-    <div class="text-center mb-8 sm:mb-12 md:mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-link-bg-soft dark:bg-blue-900/30 text-link text-xs font-semibold font-mono mb-4 border border-blue-200 dark:border-blue-800">
-        <span class="w-2 h-2 rounded-full bg-link animate-pulse"></span>
-        Live Mid-Market Rates Connected
+    {!hideHero && (
+      <div class="text-center mb-8 sm:mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-link-bg-soft dark:bg-blue-900/30 text-link text-xs font-semibold font-mono mb-4 border border-blue-200 dark:border-blue-800">
+          <span class="w-2 h-2 rounded-full bg-link animate-pulse"></span>
+          {t.hero.badge}
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-primary">
+          {t.hero.title}
+        </h1>
+        <p class="text-sm sm:text-base md:text-lg text-body max-w-2xl mx-auto px-2">
+          {t.hero.subtitle}
+        </p>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-primary">
-        Currency Converter
-      </h1>
-      <p class="text-sm sm:text-base md:text-lg text-body max-w-2xl mx-auto px-2">
-        Real-time market exchange rates for 150+ world currencies. Fast, reliable, and completely free.
-      </p>
-    </div>
+    )}
 
     <!-- Converter Box -->
     <div class="max-w-2xl mx-auto mb-12 px-4 sm:px-0">
@@ -27,7 +46,7 @@ const currencies = Object.keys(currencyData);
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
           <!-- From Currency -->
           <div class="flex flex-col">
-            <label for="fromAmount" class="text-body-sm-strong text-primary mb-2">From</label>
+            <label for="fromAmount" class="text-body-sm-strong text-primary mb-2">{t.converter.from}</label>
             <div class="flex flex-col sm:flex-row gap-2">
               <input
                 type="number"
@@ -40,7 +59,7 @@ const currencies = Object.keys(currencyData);
               />
               <select id="fromCurrency" class="input-field w-full sm:w-44 text-sm sm:text-base font-medium">
                 {currencies.map((code) => (
-                  <option value={code} selected={code === 'USD'}>
+                  <option value={code} selected={code === defaultFrom}>
                     {currencyData[code].symbol} {code} - {currencyData[code].name}
                   </option>
                 ))}
@@ -53,19 +72,19 @@ const currencies = Object.keys(currencyData);
             <button
               id="swapBtn"
               class="w-full sm:w-auto px-3 sm:px-4 py-3 border border-hairline rounded-lg hover:bg-canvas-soft dark:hover:bg-slate-800 transition-all text-primary flex items-center justify-center gap-2 group"
-              title="Swap currencies"
-              aria-label="Swap currencies"
+              title={t.converter.swap}
+              aria-label={t.converter.swap}
             >
               <svg class="w-5 h-5 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6-4v12m0 0l4-4m-4 4l-4-4"></path>
               </svg>
-              <span class="md:hidden text-sm font-medium">Swap Currencies</span>
+              <span class="md:hidden text-sm font-medium">{t.converter.swap}</span>
             </button>
           </div>
 
           <!-- To Currency -->
           <div class="flex flex-col">
-            <label for="toAmount" class="text-body-sm-strong text-primary mb-2">To</label>
+            <label for="toAmount" class="text-body-sm-strong text-primary mb-2">{t.converter.to}</label>
             <div class="flex flex-col sm:flex-row gap-2">
               <input
                 type="number"
@@ -76,7 +95,7 @@ const currencies = Object.keys(currencyData);
               />
               <select id="toCurrency" class="input-field w-full sm:w-44 text-sm sm:text-base font-medium">
                 {currencies.map((code) => (
-                  <option value={code} selected={code === 'INR'}>
+                  <option value={code} selected={code === defaultTo}>
                     {currencyData[code].symbol} {code} - {currencyData[code].name}
                   </option>
                 ))}
@@ -88,7 +107,7 @@ const currencies = Object.keys(currencyData);
         <!-- Quick Amount Presets & Utility Buttons -->
         <div class="mt-4 pt-4 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-3">
           <div class="flex items-center gap-1.5 flex-wrap justify-center sm:justify-start">
-            <span class="text-xs font-semibold text-mute mr-1">Quick Amounts:</span>
+            <span class="text-xs font-semibold text-mute mr-1">{t.converter.quickAmounts}</span>
             {[10, 50, 100, 500, 1000, 5000].map((amt) => (
               <button
                 type="button"
@@ -106,11 +125,13 @@ const currencies = Object.keys(currencyData);
               type="button"
               class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-hairline bg-canvas hover:bg-canvas-soft dark:bg-slate-800 dark:hover:bg-slate-700 text-primary transition-all flex items-center gap-1.5"
               title="Copy conversion result"
+              data-copied-text={t.converter.copied}
+              data-default-text={t.converter.copyResult}
             >
               <svg class="w-3.5 h-3.5 text-link" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
               </svg>
-              <span id="copyBtnText">Copy Result</span>
+              <span id="copyBtnText">{t.converter.copyResult}</span>
             </button>
 
             <button
@@ -118,11 +139,13 @@ const currencies = Object.keys(currencyData);
               type="button"
               class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-hairline bg-canvas hover:bg-canvas-soft dark:bg-slate-800 dark:hover:bg-slate-700 text-primary transition-all flex items-center gap-1.5"
               title="Share conversion"
+              data-copied-text={t.converter.linkCopied}
+              data-default-text={t.converter.share}
             >
               <svg class="w-3.5 h-3.5 text-cyan-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
               </svg>
-              <span id="shareBtnText">Share</span>
+              <span id="shareBtnText">{t.converter.share}</span>
             </button>
           </div>
         </div>
@@ -131,22 +154,22 @@ const currencies = Object.keys(currencyData);
         <div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-hairline">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-2">
             <p class="text-body-sm text-mute text-center sm:text-left">
-              <span id="rateText" class="block sm:inline font-semibold text-primary">Fetching live mid-market rate...</span>
+              <span id="rateText" class="block sm:inline font-semibold text-primary">{t.converter.fetchingRate}</span>
               <span id="rateTime" class="text-caption text-mute ml-0 sm:ml-2 block sm:inline font-mono"></span>
             </p>
             <button
               id="refreshBtn"
               class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg border border-hairline bg-canvas hover:bg-canvas-soft dark:bg-slate-800 dark:hover:bg-slate-700 text-link hover:text-link-deep dark:hover:text-cyan-400 transition-all text-xs font-semibold whitespace-nowrap group"
-              title="Refresh live market rates"
+              title={t.converter.refreshRates}
             >
               <svg id="refreshIcon" class="w-3.5 h-3.5 transition-transform duration-500 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
               </svg>
-              <span>Refresh Rates</span>
+              <span>{t.converter.refreshRates}</span>
             </button>
           </div>
           <p class="text-[11px] text-mute text-center sm:text-left italic">
-            * Rates provided are indicative mid-market rates sourced from Open Exchange Rates API for informational purposes.
+            {t.converter.disclaimer}
           </p>
         </div>
       </div>
@@ -154,7 +177,7 @@ const currencies = Object.keys(currencyData);
 
     <!-- Popular Conversions -->
     <div class="max-w-2xl mx-auto mb-12 sm:mb-16 px-4 sm:px-0">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-primary">Popular Conversions</h2>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-primary">{t.popular.title}</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {[
           { pair: 'USD-INR', label: 'US Dollar to Indian Rupee ($ to INR)' },
@@ -194,8 +217,8 @@ const currencies = Object.keys(currencyData);
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
           </div>
-          <h3 class="text-body-md-strong mb-2">Live Market Data</h3>
-          <p class="text-body-sm text-mute">Real-time forex exchange rates fetched live & auto-updated every 60 seconds</p>
+          <h3 class="text-body-md-strong mb-2">{t.features.feat1Title}</h3>
+          <p class="text-body-sm text-mute">{t.features.feat1Desc}</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 mx-auto mb-4 bg-cyan-soft dark:bg-cyan-900/30 rounded-lg flex items-center justify-center">
@@ -203,8 +226,8 @@ const currencies = Object.keys(currencyData);
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-body-md-strong mb-2">150+ World Currencies</h3>
-          <p class="text-body-sm text-mute">USD, EUR, GBP, INR, AED, CAD, AUD, JPY, SAR and more with high precision</p>
+          <h3 class="text-body-md-strong mb-2">{t.features.feat2Title}</h3>
+          <p class="text-body-sm text-mute">{t.features.feat2Desc}</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 mx-auto mb-4 bg-success/10 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
@@ -212,8 +235,8 @@ const currencies = Object.keys(currencyData);
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-body-md-strong mb-2">Always Free</h3>
-          <p class="text-body-sm text-mute">No hidden service fees, no account required, completely free to use</p>
+          <h3 class="text-body-md-strong mb-2">{t.features.feat3Title}</h3>
+          <p class="text-body-sm text-mute">{t.features.feat3Desc}</p>
         </div>
       </div>
     </div>

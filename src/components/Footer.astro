@@ -1,4 +1,14 @@
 ---
+import { translations, type Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const currentLocale = (lang in translations ? lang : 'en') as Locale;
+const t = translations[currentLocale];
+const localePrefix = currentLocale === 'en' ? '' : `/${currentLocale}`;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -14,7 +24,7 @@ const currentYear = new Date().getFullYear();
           <span class="font-semibold text-primary">CurrencieConv</span>
         </div>
         <p class="text-xs sm:text-sm text-mute leading-relaxed mb-3">
-          Free online currency converter with real-time exchange rates. Convert USD to EUR, USD to INR, and 150+ world currencies instantly.
+          {t.hero.subtitle}
         </p>
         <p class="text-xs text-mute font-mono">
           Founded by <span class="text-primary font-medium">Anuska Rani</span>
@@ -25,9 +35,9 @@ const currentYear = new Date().getFullYear();
       <div>
         <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Converter Tools</h4>
         <ul class="space-y-1.5 sm:space-y-2">
-          <li><a href="/" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Currency Converter</a></li>
-          <li><a href="/rates" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Live Exchange Rates</a></li>
-          <li><a href="/widget" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors font-medium text-link">Free Website Widget</a></li>
+          <li><a href={localePrefix || '/'} class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">{t.nav.converter}</a></li>
+          <li><a href={`${localePrefix}/rates`} class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">{t.nav.rates}</a></li>
+          <li><a href={`${localePrefix}/widget`} class="text-xs sm:text-sm text-mute hover:text-primary transition-colors font-medium text-link">{t.nav.widget}</a></li>
           <li><a href="/usd-to-inr" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">USD to INR Rate</a></li>
           <li><a href="/aed-to-inr" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">AED to INR Rate</a></li>
           <li><a href="/eur-to-usd" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">EUR to USD Rate</a></li>
@@ -38,9 +48,9 @@ const currentYear = new Date().getFullYear();
       <div>
         <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Company & Info</h4>
         <ul class="space-y-1.5 sm:space-y-2">
-          <li><a href="/about" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">About Us</a></li>
-          <li><a href="/faq" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">FAQ & Help</a></li>
-          <li><a href="/contact" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">Contact Support</a></li>
+          <li><a href={`${localePrefix}/about`} class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">{t.nav.about}</a></li>
+          <li><a href={`${localePrefix}/faq`} class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">{t.nav.faq}</a></li>
+          <li><a href={`${localePrefix}/contact`} class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">{t.nav.contact}</a></li>
         </ul>
       </div>
 

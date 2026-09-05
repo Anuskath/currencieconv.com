@@ -11,6 +11,7 @@ interface Props {
 	canonicalUrl?: string;
 	ogType?: string;
 	schemaMarkup?: string;
+	lang?: string;
 }
 
 const { 
@@ -20,7 +21,8 @@ const {
 	currentPath = '/',
 	canonicalUrl = '',
 	ogType = 'website',
-	schemaMarkup = ''
+	schemaMarkup = '',
+	lang = 'en'
 } = Astro.props;
 
 const siteUrl = 'https://www.currencieconv.com';
@@ -29,7 +31,7 @@ const ogImageUrl = `${siteUrl}/og-image.png`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -56,6 +58,14 @@ const ogImageUrl = `${siteUrl}/og-image.png`;
 		<meta name="author" content="Anuska Rani" />
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 		<link rel="canonical" href={fullCanonical} />
+
+		<!-- International SEO Hreflang Tags -->
+		<link rel="alternate" hreflang="x-default" href="https://www.currencieconv.com/" />
+		<link rel="alternate" hreflang="en" href="https://www.currencieconv.com/" />
+		<link rel="alternate" hreflang="es" href="https://www.currencieconv.com/es" />
+		<link rel="alternate" hreflang="pt" href="https://www.currencieconv.com/pt" />
+		<link rel="alternate" hreflang="fr" href="https://www.currencieconv.com/fr" />
+		<link rel="alternate" hreflang="de" href="https://www.currencieconv.com/de" />
 		
 		<!-- Open Graph / Facebook Meta Tags -->
 		<meta property="og:type" content={ogType} />
@@ -96,10 +106,10 @@ const ogImageUrl = `${siteUrl}/og-image.png`;
 		</script>
 	</head>
 	<body class="bg-canvas text-primary flex flex-col min-h-screen">
-		<Header currentPath={currentPath} />
+		<Header currentPath={currentPath} lang={lang} />
 		<main class="flex-1">
 			<slot />
 		</main>
-		<Footer />
+		<Footer lang={lang} />
 	</body>
 </html>
