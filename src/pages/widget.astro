@@ -1,0 +1,214 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { currencyData } from '../data/currencies';
+
+const currencies = Object.keys(currencyData);
+
+const schemaMarkup = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CurrencieConv Free Currency Converter Widget",
+  "url": "https://currencieconv.com/widget",
+  "description": "Free embeddable currency converter widget for your website or blog. Easily customize themes and default currencies to show real-time exchange rates to your visitors.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+});
+---
+
+<Layout
+  title="Free Currency Converter Widget for Your Website | CurrencieConv"
+  description="Add a free live currency converter widget to your website or blog. Customize colors, width, and default currency pairs with an easy iframe embed snippet by CurrencieConv."
+  keywords="currency converter widget, free currency widget for website, embed currency converter, forex widget iframe, exchange rate widget, money converter widget"
+  currentPath="/widget"
+  schemaMarkup={schemaMarkup}
+>
+  <div class="py-10 sm:py-16 px-4 sm:px-6">
+    <div class="container-app max-w-5xl mx-auto">
+      
+      <!-- Hero -->
+      <div class="text-center mb-10 sm:mb-14">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-link-bg-soft dark:bg-blue-900/30 text-link text-xs font-semibold font-mono mb-4 border border-blue-200 dark:border-blue-800">
+          ✨ Free Webmaster Tool
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-primary">
+          Free Currency Converter Widget
+        </h1>
+        <p class="text-sm sm:text-base md:text-lg text-body max-w-2xl mx-auto">
+          Add a clean, real-time live currency converter to your website, blog, or store in seconds. 100% free and mobile-optimized.
+        </p>
+      </div>
+
+      <!-- Generator Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-16">
+        
+        <!-- Controls Column -->
+        <div class="bg-canvas-soft dark:bg-slate-900 border border-hairline rounded-2xl p-6 sm:p-8 space-y-6">
+          <h2 class="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+            ⚙️ Customize Your Widget
+          </h2>
+
+          <!-- Theme -->
+          <div>
+            <label class="block text-sm font-semibold text-primary mb-2">Color Theme</label>
+            <div class="grid grid-cols-2 gap-3">
+              <label class="flex items-center gap-2 border border-hairline rounded-lg p-3 cursor-pointer bg-canvas dark:bg-slate-800 hover:border-link">
+                <input type="radio" name="theme" value="light" checked class="accent-link" />
+                <span class="text-sm font-medium">Light Theme</span>
+              </label>
+              <label class="flex items-center gap-2 border border-hairline rounded-lg p-3 cursor-pointer bg-canvas dark:bg-slate-800 hover:border-link">
+                <input type="radio" name="theme" value="dark" class="accent-link" />
+                <span class="text-sm font-medium">Dark Theme</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Default Currencies -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="widgetFrom" class="block text-sm font-semibold text-primary mb-2">Default From</label>
+              <select id="widgetFrom" class="input-field w-full text-sm">
+                {currencies.map(code => (
+                  <option value={code} selected={code === 'USD'}>{code} - {currencyData[code].name}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label for="widgetTo" class="block text-sm font-semibold text-primary mb-2">Default To</label>
+              <select id="widgetTo" class="input-field w-full text-sm">
+                {currencies.map(code => (
+                  <option value={code} selected={code === 'INR'}>{code} - {currencyData[code].name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <!-- Width & Height -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="widgetWidth" class="block text-sm font-semibold text-primary mb-2">Width (px or %)</label>
+              <input type="text" id="widgetWidth" value="300" class="input-field w-full text-sm" />
+            </div>
+            <div>
+              <label for="widgetHeight" class="block text-sm font-semibold text-primary mb-2">Height (px)</label>
+              <input type="text" id="widgetHeight" value="240" class="input-field w-full text-sm" />
+            </div>
+          </div>
+
+          <!-- Code Snippet -->
+          <div class="pt-4 border-t border-hairline">
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-sm font-semibold text-primary">HTML Embed Code</label>
+              <button id="copyEmbedBtn" class="px-3 py-1 text-xs font-semibold rounded bg-link text-white hover:bg-link-deep transition-all">
+                Copy Code
+              </button>
+            </div>
+            <textarea
+              id="embedCode"
+              readonly
+              rows="4"
+              class="w-full font-mono text-xs p-3 rounded-lg border border-hairline bg-canvas dark:bg-slate-950 text-body focus:outline-none"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Live Preview Column -->
+        <div class="bg-canvas-soft dark:bg-slate-900 border border-hairline rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center">
+          <h2 class="text-xl font-bold text-primary mb-6 flex items-center gap-2">
+            👁️ Live Preview
+          </h2>
+
+          <div class="w-full flex justify-center py-4 overflow-hidden">
+            <iframe
+              id="previewIframe"
+              src="/widget-frame?from=USD&to=INR&theme=light"
+              style="width: 300px; height: 240px; border: none; overflow: hidden; border-radius: 12px;"
+              title="CurrencieConv Live Widget Preview"
+            ></iframe>
+          </div>
+
+          <p class="text-xs text-mute text-center mt-4">
+            This preview is interactive! Test typing amounts or switching currencies above.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- SEO Instructions -->
+      <section class="max-w-3xl mx-auto space-y-6">
+        <h2 class="text-2xl font-bold text-primary text-center">How to Add the Widget to Your Website</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div class="bg-canvas-soft dark:bg-slate-900 p-6 rounded-xl border border-hairline">
+            <div class="text-2xl font-bold text-link mb-2">1. Customize</div>
+            <p class="text-xs sm:text-sm text-body">Choose your desired theme, default currency pair, and dimensions in the generator.</p>
+          </div>
+          <div class="bg-canvas-soft dark:bg-slate-900 p-6 rounded-xl border border-hairline">
+            <div class="text-2xl font-bold text-link mb-2">2. Copy</div>
+            <p class="text-xs sm:text-sm text-body">Click "Copy Code" to copy the generated HTML iframe snippet to your clipboard.</p>
+          </div>
+          <div class="bg-canvas-soft dark:bg-slate-900 p-6 rounded-xl border border-hairline">
+            <div class="text-2xl font-bold text-link mb-2">3. Paste</div>
+            <p class="text-xs sm:text-sm text-body">Paste the HTML code into your WordPress site, HTML template, Shopify, or Blogger page.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    function updateWidgetSnippet() {
+      const fromSel = document.getElementById('widgetFrom') as HTMLSelectElement;
+      const toSel = document.getElementById('widgetTo') as HTMLSelectElement;
+      const widthInput = document.getElementById('widgetWidth') as HTMLInputElement;
+      const heightInput = document.getElementById('widgetHeight') as HTMLInputElement;
+      const themeRadio = document.querySelector('input[name="theme"]:checked') as HTMLInputElement;
+      const embedArea = document.getElementById('embedCode') as HTMLTextAreaElement;
+      const previewIframe = document.getElementById('previewIframe') as HTMLIFrameElement;
+
+      if (!fromSel || !toSel || !widthInput || !heightInput || !themeRadio || !embedArea || !previewIframe) return;
+
+      const from = fromSel.value;
+      const to = toSel.value;
+      const width = widthInput.value || '300';
+      const height = heightInput.value || '240';
+      const theme = themeRadio.value;
+
+      const widthAttr = width.endsWith('%') ? width : `${width}px`;
+      const iframeUrl = `https://currencieconv.com/widget-frame?from=${from}&to=${to}&theme=${theme}`;
+      const embedSnippet = `<iframe src="${iframeUrl}" width="${widthAttr}" height="${height}px" frameborder="0" scrolling="no" style="border:none; overflow:hidden; border-radius:12px;" title="Live Currency Converter Widget by CurrencieConv"></iframe>`;
+
+      embedArea.value = embedSnippet;
+      previewIframe.src = `/widget-frame?from=${from}&to=${to}&theme=${theme}`;
+      previewIframe.style.width = widthAttr;
+      previewIframe.style.height = `${height}px`;
+    }
+
+    document.getElementById('widgetFrom')?.addEventListener('change', updateWidgetSnippet);
+    document.getElementById('widgetTo')?.addEventListener('change', updateWidgetSnippet);
+    document.getElementById('widgetWidth')?.addEventListener('input', updateWidgetSnippet);
+    document.getElementById('widgetHeight')?.addEventListener('input', updateWidgetSnippet);
+    document.querySelectorAll('input[name="theme"]').forEach(r => r.addEventListener('change', updateWidgetSnippet));
+
+    document.getElementById('copyEmbedBtn')?.addEventListener('click', () => {
+      const embedArea = document.getElementById('embedCode') as HTMLTextAreaElement;
+      const copyBtn = document.getElementById('copyEmbedBtn');
+      if (embedArea) {
+        navigator.clipboard.writeText(embedArea.value).then(() => {
+          if (copyBtn) {
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => {
+              copyBtn.textContent = 'Copy Code';
+            }, 2000);
+          }
+        });
+      }
+    });
+
+    updateWidgetSnippet();
+  </script>
+</Layout>

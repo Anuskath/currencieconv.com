@@ -1,0 +1,173 @@
+---
+// Lightweight widget-frame.astro for iframe embedding
+import { currencyData } from '../data/currencies';
+
+const currencies = Object.keys(currencyData);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CurrencieConv Widget</title>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #ffffff;
+        color: #0f172a;
+        padding: 16px;
+        overflow: hidden;
+      }
+      body.dark-theme {
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .widget-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 16px;
+        background: #ffffff;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      }
+      .dark-theme .widget-card {
+        border-color: #334155;
+        background: #1e293b;
+      }
+      .widget-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .widget-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #2563eb;
+      }
+      .dark-theme .widget-title { color: #38bdf8; }
+      .input-group {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      input, select {
+        padding: 8px 10px;
+        font-size: 13px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        background: #f8fafc;
+        color: #0f172a;
+        outline: none;
+      }
+      .dark-theme input, .dark-theme select {
+        background: #0f172a;
+        color: #f8fafc;
+        border-color: #475569;
+      }
+      input { flex: 1; min-width: 0; font-weight: 600; }
+      select { width: 110px; font-weight: 500; }
+      .rate-info {
+        font-size: 11px;
+        color: #64748b;
+        margin-top: 8px;
+        text-align: center;
+      }
+      .dark-theme .rate-info { color: #94a3b8; }
+      .widget-footer {
+        margin-top: 12px;
+        padding-top: 8px;
+        border-top: 1px solid #e2e8f0;
+        text-align: center;
+        font-size: 11px;
+        color: #64748b;
+      }
+      .dark-theme .widget-footer { border-color: #334155; color: #94a3b8; }
+      .widget-footer a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .dark-theme .widget-footer a { color: #38bdf8; }
+      .widget-footer a:hover { text-decoration: underline; }
+    </style>
+  </head>
+  <body>
+    <div class="widget-card">
+      <div class="widget-header">
+        <span class="widget-title">💱 Currency Converter</span>
+        <span id="liveBadge" style="font-size: 10px; background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 10px; font-weight: 600;">LIVE</span>
+      </div>
+
+      <div class="input-group">
+        <input type="number" id="fromAmount" value="1" min="0" step="any" />
+        <select id="fromCurrency">
+          {currencies.map(code => (
+            <option value={code} selected={code === 'USD'}>{code}</option>
+          ))}
+        </select>
+      </div>
+
+      <div class="input-group">
+        <input type="number" id="toAmount" readonly placeholder="0.00" style="color: #2563eb;" />
+        <select id="toCurrency">
+          {currencies.map(code => (
+            <option value={code} selected={code === 'INR'}>{code}</option>
+          ))}
+        </select>
+      </div>
+
+      <div class="rate-info" id="rateText">Loading live rate...</div>
+
+      <div class="widget-footer">
+        Powered by <a href="https://currencieconv.com" target="_blank" rel="noopener">CurrencieConv</a>
+      </div>
+    </div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const theme = urlParams.get('theme') || 'light';
+      const defaultFrom = urlParams.get('from') || 'USD';
+      const defaultTo = urlParams.get('to') || 'INR';
+
+      if (theme === 'dark') {
+        document.body.classList.add('dark-theme');
+      }
+
+      const fromSel = document.getElementById('fromCurrency') as HTMLSelectElement;
+      const toSel = document.getElementById('toCurrency') as HTMLSelectElement;
+      const fromInput = document.getElementById('fromAmount') as HTMLInputElement;
+      const toInput = document.getElementById('toAmount') as HTMLInputElement;
+      const rateText = document.getElementById('rateText') as HTMLElement;
+
+      if (fromSel) fromSel.value = defaultFrom;
+      if (toSel) toSel.value = defaultTo;
+
+      async function updateWidget() {
+        if (!fromSel || !toSel || !fromInput || !toInput) return;
+        const from = fromSel.value;
+        const to = toSel.value;
+        const amt = parseFloat(fromInput.value) || 0;
+
+        try {
+          const res = await fetch(`https://open.er-api.com/v6/latest/${from}`);
+          const data = await res.json();
+          const rate = data?.rates?.[to] || 1;
+          toInput.value = (amt * rate).toFixed(2);
+          if (rateText) {
+            rateText.textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+          }
+        } catch (e) {
+          if (rateText) rateText.textContent = `1 ${from} to ${to}`;
+        }
+      }
+
+      fromInput?.addEventListener('input', updateWidget);
+      fromSel?.addEventListener('change', updateWidget);
+      toSel?.addEventListener('change', updateWidget);
+
+      updateWidget();
+    </script>
+  </body>
+</html>

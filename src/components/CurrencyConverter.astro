@@ -85,6 +85,48 @@ const currencies = Object.keys(currencyData);
           </div>
         </div>
 
+        <!-- Quick Amount Presets & Utility Buttons -->
+        <div class="mt-4 pt-4 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-1.5 flex-wrap justify-center sm:justify-start">
+            <span class="text-xs font-semibold text-mute mr-1">Quick Amounts:</span>
+            {[10, 50, 100, 500, 1000, 5000].map((amt) => (
+              <button
+                type="button"
+                class="preset-amt-btn px-2.5 py-1 text-xs font-medium rounded-md border border-hairline bg-canvas hover:bg-link-bg-soft hover:text-link hover:border-blue-300 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all text-primary"
+                data-amount={amt}
+              >
+                {amt}
+              </button>
+            ))}
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button
+              id="copyResultBtn"
+              type="button"
+              class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-hairline bg-canvas hover:bg-canvas-soft dark:bg-slate-800 dark:hover:bg-slate-700 text-primary transition-all flex items-center gap-1.5"
+              title="Copy conversion result"
+            >
+              <svg class="w-3.5 h-3.5 text-link" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+              </svg>
+              <span id="copyBtnText">Copy Result</span>
+            </button>
+
+            <button
+              id="shareBtn"
+              type="button"
+              class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-hairline bg-canvas hover:bg-canvas-soft dark:bg-slate-800 dark:hover:bg-slate-700 text-primary transition-all flex items-center gap-1.5"
+              title="Share conversion"
+            >
+              <svg class="w-3.5 h-3.5 text-cyan-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+              </svg>
+              <span id="shareBtnText">Share</span>
+            </button>
+          </div>
+        </div>
+
         <!-- Exchange Rate Info & Disclaimer -->
         <div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-hairline">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-2">
@@ -319,6 +361,65 @@ const currencies = Object.keys(currencyData);
         document.getElementById('fromAmount')?.focus();
       }
     });
+  });
+
+  // Preset Amount Buttons
+  document.querySelectorAll('.preset-amt-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLElement;
+      const amount = target.getAttribute('data-amount');
+      const fromInput = document.getElementById('fromAmount') as HTMLInputElement;
+      if (amount && fromInput) {
+        fromInput.value = amount;
+        updateExchangeRate();
+      }
+    });
+  });
+
+  // Copy Result Button
+  document.getElementById('copyResultBtn')?.addEventListener('click', () => {
+    const fromInput = document.getElementById('fromAmount') as HTMLInputElement;
+    const toInput = document.getElementById('toAmount') as HTMLInputElement;
+    const fromSelect = document.getElementById('fromCurrency') as HTMLSelectElement;
+    const toSelect = document.getElementById('toCurrency') as HTMLSelectElement;
+    const copyBtnText = document.getElementById('copyBtnText');
+
+    if (fromInput && toInput && fromSelect && toSelect) {
+      const textToCopy = `${fromInput.value} ${fromSelect.value} = ${toInput.value} ${toSelect.value} (via https://currencieconv.com)`;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        if (copyBtnText) {
+          copyBtnText.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtnText.textContent = 'Copy Result';
+          }, 2000);
+        }
+      });
+    }
+  });
+
+  // Share Button
+  document.getElementById('shareBtn')?.addEventListener('click', () => {
+    const fromSelect = document.getElementById('fromCurrency') as HTMLSelectElement;
+    const toSelect = document.getElementById('toCurrency') as HTMLSelectElement;
+    const shareBtnText = document.getElementById('shareBtnText');
+    const shareUrl = window.location.href;
+    const title = `${fromSelect?.value || 'Currency'} to ${toSelect?.value || 'Currency'} Converter | CurrencieConv`;
+
+    if (navigator.share) {
+      navigator.share({
+        title: title,
+        url: shareUrl
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        if (shareBtnText) {
+          shareBtnText.textContent = 'Link Copied!';
+          setTimeout(() => {
+            shareBtnText.textContent = 'Share';
+          }, 2000);
+        }
+      });
+    }
   });
 
   setInterval(() => {

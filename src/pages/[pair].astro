@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CurrencyConverter from '../components/CurrencyConverter.astro';
+import { currencyData } from '../data/currencies';
+
+export async function getStaticPaths() {
+  const pairs = [
+    { pair: 'usd-to-inr', from: 'USD', to: 'INR', name: 'US Dollar to Indian Rupee' },
+    { pair: 'aed-to-inr', from: 'AED', to: 'INR', name: 'UAE Dirham to Indian Rupee' },
+    { pair: 'eur-to-usd', from: 'EUR', to: 'USD', name: 'Euro to US Dollar' },
+    { pair: 'gbp-to-inr', from: 'GBP', to: 'INR', name: 'British Pound to Indian Rupee' },
+    { pair: 'cad-to-inr', from: 'CAD', to: 'INR', name: 'Canadian Dollar to Indian Rupee' },
+    { pair: 'sar-to-inr', from: 'SAR', to: 'INR', name: 'Saudi Riyal to Indian Rupee' },
+    { pair: 'aud-to-inr', from: 'AUD', to: 'INR', name: 'Australian Dollar to Indian Rupee' },
+    { pair: 'jpy-to-inr', from: 'JPY', to: 'INR', name: 'Japanese Yen to Indian Rupee' },
+    { pair: 'chf-to-inr', from: 'CHF', to: 'INR', name: 'Swiss Franc to Indian Rupee' },
+    { pair: 'sgd-to-inr', from: 'SGD', to: 'INR', name: 'Singapore Dollar to Indian Rupee' },
+    { pair: 'kwd-to-inr', from: 'KWD', to: 'INR', name: 'Kuwaiti Dinar to Indian Rupee' },
+    { pair: 'qar-to-inr', from: 'QAR', to: 'INR', name: 'Qatari Riyal to Indian Rupee' },
+  ];
+
+  return pairs.map(p => ({
+    params: { pair: p.pair },
+    props: p
+  }));
+}
+
+const { pair, from, to, name } = Astro.props;
+
+const fromObj = currencyData[from] || { symbol: from, name: from };
+const toObj = currencyData[to] || { symbol: to, name: to };
+
+const pageTitle = `Convert ${from} to ${to} (${name}) Live Rates | CurrencieConv`;
+const metaDescription = `Convert ${from} to ${to} with real-time live exchange rates. See exact 1 ${from} to ${to} rate today, conversion chart tables, and free online calculator by CurrencieConv.`;
+const keywords = `${from} to ${to}, 1 ${from} to ${to}, convert ${from} to ${to}, ${from.toLowerCase()} to ${to.toLowerCase()} rate, live ${from} ${to} exchange rate`;
+
+const schemaMarkup = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FinancialProduct",
+  "name": `${name} Conversion Rate`,
+  "description": metaDescription,
+  "url": `https://currencieconv.com/${pair}`,
+  "provider": {
+    "@type": "FinancialService",
+    "name": "CurrencieConv",
+    "url": "https://currencieconv.com"
+  }
+});
+
+const presetAmounts = [1, 5, 10, 25, 50, 100, 500, 1000];
+---
+
+<Layout
+  title={pageTitle}
+  description={metaDescription}
+  keywords={keywords}
+  currentPath={`/${pair}`}
+  schemaMarkup={schemaMarkup}
+>
+  <div class="py-8 sm:py-12 px-4 sm:px-6">
+    <div class="container-app max-w-5xl mx-auto">
+      
+      <!-- Pair Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-link-bg-soft dark:bg-blue-900/30 text-link text-xs font-semibold font-mono mb-4 border border-blue-200 dark:border-blue-800">
+          <span class="w-2 h-2 rounded-full bg-link animate-pulse"></span>
+          Live Exchange Rate Pair
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-primary">
+          Convert {from} to {to}
+        </h1>
+        <p class="text-sm sm:text-base text-body max-w-2xl mx-auto">
+          Real-time mid-market exchange rate for <strong>{name} ({from} / {to})</strong>. Updated live every 60 seconds.
+        </p>
+      </div>
+
+      <!-- Main Converter Component pre-configured for pair -->
+      <CurrencyConverter />
+
+      <!-- Quick Conversion Reference Table -->
+      <div class="mt-12 max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mb-6 text-primary text-center">
+          {from} to {to} Quick Conversion Reference Table
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- From -> To Table -->
+          <div class="bg-canvas-soft dark:bg-slate-900 border border-hairline rounded-xl p-5">
+            <h3 class="text-base font-semibold text-primary mb-4 border-b border-hairline pb-2">
+              {from} ({fromObj.name}) → {to} ({toObj.name})
+            </h3>
+            <div class="space-y-2 text-sm">
+              {presetAmounts.map(amt => (
+                <div class="flex justify-between py-1 border-b border-hairline/50 last:border-0">
+                  <span class="font-medium text-primary">{amt} {from}</span>
+                  <span class="font-mono text-link font-semibold pair-calc-val" data-amt={amt} data-from={from} data-to={to}>
+                    Calculating...
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Reverse To -> From Table -->
+          <div class="bg-canvas-soft dark:bg-slate-900 border border-hairline rounded-xl p-5">
+            <h3 class="text-base font-semibold text-primary mb-4 border-b border-hairline pb-2">
+              {to} ({toObj.name}) → {from} ({fromObj.name})
+            </h3>
+            <div class="space-y-2 text-sm">
+              {presetAmounts.map(amt => (
+                <div class="flex justify-between py-1 border-b border-hairline/50 last:border-0">
+                  <span class="font-medium text-primary">{amt} {to}</span>
+                  <span class="font-mono text-cyan-deep dark:text-cyan-400 font-semibold reverse-calc-val" data-amt={amt} data-from={to} data-to={from}>
+                    Calculating...
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO Article Section for Pair -->
+      <article class="mt-16 max-w-3xl mx-auto space-y-6 text-body leading-relaxed text-sm sm:text-base">
+        <h2 class="text-2xl font-bold text-primary">
+          About {name} ({from} to {to}) Exchange Rates
+        </h2>
+        <p>
+          The exchange rate between <strong>{from} ({fromObj.name})</strong> and <strong>{to} ({toObj.name})</strong> represents how much one unit of {from} is worth in {to}. Exchange rates fluctuate constantly due to global market supply, economic indicators, central bank policies, inflation, and international trade dynamics.
+        </p>
+
+        <h3 class="text-xl font-semibold text-primary">
+          Why Check {from} to {to} Live on CurrencieConv?
+        </h3>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Interbank Rates:</strong> We show the true mid-market rate without hidden markup fees added by traditional banks or transfer services.</li>
+          <li><strong>Real-Time Updates:</strong> Rates refresh live every 60 seconds from interbank forex feeds.</li>
+          <li><strong>Zero Cost:</strong> CurrencieConv is 100% free with no registration required.</li>
+        </ul>
+
+        <!-- Pair FAQ Accordion -->
+        <div class="pt-6 border-t border-hairline">
+          <h3 class="text-xl font-semibold text-primary mb-4">
+            Frequently Asked Questions ({from} to {to})
+          </h3>
+          <div class="space-y-4">
+            <div class="bg-canvas-soft dark:bg-slate-900 p-4 rounded-lg border border-hairline">
+              <h4 class="font-semibold text-primary mb-1">What is 1 {from} to {to} today?</h4>
+              <p class="text-sm text-mute" id="faqRateText">
+                Check our live calculator above for the exact 1 {from} to {to} exchange rate right now.
+              </p>
+            </div>
+            <div class="bg-canvas-soft dark:bg-slate-900 p-4 rounded-lg border border-hairline">
+              <h4 class="font-semibold text-primary mb-1">Do banks charge fees on {from} to {to} transfers?</h4>
+              <p class="text-sm text-mute">
+                Yes, banks and remittance providers often add a 2% to 5% spread margin on top of the mid-market rate displayed here.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <script>
+    const fromPair = "{from}";
+    const toPair = "{to}";
+
+    async function loadPairTables() {
+      try {
+        const res = await fetch(`https://open.er-api.com/v6/latest/${fromPair}`);
+        const data = await res.json();
+        const rate = data?.rates?.[toPair] || 1;
+        const reverseRate = 1 / rate;
+
+        document.querySelectorAll('.pair-calc-val').forEach(el => {
+          const amt = parseFloat(el.getAttribute('data-amt') || '1');
+          el.textContent = `${(amt * rate).toFixed(2)} ${toPair}`;
+        });
+
+        document.querySelectorAll('.reverse-calc-val').forEach(el => {
+          const amt = parseFloat(el.getAttribute('data-amt') || '1');
+          el.textContent = `${(amt * reverseRate).toFixed(4)} ${fromPair}`;
+        });
+
+        const faqRateText = document.getElementById('faqRateText');
+        if (faqRateText) {
+          faqRateText.textContent = `As of right now, 1 ${fromPair} equals approximately ${rate.toFixed(4)} ${toPair} on the live interbank market.`;
+        }
+
+        // Set default values in main converter
+        const fromSel = document.getElementById('fromCurrency') as HTMLSelectElement;
+        const toSel = document.getElementById('toCurrency') as HTMLSelectElement;
+        if (fromSel && toSel) {
+          fromSel.value = fromPair;
+          toSel.value = toPair;
+          fromSel.dispatchEvent(new Event('change'));
+        }
+      } catch (e) {
+        console.warn('Pair table rate fetch failed:', e);
+      }
+    }
+
+    loadPairTables();
+  </script>
+</Layout>
