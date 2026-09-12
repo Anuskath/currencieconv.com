@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://www.currencieconv.com',
+  trailingSlash: 'always',
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es', 'pt', 'fr', 'de'],

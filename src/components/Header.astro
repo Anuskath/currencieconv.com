@@ -13,7 +13,7 @@ const t = translations[currentLocale];
 const localePrefix = currentLocale === 'en' ? '' : `/${currentLocale}`;
 
 const navItems = [
-  { label: t.nav.converter, href: localePrefix || '/' },
+  { label: t.nav.converter, href: localePrefix ? `${localePrefix}/` : '/' },
   { label: t.nav.rates, href: `${localePrefix}/rates` },
   { label: t.nav.widget, href: `${localePrefix}/widget` },
   { label: t.nav.about, href: `${localePrefix}/about` },
@@ -23,10 +23,10 @@ const navItems = [
 
 const languages = [
   { code: 'en', label: 'English', flag: '🇺🇸', href: '/' },
-  { code: 'es', label: 'Español', flag: '🇪🇸', href: '/es' },
-  { code: 'pt', label: 'Português', flag: '🇧🇷', href: '/pt' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷', href: '/fr' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪', href: '/de' },
+  { code: 'es', label: 'Español', flag: '🇪🇸', href: '/es/' },
+  { code: 'pt', label: 'Português', flag: '🇧🇷', href: '/pt/' },
+  { code: 'fr', label: 'Français', flag: '🇫🇷', href: '/fr/' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪', href: '/de/' },
 ];
 
 const activeLang = languages.find(l => l.code === currentLocale) || languages[0];

@@ -29,7 +29,12 @@ export const currencyData: Record<string, { symbol: string; name: string }> = {
   PKR: { symbol: 'Rs', name: 'Pakistani Rupee' },
   BDT: { symbol: '৳', name: 'Bangladeshi Taka' },
   PHP: { symbol: '₱', name: 'Philippine Peso' },
-  VND: { symbol: '₫', name: 'Vietnamese Dong' }
+  VND: { symbol: '₫', name: 'Vietnamese Dong' },
+  KWD: { symbol: 'KD', name: 'Kuwaiti Dinar' },
+  QAR: { symbol: 'QR', name: 'Qatari Riyal' },
+  OMR: { symbol: 'OMR', name: 'Omani Rial' },
+  BHD: { symbol: 'BD', name: 'Bahraini Dinar' },
+  NPR: { symbol: 'Rs', name: 'Nepalese Rupee' }
 };
 
 export function getCurrencySymbol(code: string): string {

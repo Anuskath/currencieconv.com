@@ -3,7 +3,6 @@ User-agent: *
 Allow: /
 
 # Disallow administrative and temporary files
-Disallow: /_astro/
 Disallow: /api/
 
 # Host & Sitemap location

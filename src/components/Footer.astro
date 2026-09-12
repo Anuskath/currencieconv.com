@@ -35,7 +35,7 @@ const currentYear = new Date().getFullYear();
       <div>
         <h4 class="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-primary">Converter Tools</h4>
         <ul class="space-y-1.5 sm:space-y-2">
-          <li><a href={localePrefix || '/'} class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">{t.nav.converter}</a></li>
+          <li><a href={localePrefix ? `${localePrefix}/` : '/'} class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">{t.nav.converter}</a></li>
           <li><a href={`${localePrefix}/rates`} class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">{t.nav.rates}</a></li>
           <li><a href={`${localePrefix}/widget`} class="text-xs sm:text-sm text-mute hover:text-primary transition-colors font-medium text-link">{t.nav.widget}</a></li>
           <li><a href="/usd-to-inr" class="text-xs sm:text-sm text-mute hover:text-primary transition-colors">USD to INR Rate</a></li>
