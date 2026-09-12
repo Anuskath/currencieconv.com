@@ -26,31 +26,23 @@ const currencies = Object.keys(currencyData);
   <div class="container-app max-w-6xl mx-auto">
     <!-- Hero Section -->
     {!hideHero && (
-      <div class="hero-glow premium-shell rounded-[2rem] px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-12 mb-8 sm:mb-10 md:mb-14">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="metric-pill mx-auto mb-4">
-            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-            <span class="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em]">{t.hero.badge}</span>
-          </div>
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.05em] text-primary mb-4 leading-[1.05]">
-            {t.hero.title}
-          </h1>
-          <p class="text-sm sm:text-base md:text-lg text-body max-w-2xl mx-auto leading-relaxed">
-            {t.hero.subtitle}
-          </p>
-
-          <div class="mt-6 sm:mt-7 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium text-mute">
-            <span class="metric-pill">Live mid-market rates</span>
-            <span class="metric-pill">150+ currencies</span>
-            <span class="metric-pill">Always free</span>
-          </div>
+      <div class="text-center mb-8 sm:mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-link-bg-soft dark:bg-blue-900/30 text-link text-xs font-semibold font-mono mb-4 border border-blue-200 dark:border-blue-800">
+          <span class="w-2 h-2 rounded-full bg-link animate-pulse"></span>
+          {t.hero.badge}
         </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-primary">
+          {t.hero.title}
+        </h1>
+        <p class="text-sm sm:text-base md:text-lg text-body max-w-2xl mx-auto px-2">
+          {t.hero.subtitle}
+        </p>
       </div>
     )}
 
     <!-- Converter Box -->
-    <div class="max-w-2xl mx-auto mb-12 sm:mb-14 px-0 sm:px-2">
-      <div class="converter-panel rounded-[1.5rem] p-4 sm:p-6 md:p-8">
+    <div class="max-w-2xl mx-auto mb-12 px-4 sm:px-0">
+      <div class="bg-canvas-soft border border-hairline rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] dark:bg-slate-900">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
           <!-- From Currency -->
           <div class="flex flex-col">
@@ -119,7 +111,7 @@ const currencies = Object.keys(currencyData);
             {[10, 50, 100, 500, 1000, 5000].map((amt) => (
               <button
                 type="button"
-                class="preset-amt-btn px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-hairline bg-canvas hover:bg-blue-50 hover:text-link hover:border-blue-300 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all text-primary shadow-sm"
+                class="preset-amt-btn px-2.5 py-1 text-xs font-medium rounded-md border border-hairline bg-canvas hover:bg-link-bg-soft hover:text-link hover:border-blue-300 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all text-primary"
                 data-amount={amt}
               >
                 {amt}
@@ -131,7 +123,7 @@ const currencies = Object.keys(currencyData);
             <button
               id="copyResultBtn"
               type="button"
-              class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-hairline bg-canvas hover:bg-canvas-soft dark:bg-slate-800 dark:hover:bg-slate-700 text-primary transition-all flex items-center gap-1.5 shadow-sm"
+              class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-hairline bg-canvas hover:bg-canvas-soft dark:bg-slate-800 dark:hover:bg-slate-700 text-primary transition-all flex items-center gap-1.5"
               title="Copy conversion result"
               data-copied-text={t.converter.copied}
               data-default-text={t.converter.copyResult}
@@ -218,9 +210,9 @@ const currencies = Object.keys(currencyData);
 
     <!-- Features -->
     <div class="max-w-3xl mx-auto px-4 sm:px-0">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-        <div class="feature-card text-center rounded-2xl p-5 sm:p-6">
-          <div class="w-12 h-12 mx-auto mb-4 bg-link-bg-soft dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+        <div class="text-center">
+          <div class="w-12 h-12 mx-auto mb-4 bg-link-bg-soft dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
             <svg class="w-6 h-6 text-link" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
@@ -228,8 +220,8 @@ const currencies = Object.keys(currencyData);
           <h3 class="text-body-md-strong mb-2">{t.features.feat1Title}</h3>
           <p class="text-body-sm text-mute">{t.features.feat1Desc}</p>
         </div>
-        <div class="feature-card text-center rounded-2xl p-5 sm:p-6">
-          <div class="w-12 h-12 mx-auto mb-4 bg-cyan-soft dark:bg-cyan-900/30 rounded-xl flex items-center justify-center">
+        <div class="text-center">
+          <div class="w-12 h-12 mx-auto mb-4 bg-cyan-soft dark:bg-cyan-900/30 rounded-lg flex items-center justify-center">
             <svg class="w-6 h-6 text-cyan-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
@@ -237,8 +229,8 @@ const currencies = Object.keys(currencyData);
           <h3 class="text-body-md-strong mb-2">{t.features.feat2Title}</h3>
           <p class="text-body-sm text-mute">{t.features.feat2Desc}</p>
         </div>
-        <div class="feature-card text-center rounded-2xl p-5 sm:p-6">
-          <div class="w-12 h-12 mx-auto mb-4 bg-success/10 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
+        <div class="text-center">
+          <div class="w-12 h-12 mx-auto mb-4 bg-success/10 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
             <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
