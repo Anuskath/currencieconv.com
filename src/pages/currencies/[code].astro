@@ -130,7 +130,7 @@ const topPairs = Object.entries(conversionRates)
         <p class="text-body-md text-body mb-6">
           Use our free currency converter to convert {code} to any other currency at live market rates.
         </p>
-        <a href="/?from={code}" class="btn-primary inline-block">
+        <a href={`/?from=${code}`} class="btn-primary inline-block">
           Open Converter
         </a>
       </div>

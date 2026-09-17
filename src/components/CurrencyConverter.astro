@@ -453,6 +453,20 @@ const currencies = Object.keys(currencyData);
     updateExchangeRate(false);
   }, 60000);
 
+  // Check URL query parameters (e.g. ?from=CAD&to=USD) on load
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramFrom = urlParams.get('from')?.toUpperCase();
+  const paramTo = urlParams.get('to')?.toUpperCase();
+
+  const fromSel = document.getElementById('fromCurrency') as HTMLSelectElement;
+  const toSel = document.getElementById('toCurrency') as HTMLSelectElement;
+  if (paramFrom && fromSel && Array.from(fromSel.options).some(opt => opt.value === paramFrom)) {
+    fromSel.value = paramFrom;
+  }
+  if (paramTo && toSel && Array.from(toSel.options).some(opt => opt.value === paramTo)) {
+    toSel.value = paramTo;
+  }
+
   updateExchangeRate();
 </script>
 

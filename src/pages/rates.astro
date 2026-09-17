@@ -66,7 +66,7 @@ const allCurrencies = [
         <h2 class="text-display-md mb-6">All Currencies</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {allCurrencies.map((currency) => (
-            <a href={`/currencies/${currency.code}`} class="card group">
+            <a href={`/currencies/${currency.code}/`} class="card group">
               <div class="flex items-center justify-between">
                 <div>
                   <p class="text-body-md-strong group-hover:text-link transition-colors">{currency.symbol} {currency.code}</p>

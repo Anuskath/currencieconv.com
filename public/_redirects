@@ -1,0 +1,12 @@
+﻿# Explicit 301 Permanent Redirects for trailing slashes
+/es /es/ 301
+/pt /pt/ 301
+/fr /fr/ 301
+/de /de/ 301
+/about /about/ 301
+/rates /rates/ 301
+/widget /widget/ 301
+/faq /faq/ 301
+/contact /contact/ 301
+/privacy /privacy/ 301
+/terms /terms/ 301
