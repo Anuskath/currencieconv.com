@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 
 const schema = JSON.stringify({
   "@context": "https://schema.org",
@@ -14,7 +14,7 @@ const schema = JSON.stringify({
     "@type": "Organization",
     "name": "CurrencieConv"
   },
-  "mainEntityOfPage": "https://www.currencieconv.com/guides/how-to-avoid-foreign-transaction-fees/"
+  "mainEntityOfPage": "https://www.currencieconv.com/guide-avoid-fees/"
 });
 ---
 
@@ -22,7 +22,7 @@ const schema = JSON.stringify({
   title="5 Ways to Avoid Foreign Transaction & Exchange Fees — CurrencieConv"
   description="Learn how to bypass hidden foreign exchange markups, dynamic currency conversion traps, ATM fees, and airport currency counters when traveling."
   keywords="avoid foreign transaction fees, dynamic currency conversion dcc, cheap international money transfer, travel currency tips, zero forex credit card"
-  currentPath="/guides/how-to-avoid-foreign-transaction-fees"
+  currentPath="/guide-avoid-fees"
   schemaMarkup={schema}
 >
   <article class="py-12 sm:py-16">
@@ -100,8 +100,8 @@ const schema = JSON.stringify({
 
       <!-- Navigation Footer -->
       <div class="mt-12 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4">
-        <a href="/guides/understanding-forex-exchange-rates/" class="text-sm font-semibold text-link hover:underline">&larr; Prev: Understanding Forex Rates</a>
-        <a href="/guides/usd-to-inr-exchange-rate-factors/" class="text-sm font-semibold text-link hover:underline">Next: USD to INR Drivers &rarr;</a>
+        <a href="/guide-forex-rates/" class="text-sm font-semibold text-link hover:underline">&larr; Prev: Understanding Forex Rates</a>
+        <a href="/guide-usd-inr/" class="text-sm font-semibold text-link hover:underline">Next: USD to INR Drivers &rarr;</a>
       </div>
     </div>
   </article>

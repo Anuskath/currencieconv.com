@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 
 const schema = JSON.stringify({
   "@context": "https://schema.org",
@@ -14,7 +14,7 @@ const schema = JSON.stringify({
     "@type": "Organization",
     "name": "CurrencieConv"
   },
-  "mainEntityOfPage": "https://www.currencieconv.com/guides/usd-to-inr-exchange-rate-factors/"
+  "mainEntityOfPage": "https://www.currencieconv.com/guide-usd-inr/"
 });
 ---
 
@@ -22,7 +22,7 @@ const schema = JSON.stringify({
   title="What Drives USD to INR Exchange Rates? Key Factors Explained — CurrencieConv"
   description="Understand what causes the US Dollar to Indian Rupee (USD/INR) exchange rate to fluctuate, including crude oil imports, RBI interventions, Fed rates, and remittances."
   keywords="usd to inr exchange rate factors, dollar to rupee drivers, rbi exchange rate policy, crude oil impact on rupee, fed interest rate usd inr"
-  currentPath="/guides/usd-to-inr-exchange-rate-factors"
+  currentPath="/guide-usd-inr"
   schemaMarkup={schema}
 >
   <article class="py-12 sm:py-16">
@@ -94,7 +94,7 @@ const schema = JSON.stringify({
 
       <!-- Navigation Footer -->
       <div class="mt-12 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4">
-        <a href="/guides/how-to-avoid-foreign-transaction-fees/" class="text-sm font-semibold text-link hover:underline">&larr; Prev: Avoid Foreign Fees</a>
+        <a href="/guide-avoid-fees/" class="text-sm font-semibold text-link hover:underline">&larr; Prev: Avoid Foreign Fees</a>
         <a href="/guides/" class="text-sm font-semibold text-link hover:underline">All Guides &rarr;</a>
       </div>
     </div>

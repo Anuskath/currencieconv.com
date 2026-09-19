@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 
 const schema = JSON.stringify({
   "@context": "https://schema.org",
@@ -14,7 +14,7 @@ const schema = JSON.stringify({
     "@type": "Organization",
     "name": "CurrencieConv"
   },
-  "mainEntityOfPage": "https://www.currencieconv.com/guides/understanding-forex-exchange-rates/"
+  "mainEntityOfPage": "https://www.currencieconv.com/guide-forex-rates/"
 });
 ---
 
@@ -22,7 +22,7 @@ const schema = JSON.stringify({
   title="Understanding Foreign Exchange Rates — Beginner Forex Guide | CurrencieConv"
   description="Learn how currency exchange rates work, what determines mid-market rates, floating vs. fixed regimes, and how interbank forex markets calculate currency values."
   keywords="foreign exchange rate guide, forex market basics, mid market rate explained, currency exchange rates calculation, floating exchange rate"
-  currentPath="/guides/understanding-forex-exchange-rates"
+  currentPath="/guide-forex-rates"
   schemaMarkup={schema}
 >
   <article class="py-12 sm:py-16">
@@ -111,7 +111,7 @@ const schema = JSON.stringify({
       <!-- Navigation Footer -->
       <div class="mt-12 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4">
         <a href="/guides/" class="text-sm font-semibold text-link hover:underline">&larr; Back to All Guides</a>
-        <a href="/guides/how-to-avoid-foreign-transaction-fees/" class="text-sm font-semibold text-link hover:underline">Next: How to Avoid Foreign Fees &rarr;</a>
+        <a href="/guide-avoid-fees/" class="text-sm font-semibold text-link hover:underline">Next: How to Avoid Foreign Fees &rarr;</a>
       </div>
     </div>
   </article>
