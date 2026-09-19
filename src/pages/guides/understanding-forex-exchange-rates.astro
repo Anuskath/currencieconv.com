@@ -1,0 +1,118 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Understanding Foreign Exchange Rates: A Complete Beginner's Guide",
+  "description": "Learn how currency exchange rates work, what determines mid-market rates, floating vs. fixed regimes, and how interbank forex markets calculate currency values.",
+  "author": {
+    "@type": "Person",
+    "name": "Anuska Rani"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CurrencieConv"
+  },
+  "mainEntityOfPage": "https://www.currencieconv.com/guides/understanding-forex-exchange-rates/"
+});
+---
+
+<Layout
+  title="Understanding Foreign Exchange Rates — Beginner Forex Guide | CurrencieConv"
+  description="Learn how currency exchange rates work, what determines mid-market rates, floating vs. fixed regimes, and how interbank forex markets calculate currency values."
+  keywords="foreign exchange rate guide, forex market basics, mid market rate explained, currency exchange rates calculation, floating exchange rate"
+  currentPath="/guides/understanding-forex-exchange-rates"
+  schemaMarkup={schema}
+>
+  <article class="py-12 sm:py-16">
+    <div class="container-app max-w-3xl">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-6">
+        <a href="/" class="hover:text-primary transition-colors">Home</a>
+        <span>/</span>
+        <a href="/guides/" class="hover:text-primary transition-colors">Guides</a>
+        <span>/</span>
+        <span class="text-primary truncate">Understanding Forex Rates</span>
+      </nav>
+
+      <!-- Header -->
+      <header class="mb-10">
+        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-link-bg-soft text-link font-mono mb-4 inline-block">
+          Forex Basics
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-bold text-primary tracking-tight mb-4 leading-tight">
+          Understanding Foreign Exchange Rates: A Complete Beginner's Guide
+        </h1>
+        <div class="flex items-center gap-4 text-xs text-mute font-mono border-b border-hairline pb-6">
+          <span>Written by Anuska Rani</span>
+          <span>•</span>
+          <span>Updated September 2026</span>
+          <span>•</span>
+          <span>6 min read</span>
+        </div>
+      </header>
+
+      <!-- Article Content -->
+      <div class="space-y-6 text-body leading-relaxed text-sm sm:text-base">
+        <p class="text-lg font-medium text-primary leading-relaxed">
+          Every day, trillions of dollars are traded across international foreign exchange (forex) markets. Whether you are sending money to family overseas, buying international products online, or traveling abroad, currency exchange rates directly impact your purchasing power.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-bold text-primary pt-4">1. What is a Foreign Exchange Rate?</h2>
+        <p>
+          A currency exchange rate is simply the price of one national currency expressed in terms of another. For example, if the exchange rate between the US Dollar (USD) and the Euro (EUR) is <strong>0.92</strong>, it means that <strong>1 USD</strong> can be exchanged for <strong>0.92 EUR</strong>.
+        </p>
+        <p>
+          Currencies are always traded in pairs (such as EUR/USD, USD/INR, or GBP/USD). The first currency in the pair is called the <em>base currency</em>, and the second currency is called the <em>quote currency</em>.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-bold text-primary pt-4">2. What is the "Mid-Market" Rate?</h2>
+        <p>
+          The <strong>mid-market rate</strong> (also known as the interbank rate or spot rate) is the midpoint between the buy (bid) and sell (ask) prices offered by major international banks trading currencies among themselves.
+        </p>
+        <div class="bg-canvas-soft dark:bg-slate-900 border-l-4 border-link p-4 rounded-r-xl my-6">
+          <p class="font-semibold text-primary mb-1">💡 Key Takeaway:</p>
+          <p class="text-sm text-mute">
+            The mid-market rate is the real, fairest exchange rate. It is the rate displayed on Google Finance and CurrencieConv. Traditional banks and airport currency exchange kiosks rarely give you this rate—they add a hidden 2% to 5% markup to profit off the transfer.
+          </p>
+        </div>
+
+        <h2 class="text-xl sm:text-2xl font-bold text-primary pt-4">3. Floating vs. Fixed Exchange Rate Systems</h2>
+        <p>
+          Governments and central banks manage currency values using two main monetary frameworks:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>
+            <strong>Floating Exchange Rates:</strong> The currency value is determined purely by market supply and demand dynamics (e.g., USD, EUR, GBP, JPY, AUD). If global demand for US goods or assets rises, the USD appreciates.
+          </li>
+          <li>
+            <strong>Fixed (Pegged) Exchange Rates:</strong> The central bank ties its currency's value directly to a major currency or basket of currencies (e.g., the United Arab Emirates Dirham (AED) and Saudi Riyal (SAR) are pegged to the USD at fixed ratios).
+          </li>
+        </ul>
+
+        <h2 class="text-xl sm:text-2xl font-bold text-primary pt-4">4. Key Economic Factors Influencing Rates</h2>
+        <p>
+          Exchange rates fluctuate constantly based on macroeconomic indicators, including:
+        </p>
+        <ol class="list-decimal pl-6 space-y-3">
+          <li><strong>Interest Rates:</strong> Higher central bank interest rates attract foreign capital seeking higher yields, boosting currency demand.</li>
+          <li><strong>Inflation Rates:</strong> Countries with consistently lower inflation rates experience currency appreciation because their purchasing power holds strong.</li>
+          <li><strong>Political & Economic Stability:</strong> Investors seek safe-haven currencies (like USD or CHF) during geopolitical uncertainties.</li>
+          <li><strong>Trade Balance:</strong> Exporting more goods than importing creates high foreign demand for the domestic currency.</li>
+        </ol>
+
+        <h2 class="text-xl sm:text-2xl font-bold text-primary pt-4">Conclusion</h2>
+        <p>
+          Understanding currency exchange rates allows you to make smarter financial decisions when traveling, shopping globally, or remitting money. Always use an independent tool like <a href="/" class="text-link underline font-semibold">CurrencieConv</a> to check the real mid-market exchange rate before completing any currency transaction.
+        </p>
+      </div>
+
+      <!-- Navigation Footer -->
+      <div class="mt-12 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href="/guides/" class="text-sm font-semibold text-link hover:underline">&larr; Back to All Guides</a>
+        <a href="/guides/how-to-avoid-foreign-transaction-fees/" class="text-sm font-semibold text-link hover:underline">Next: How to Avoid Foreign Fees &rarr;</a>
+      </div>
+    </div>
+  </article>
+</Layout>

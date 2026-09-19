@@ -1,0 +1,98 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const guides = [
+  {
+    title: "Understanding Foreign Exchange Rates: A Complete Beginner's Guide",
+    description: "Learn how currency exchange rates work, what determines mid-market rates, floating vs. fixed regimes, and how interbank forex markets calculate currency values.",
+    url: "/guides/understanding-forex-exchange-rates/",
+    date: "September 2026",
+    readTime: "6 min read",
+    tag: "Forex Basics"
+  },
+  {
+    title: "5 Proven Ways to Avoid High Foreign Exchange Fees When Traveling",
+    description: "Avoid hidden dynamic currency conversion (DCC) markups, credit card international transaction fees, and expensive airport currency exchange desks.",
+    url: "/guides/how-to-avoid-foreign-transaction-fees/",
+    date: "September 2026",
+    readTime: "7 min read",
+    tag: "Travel & Savings"
+  },
+  {
+    title: "What Drives USD to INR Exchange Rates? Key Economic Indicators Explained",
+    description: "A deep dive into the factors influencing the US Dollar to Indian Rupee rate, including RBI policy, Fed rate hikes, crude oil prices, and IT remittances.",
+    url: "/guides/usd-to-inr-exchange-rate-factors/",
+    date: "September 2026",
+    readTime: "8 min read",
+    tag: "Market Analysis"
+  }
+];
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Financial & Currency Guides — CurrencieConv",
+  "description": "Educational guides and financial analysis on currency exchange rates, forex markets, and travel money management.",
+  "url": "https://www.currencieconv.com/guides/"
+});
+---
+
+<Layout
+  title="Currency & Forex Educational Guides — CurrencieConv"
+  description="Explore comprehensive educational guides on foreign exchange rates, USD to INR trends, travel currency tips, and global market mechanics."
+  keywords="currency exchange guide, forex exchange rate tutorial, usd to inr analysis, avoid foreign exchange fees, mid market rate explained"
+  currentPath="/guides"
+  schemaMarkup={schema}
+>
+  <div class="py-12 sm:py-16">
+    <div class="container-app">
+      <!-- Header -->
+      <div class="max-w-3xl mb-12">
+        <span class="text-xs font-semibold uppercase tracking-wider text-link mb-2 block font-mono">Educational Resources</span>
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-primary mb-4">Financial & Currency Guides</h1>
+        <p class="text-base sm:text-lg text-mute leading-relaxed">
+          Master foreign exchange markets with expert guides written by finance enthusiasts. Learn how exchange rates are calculated, how to save money on international transfers, and what drives major global currency pairs.
+        </p>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-16">
+        {guides.map((item) => (
+          <a href={item.url} class="card group hover:border-link transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-link-bg-soft text-link font-mono">
+                  {item.tag}
+                </span>
+                <span class="text-xs text-mute font-mono">{item.readTime}</span>
+              </div>
+              <h2 class="text-lg font-bold text-primary group-hover:text-link transition-colors mb-3 leading-snug">
+                {item.title}
+              </h2>
+              <p class="text-sm text-mute leading-relaxed mb-6">
+                {item.description}
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-hairline">
+              <span class="text-xs text-mute font-mono">{item.date}</span>
+              <span class="text-xs font-semibold text-link flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Read Article &rarr;
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Banner -->
+      <div class="bg-canvas-soft dark:bg-slate-900 border border-hairline rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="text-lg font-bold text-primary mb-1">Need Live Currency Conversion?</h3>
+          <p class="text-sm text-mute">Check real-time mid-market rates for over 150 currencies instantly.</p>
+        </div>
+        <a href="/" class="px-5 py-2.5 rounded-xl bg-link text-white font-semibold text-sm hover:opacity-90 transition-opacity whitespace-nowrap">
+          Open Currency Converter
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

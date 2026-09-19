@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Drives USD to INR Exchange Rates? Key Economic Indicators Explained",
+  "description": "A deep dive into the factors influencing the US Dollar to Indian Rupee rate, including RBI policy, Fed rate hikes, crude oil prices, and IT remittances.",
+  "author": {
+    "@type": "Person",
+    "name": "Anuska Rani"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CurrencieConv"
+  },
+  "mainEntityOfPage": "https://www.currencieconv.com/guides/usd-to-inr-exchange-rate-factors/"
+});
+---
+
+<Layout
+  title="What Drives USD to INR Exchange Rates? Key Factors Explained — CurrencieConv"
+  description="Understand what causes the US Dollar to Indian Rupee (USD/INR) exchange rate to fluctuate, including crude oil imports, RBI interventions, Fed rates, and remittances."
+  keywords="usd to inr exchange rate factors, dollar to rupee drivers, rbi exchange rate policy, crude oil impact on rupee, fed interest rate usd inr"
+  currentPath="/guides/usd-to-inr-exchange-rate-factors"
+  schemaMarkup={schema}
+>
+  <article class="py-12 sm:py-16">
+    <div class="container-app max-w-3xl">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-6">
+        <a href="/" class="hover:text-primary transition-colors">Home</a>
+        <span>/</span>
+        <a href="/guides/" class="hover:text-primary transition-colors">Guides</a>
+        <span>/</span>
+        <span class="text-primary truncate">USD to INR Factors</span>
+      </nav>
+
+      <!-- Header -->
+      <header class="mb-10">
+        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-link-bg-soft text-link font-mono mb-4 inline-block">
+          Market Analysis
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-bold text-primary tracking-tight mb-4 leading-tight">
+          What Drives USD to INR Exchange Rates? Key Economic Factors Explained
+        </h1>
+        <div class="flex items-center gap-4 text-xs text-mute font-mono border-b border-hairline pb-6">
+          <span>Written by Anuska Rani</span>
+          <span>•</span>
+          <span>Updated September 2026</span>
+          <span>•</span>
+          <span>8 min read</span>
+        </div>
+      </header>
+
+      <!-- Article Content -->
+      <div class="space-y-6 text-body leading-relaxed text-sm sm:text-base">
+        <p class="text-lg font-medium text-primary leading-relaxed">
+          The US Dollar to Indian Rupee (USD/INR) pair is one of the most widely watched currency exchange rates in global trade and remittances. Millions of NRIs, businesses, students, and investors monitor the dollar-to-rupee rate daily.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-bold text-primary pt-4">1. Crude Oil Prices (India's Import Bill)</h2>
+        <p>
+          India imports over 80% of its crude oil requirements. Because crude oil is priced internationally in US Dollars, rising global oil prices increase India's import bill, creating heavy demand for USD and weakening the Indian Rupee.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-bold text-primary pt-4">2. US Federal Reserve Interest Rates</h2>
+        <p>
+          When the US Federal Reserve increases interest rates, yields on US government bonds rise. Foreign Institutional Investors (FIIs) often withdraw money from emerging markets like India and re-invest in US assets, leading to Rupee depreciation against the Dollar.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-bold text-primary pt-4">3. Reserve Bank of India (RBI) Interventions</h2>
+        <p>
+          The RBI actively manages volatility in the USD/INR market using its foreign exchange reserves. When the Rupee drops too rapidly, the RBI sells US Dollars in the spot market to cushion the decline and stabilize the exchange rate.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-bold text-primary pt-4">4. Foreign Remittances & IT Exports</h2>
+        <p>
+          India is the world's largest recipient of foreign remittances (over $100 Billion annually) and a powerhouse in IT services export. Strong inflows of US Dollars from Indian diaspora and tech exports increase dollar supply, providing structural support to the Rupee.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-bold text-primary pt-4">Summary</h2>
+        <p>
+          The USD to INR exchange rate is driven by a balance of international macroeconomic factors (US interest rates, crude oil) and domestic dynamics (RBI reserves, economic growth, trade deficit).
+        </p>
+
+        <div class="bg-canvas-soft dark:bg-slate-900 border-l-4 border-link p-4 rounded-r-xl my-6">
+          <p class="font-semibold text-primary mb-1">Track USD to INR Live:</p>
+          <p class="text-sm text-mute">
+            Check the live interbank rate for USD to INR anytime on our <a href="/usd-to-inr/" class="text-link underline font-semibold">USD to INR Converter Page</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation Footer -->
+      <div class="mt-12 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href="/guides/how-to-avoid-foreign-transaction-fees/" class="text-sm font-semibold text-link hover:underline">&larr; Prev: Avoid Foreign Fees</a>
+        <a href="/guides/" class="text-sm font-semibold text-link hover:underline">All Guides &rarr;</a>
+      </div>
+    </div>
+  </article>
+</Layout>

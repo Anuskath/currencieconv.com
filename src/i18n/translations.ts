@@ -14,6 +14,7 @@ export interface TranslationData {
     about: string;
     contact: string;
     faq: string;
+    guides: string;
   };
   hero: {
     badge: string;
@@ -71,7 +72,8 @@ export const translations: Record<Locale, TranslationData> = {
       widget: "Widget",
       about: "About",
       contact: "Contact",
-      faq: "FAQ"
+      faq: "FAQ",
+      guides: "Guides"
     },
     hero: {
       badge: "Live Mid-Market Rates Connected",
@@ -136,7 +138,8 @@ export const translations: Record<Locale, TranslationData> = {
       widget: "Widget",
       about: "Nosotros",
       contact: "Contacto",
-      faq: "Preguntas"
+      faq: "Preguntas",
+      guides: "Guías"
     },
     hero: {
       badge: "Tasas Interbancarias en Vivo Conectadas",
@@ -201,7 +204,8 @@ export const translations: Record<Locale, TranslationData> = {
       widget: "Widget",
       about: "Sobre",
       contact: "Contato",
-      faq: "Dúvidas"
+      faq: "Dúvidas",
+      guides: "Guias"
     },
     hero: {
       badge: "Cotações Interbancárias em Tempo Real",
@@ -266,7 +270,8 @@ export const translations: Record<Locale, TranslationData> = {
       widget: "Widget",
       about: "À propos",
       contact: "Contact",
-      faq: "FAQ"
+      faq: "FAQ",
+      guides: "Guides"
     },
     hero: {
       badge: "Taux Interbancaires en Direct",
@@ -331,7 +336,8 @@ export const translations: Record<Locale, TranslationData> = {
       widget: "Widget",
       about: "Über uns",
       contact: "Kontakt",
-      faq: "FAQ"
+      faq: "FAQ",
+      guides: "Ratgeber"
     },
     hero: {
       badge: "Echte Interbanken-Kurse Verbunden",
