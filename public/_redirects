@@ -1,4 +1,4 @@
-﻿# Explicit 301 Permanent Redirects for trailing slashes
+# Explicit 301 Permanent Redirects for trailing slashes
 /es /es/ 301
 /pt /pt/ 301
 /fr /fr/ 301
@@ -10,3 +10,4 @@
 /contact /contact/ 301
 /privacy /privacy/ 301
 /terms /terms/ 301
+/guides /guides/ 301
