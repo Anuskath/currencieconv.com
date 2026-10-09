@@ -1,4 +1,4 @@
-# Explicit 301 Permanent Redirects for trailing slashes
+﻿# Explicit 301 Permanent Redirects for trailing slashes
 /es /es/ 301
 /pt /pt/ 301
 /fr /fr/ 301
@@ -14,3 +14,9 @@
 /guide-forex-rates /guide-forex-rates/ 301
 /guide-avoid-fees /guide-avoid-fees/ 301
 /guide-usd-inr /guide-usd-inr/ 301
+
+# Clean redirects for international subpaths fallback to main canonical pages
+/es/* /:splat 301
+/pt/* /:splat 301
+/fr/* /:splat 301
+/de/* /:splat 301
