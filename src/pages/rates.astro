@@ -30,80 +30,66 @@ const allCurrencies = [
   keywords="currency exchange rate, currency exchange rate today, currency rate today, live currency converter, real time currency converter, forex converter, currency conversion rates, usd to eur, usd to inr, $ to inr, $ to inr rate, usd to gbp, euro to dollar, dollar to rupee, accurate currency converter, currency converter live rates"
   currentPath="/rates"
 >
-  <div class="py-12 sm:py-16">
-    <div class="container-app">
+  <div class="stripe-mesh-hero pt-10 pb-16 sm:pt-16 sm:pb-20">
+    <div class="container-app relative z-10">
       <!-- Header -->
-      <div class="mb-12">
-        <h1 class="text-display-lg mb-4">Live Currency Exchange Rates Today</h1>
-        <p class="text-body-lg text-body max-w-2xl">
-          Track real-time currency exchange rates for all major world currencies. Our live currency converter rates are updated every minute from trusted forex data providers — perfect for checking the currency rate today, $ to INR rate, USD to EUR, dollar to rupee, and 150+ currency pairs before making international transfers or travel plans.
+      <div class="max-w-3xl mb-12">
+        <span class="pill-tag-soft mb-3">Live Interbank Data</span>
+        <h1 class="text-4xl sm:text-5xl font-[300] tracking-[-1.4px] text-[#0d253d] dark:text-white leading-tight mb-4">
+          Live Currency Exchange Rates
+        </h1>
+        <p class="text-base sm:text-lg text-[#273951] dark:text-[#94a3b8] font-[300] leading-relaxed">
+          Track real-time market exchange rates for all major world currencies. Synchronized every 60 seconds with institutional interbank pricing.
         </p>
       </div>
 
-      <!-- Popular Pairs -->
+      <!-- Popular Pairs Cards -->
       <div class="mb-16">
-        <h2 class="text-display-md mb-6">Popular Currency Pairs</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <h2 class="text-xl sm:text-2xl font-[300] tracking-tight text-[#0d253d] dark:text-white mb-6">
+          Benchmark Currency Corridors
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {popularPairs.map((pair) => (
-            <div class="card">
+            <div class="stripe-card p-6 bg-white dark:bg-[#12162e]">
               <div class="flex items-center justify-between mb-4">
                 <div>
-                  <p class="text-body-md-strong">{pair.from} → {pair.to}</p>
-                  <p class="text-body-sm text-mute">Exchange rate</p>
+                  <p class="text-base font-medium text-[#0d253d] dark:text-white">{pair.from} → {pair.to}</p>
+                  <p class="text-xs text-[#64748d] dark:text-[#94a3b8] font-mono">Mid-market spot</p>
                 </div>
-                <span class={`badge ${pair.change.startsWith('+') ? 'bg-success/10 text-success' : 'bg-error-soft text-error'}`}>
+                <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-[#e8f7ee] text-[#10b981] dark:bg-[#10b981]/20">
                   {pair.change}
                 </span>
               </div>
-              <p class="text-display-sm text-link font-semibold">{pair.rate.toFixed(4)}</p>
+              <p class="text-3xl font-[300] text-[#533afd] dark:text-[#665efd] font-tabular tracking-tight">
+                {pair.rate.toFixed(4)}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- All Currencies -->
+      <!-- All Currencies Index -->
       <div>
-        <h2 class="text-display-md mb-6">All Currencies</h2>
+        <h2 class="text-xl sm:text-2xl font-[300] tracking-tight text-[#0d253d] dark:text-white mb-6">
+          Global Sovereign Currency Directories
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {allCurrencies.map((currency) => (
-            <a href={`/currencies/${currency.code}/`} class="card group">
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="text-body-md-strong group-hover:text-link transition-colors">{currency.symbol} {currency.code}</p>
-                  <p class="text-body-sm text-mute">{currency.name}</p>
-                </div>
-                <svg class="w-5 h-5 text-mute group-hover:text-link transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
+            <a href={`/currencies/${currency.code}/`} class="stripe-card p-4 bg-white dark:bg-[#12162e] group flex items-center justify-between text-decoration-none">
+              <div>
+                <p class="text-sm font-semibold text-[#0d253d] dark:text-white group-hover:text-[#533afd] dark:group-hover:text-[#665efd] transition-colors">
+                  {currency.symbol} {currency.code}
+                </p>
+                <p class="text-xs text-[#64748d] dark:text-[#94a3b8] font-light">{currency.name}</p>
               </div>
+              <svg class="w-4 h-4 text-[#64748d] group-hover:text-[#533afd] group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
             </a>
           ))}
         </div>
       </div>
 
-      <!-- Info Section -->
-      <div class="mt-16 pt-16 border-t border-hairline">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 class="text-body-md-strong mb-2">What are Exchange Rates?</h3>
-            <p class="text-body-sm text-mute">
-              Exchange rates represent how much of one currency you need to exchange for another. Rates fluctuate based on market demand and economic factors.
-            </p>
-          </div>
-          <div>
-            <h3 class="text-body-md-strong mb-2">Real-time Updates</h3>
-            <p class="text-body-sm text-mute">
-              Our rates are updated every minute from leading financial data providers, ensuring you always get accurate information.
-            </p>
-          </div>
-          <div>
-            <h3 class="text-body-md-strong mb-2">Best Trading Times</h3>
-            <p class="text-body-sm text-mute">
-              Currency markets are most liquid during UK and US trading hours (8am GMT to 5pm EST), offering better rates and tighter spreads.
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </Layout>

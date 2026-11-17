@@ -33,28 +33,28 @@ const languages = [
 const activeLang = languages.find(l => l.code === currentLocale) || languages[0];
 ---
 
-<header class="bg-canvas/90 border-b border-hairline sticky top-0 z-50 backdrop-blur-sm dark:bg-slate-950/90">
-  <div class="container-app py-3 sm:py-4 flex items-center justify-between">
-    <!-- Logo -->
-    <a href={localePrefix || '/'} class="flex items-center gap-2 group">
-      <div class="w-8 h-8 bg-gradient-develop rounded-lg flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
-        <span class="text-white font-bold text-sm font-mono">CC</span>
+<header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-[#0b0d1b]/80 border-b border-[#e3e8ee] dark:border-[#22284c] transition-colors">
+  <div class="container-app py-4 flex items-center justify-between">
+    <!-- Logo Wordmark -->
+    <a href={localePrefix || '/'} class="flex items-center gap-2.5 group text-decoration-none">
+      <div class="w-8 h-8 rounded-lg bg-[#533afd] text-white flex items-center justify-center font-bold text-sm shadow-[0_2px_6px_rgba(83,58,253,0.3)] transition-transform group-hover:scale-105">
+        <span class="font-mono tracking-tight font-bold">CC</span>
       </div>
       <div class="flex flex-col">
-        <span class="font-bold text-base text-primary tracking-tight leading-tight">CurrencieConv</span>
-        <span class="text-[10px] text-mute font-mono hidden sm:inline -mt-0.5">by Anuska Rani</span>
+        <span class="font-bold text-[17px] text-[#0d253d] dark:text-white tracking-[-0.26px] leading-tight">CurrencieConv</span>
+        <span class="text-[10px] text-[#64748d] dark:text-[#94a3b8] font-mono uppercase tracking-wider hidden sm:inline -mt-0.5">by Anuska Rani</span>
       </div>
     </a>
 
-    <!-- Navigation -->
-    <nav class="hidden md:flex items-center gap-5 lg:gap-6">
+    <!-- Navigation Bar on Mesh -->
+    <nav class="hidden md:flex items-center gap-6 lg:gap-7">
       {navItems.map((item) => (
         <a
           href={item.href}
-          class={`text-sm font-medium transition-colors ${
+          class={`text-[15px] font-[400] transition-colors ${
             currentPath === item.href
-              ? 'text-link font-semibold'
-              : 'text-body hover:text-primary'
+              ? 'text-[#533afd] font-medium'
+              : 'text-[#273951] dark:text-[#e2e8f0] hover:text-[#533afd] dark:hover:text-[#665efd]'
           }`}
         >
           {item.label}
@@ -62,32 +62,32 @@ const activeLang = languages.find(l => l.code === currentLocale) || languages[0]
       ))}
     </nav>
 
-    <!-- Language Switcher, Dark Mode Toggle & Mobile Menu -->
+    <!-- Language Selector, Dark Mode & Primary Pill Button -->
     <div class="flex items-center gap-2 sm:gap-3">
       <!-- Language Dropdown -->
       <div class="relative" id="langDropdownContainer">
         <button
           id="langMenuBtn"
           type="button"
-          class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-hairline hover:bg-canvas-soft dark:hover:bg-slate-800 text-xs font-semibold text-primary transition-all"
+          class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-[#e3e8ee] dark:border-[#22284c] hover:bg-[#f6f9fc] dark:hover:bg-[#12162e] text-xs font-semibold text-[#0d253d] dark:text-white transition-all cursor-pointer"
           title="Select Language"
         >
           <span>{activeLang.flag}</span>
           <span class="uppercase font-mono">{activeLang.code}</span>
-          <svg class="w-3 h-3 text-mute" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-3 h-3 text-[#64748d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
 
         <div
           id="langMenuDropdown"
-          class="hidden absolute right-0 mt-1 w-36 rounded-xl border border-hairline bg-canvas dark:bg-slate-900 shadow-xl py-1 z-50"
+          class="hidden absolute right-0 mt-1.5 w-36 rounded-xl border border-[#e3e8ee] dark:border-[#22284c] bg-white dark:bg-[#12162e] shadow-xl py-1.5 z-50"
         >
           {languages.map((l) => (
             <a
               href={l.href}
-              class={`flex items-center gap-2 px-3 py-2 text-xs font-medium transition-colors hover:bg-link-bg-soft dark:hover:bg-slate-800 ${
-                currentLocale === l.code ? 'text-link font-bold' : 'text-primary'
+              class={`flex items-center gap-2 px-3 py-2 text-xs font-medium transition-colors hover:bg-[#f6f9fc] dark:hover:bg-[#181d38] ${
+                currentLocale === l.code ? 'text-[#533afd] font-bold' : 'text-[#0d253d] dark:text-white'
               }`}
             >
               <span>{l.flag}</span>
@@ -97,24 +97,30 @@ const activeLang = languages.find(l => l.code === currentLocale) || languages[0]
         </div>
       </div>
 
-      <!-- Dark Mode Toggle -->
+      <!-- Dark Mode Toggle Button -->
       <button 
         id="darkModeToggle" 
-        class="p-2 hover:bg-canvas-soft dark:hover:bg-slate-800 rounded-lg transition-colors text-primary"
+        class="p-2 rounded-full border border-[#e3e8ee] dark:border-[#22284c] hover:bg-[#f6f9fc] dark:hover:bg-[#12162e] transition-colors text-[#0d253d] dark:text-white cursor-pointer"
         title="Toggle dark mode"
         aria-label="Toggle dark mode"
       >
-        <svg id="sunIcon" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+        <svg id="sunIcon" class="w-4 h-4 hidden dark:block text-[#665efd]" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l-2.12-2.12a1 1 0 00-1.414 0l-.707.707a1 1 0 000 1.414l2.12 2.12a1 1 0 001.414 0l.707-.707a1 1 0 000-1.414zM2.05 13.464a1 1 0 00-1.414-1.414l-.707.707a1 1 0 000 1.414l.707.707a1 1 0 001.414 0l.707-.707zm12-12a1 1 0 00-1.414 0l-.707.707a1 1 0 000 1.414l.707.707a1 1 0 001.414 0l.707-.707a1 1 0 000-1.414zM10 15a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM4.464 4.465a1 1 0 00-1.414 0L2.343 5.58a1 1 0 000 1.414l1.414 1.414a1 1 0 001.414 0l1.414-1.414a1 1 0 000-1.414z" clip-rule="evenodd"></path>
         </svg>
-        <svg id="moonIcon" class="w-5 h-5 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+        <svg id="moonIcon" class="w-4 h-4 dark:hidden text-[#0d253d]" fill="currentColor" viewBox="0 0 20 20">
           <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
         </svg>
       </button>
 
+      <!-- CTA Primary Pill -->
+      <a href="/rates/" class="hidden sm:inline-flex btn-stripe-primary text-xs !py-2 !px-4">
+        Live Rates →
+      </a>
+
+      <!-- Mobile Hamburger Button -->
       <button 
         id="mobileMenuBtn"
-        class="md:hidden p-2 hover:bg-canvas-soft dark:hover:bg-slate-800 rounded-lg transition-colors text-primary"
+        class="md:hidden p-2 rounded-lg border border-[#e3e8ee] dark:border-[#22284c] hover:bg-[#f6f9fc] dark:hover:bg-[#12162e] transition-colors text-[#0d253d] dark:text-white"
         aria-label="Toggle navigation menu"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,14 +131,14 @@ const activeLang = languages.find(l => l.code === currentLocale) || languages[0]
   </div>
 
   <!-- Mobile Nav Drawer -->
-  <div id="mobileMenu" class="hidden md:hidden border-t border-hairline bg-canvas dark:bg-slate-950 px-4 py-3 space-y-1">
+  <div id="mobileMenu" class="hidden md:hidden border-t border-[#e3e8ee] dark:border-[#22284c] bg-white dark:bg-[#0b0d1b] px-4 py-3 space-y-1 shadow-lg">
     {navItems.map((item) => (
       <a
         href={item.href}
         class={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
           currentPath === item.href
-            ? 'bg-link-bg-soft text-link font-semibold dark:bg-blue-900/30'
-            : 'text-body hover:bg-canvas-soft dark:hover:bg-slate-800'
+            ? 'bg-[#e8e8fd] text-[#533afd] font-semibold dark:bg-[#1c1e54]'
+            : 'text-[#273951] dark:text-[#e2e8f0] hover:bg-[#f6f9fc] dark:hover:bg-[#12162e]'
         }`}
       >
         {item.label}

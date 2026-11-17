@@ -53,6 +53,11 @@ const ogLocale = localeMap[lang] || 'en_US';
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
+		<!-- Google Fonts Inter with ss01 and tnum OpenType support -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 		<!-- Google AdSense -->
 		<meta name="google-adsense-account" content="ca-pub-6659190524197116" />
 		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6659190524197116"
@@ -116,14 +121,13 @@ const ogLocale = localeMap[lang] || 'en_US';
 		
 		<!-- Dark Mode Script (runs before page renders) -->
 		<script>
-			const isDark = localStorage.getItem('darkMode') === 'true' || 
-									(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+			const isDark = localStorage.getItem('darkMode') === 'true';
 			if (isDark) {
 				document.documentElement.classList.add('dark');
 			}
 		</script>
 	</head>
-	<body class="bg-canvas text-primary flex flex-col min-h-screen">
+	<body class="bg-white dark:bg-[#0b0d1b] text-[#0d253d] dark:text-[#f8fafc] flex flex-col min-h-screen">
 		<Header currentPath={currentPath} lang={lang} />
 		<main class="flex-1">
 			<slot />
