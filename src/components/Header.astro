@@ -33,7 +33,7 @@ const languages = [
 const activeLang = languages.find(l => l.code === currentLocale) || languages[0];
 ---
 
-<header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 dark:bg-[#0b0d1b]/90 border-b border-[#e3e8ee] dark:border-[#22284c] transition-colors">
+<header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 dark:bg-[#050608]/90 border-b border-[#e3e8ee] dark:border-[#1e2433] transition-colors">
   <div class="container-app py-3.5 sm:py-4 flex items-center justify-between">
     <!-- Brand Logo & Icon -->
     <a href={localePrefix || '/'} class="flex items-center gap-3 group text-decoration-none">
@@ -75,7 +75,7 @@ const activeLang = languages.find(l => l.code === currentLocale) || languages[0]
         <button
           id="langMenuBtn"
           type="button"
-          class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#e3e8ee] dark:border-[#22284c] bg-white dark:bg-[#12162e] hover:bg-[#f6f9fc] dark:hover:bg-[#181d38] text-xs font-semibold text-[#0d253d] dark:text-white transition-all cursor-pointer shadow-xs"
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#e3e8ee] dark:border-[#1e2433] bg-white dark:bg-[#0e1117] hover:bg-[#f6f9fc] dark:hover:bg-[#161b26] text-xs font-semibold text-[#0d253d] dark:text-white transition-all cursor-pointer shadow-xs"
           title="Select Language"
         >
           <span>{activeLang.flag}</span>
@@ -87,12 +87,12 @@ const activeLang = languages.find(l => l.code === currentLocale) || languages[0]
 
         <div
           id="langMenuDropdown"
-          class="hidden absolute right-0 mt-1.5 w-36 rounded-2xl border border-[#e3e8ee] dark:border-[#22284c] bg-white dark:bg-[#12162e] shadow-xl py-1.5 z-50"
+          class="hidden absolute right-0 mt-1.5 w-36 rounded-2xl border border-[#e3e8ee] dark:border-[#1e2433] bg-white dark:bg-[#0e1117] shadow-xl py-1.5 z-50"
         >
           {languages.map((l) => (
             <a
               href={l.href}
-              class={`flex items-center gap-2 px-3.5 py-2 text-xs font-medium transition-colors hover:bg-[#f6f9fc] dark:hover:bg-[#181d38] ${
+              class={`flex items-center gap-2 px-3.5 py-2 text-xs font-medium transition-colors hover:bg-[#f6f9fc] dark:hover:bg-[#161b26] ${
                 currentLocale === l.code ? 'text-[#533afd] dark:text-[#665efd] font-bold' : 'text-[#0d253d] dark:text-white'
               }`}
             >
@@ -107,7 +107,7 @@ const activeLang = languages.find(l => l.code === currentLocale) || languages[0]
       <button 
         id="darkModeToggle" 
         type="button"
-        class="w-9 h-9 rounded-full border border-[#e3e8ee] dark:border-[#22284c] bg-white dark:bg-[#12162e] hover:bg-[#f6f9fc] dark:hover:bg-[#181d38] transition-all flex items-center justify-center text-[#0d253d] dark:text-white cursor-pointer shadow-xs active:scale-90"
+        class="w-9 h-9 rounded-full border border-[#e3e8ee] dark:border-[#1e2433] bg-white dark:bg-[#0e1117] hover:bg-[#f6f9fc] dark:hover:bg-[#161b26] transition-all flex items-center justify-center text-[#0d253d] dark:text-white cursor-pointer shadow-xs active:scale-90"
         title="Toggle dark / light mode"
         aria-label="Toggle dark / light mode"
       >
@@ -131,7 +131,7 @@ const activeLang = languages.find(l => l.code === currentLocale) || languages[0]
       <button 
         id="mobileMenuBtn"
         type="button"
-        class="md:hidden p-2 rounded-xl border border-[#e3e8ee] dark:border-[#22284c] bg-white dark:bg-[#12162e] hover:bg-[#f6f9fc] dark:hover:bg-[#181d38] transition-colors text-[#0d253d] dark:text-white"
+        class="md:hidden p-2 rounded-xl border border-[#e3e8ee] dark:border-[#1e2433] bg-white dark:bg-[#0e1117] hover:bg-[#f6f9fc] dark:hover:bg-[#161b26] transition-colors text-[#0d253d] dark:text-white"
         aria-label="Toggle navigation menu"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,14 +142,14 @@ const activeLang = languages.find(l => l.code === currentLocale) || languages[0]
   </div>
 
   <!-- Mobile Nav Drawer -->
-  <div id="mobileMenu" class="hidden md:hidden border-t border-[#e3e8ee] dark:border-[#22284c] bg-white dark:bg-[#0b0d1b] px-4 py-3 space-y-1 shadow-lg">
+  <div id="mobileMenu" class="hidden md:hidden border-t border-[#e3e8ee] dark:border-[#1e2433] bg-white dark:bg-[#050608] px-4 py-3 space-y-1 shadow-lg">
     {navItems.map((item) => (
       <a
         href={item.href}
         class={`block px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors ${
           currentPath === item.href
             ? 'bg-[#e8e8fd] text-[#533afd] font-semibold dark:bg-[#1c1e54]'
-            : 'text-[#273951] dark:text-[#cbd5e1] hover:bg-[#f6f9fc] dark:hover:bg-[#12162e]'
+            : 'text-[#273951] dark:text-[#cbd5e1] hover:bg-[#f6f9fc] dark:hover:bg-[#0e1117]'
         }`}
       >
         {item.label}

@@ -47,7 +47,7 @@ const currencies = Object.keys(currencyData);
       <div class="stripe-dashboard-card p-6 sm:p-8 md:p-10 relative backdrop-blur-sm">
         
         <!-- Live status bar on card top -->
-        <div class="flex items-center justify-between pb-5 mb-6 border-b border-[#e3e8ee] dark:border-[#22284c]">
+        <div class="flex items-center justify-between pb-5 mb-6 border-b border-[#e3e8ee] dark:border-[#1e2433]">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-[#10b981] shadow-[0_0_8px_#10b981]"></span>
             <span class="text-xs font-mono font-medium text-[#64748d] dark:text-[#94a3b8] uppercase tracking-wider">Interbank Forex Stream</span>
@@ -67,7 +67,7 @@ const currencies = Object.keys(currencyData);
         <!-- Main Input Grid (Stacked Clean Cards) -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 relative">
           <!-- From Currency Box -->
-          <div class="bg-[#f6f9fc] dark:bg-[#12162e] border border-[#e3e8ee] dark:border-[#22284c] rounded-2xl p-5 sm:p-6 transition-all hover:border-[#a8c3de]">
+          <div class="bg-[#f6f9fc] dark:bg-[#0e1117] border border-[#e3e8ee] dark:border-[#1e2433] rounded-2xl p-5 sm:p-6 transition-all hover:border-[#a8c3de]">
             <div class="flex items-center justify-between mb-3">
               <label for="fromAmount" class="text-xs font-mono font-semibold uppercase tracking-wider text-[#64748d] dark:text-[#94a3b8]">
                 {t.converter.from}
@@ -79,12 +79,12 @@ const currencies = Object.keys(currencyData);
                 type="number"
                 id="fromAmount"
                 placeholder="1.00"
-                class="w-full bg-white dark:bg-[#0b0d1b] text-[#0d253d] dark:text-white border border-[#e3e8ee] dark:border-[#22284c] rounded-xl px-4 py-3 text-2xl sm:text-3xl font-[300] font-tabular focus:outline-none focus:border-[#533afd] transition-colors shadow-2xs"
+                class="w-full bg-white dark:bg-[#050608] text-[#0d253d] dark:text-white border border-[#e3e8ee] dark:border-[#1e2433] rounded-xl px-4 py-3 text-2xl sm:text-3xl font-[300] font-tabular focus:outline-none focus:border-[#533afd] transition-colors shadow-2xs"
                 value="1"
                 min="0"
                 step="any"
               />
-              <select id="fromCurrency" class="w-full bg-white dark:bg-[#0b0d1b] text-[#0d253d] dark:text-white border border-[#e3e8ee] dark:border-[#22284c] rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#533afd] transition-colors cursor-pointer shadow-2xs">
+              <select id="fromCurrency" class="w-full bg-white dark:bg-[#050608] text-[#0d253d] dark:text-white border border-[#e3e8ee] dark:border-[#1e2433] rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#533afd] transition-colors cursor-pointer shadow-2xs">
                 {currencies.map((code) => (
                   <option value={code} selected={code === defaultFrom}>
                     {currencyData[code].symbol} {code} — {currencyData[code].name}
@@ -98,7 +98,7 @@ const currencies = Object.keys(currencyData);
           <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden md:block">
             <button
               id="swapBtn"
-              class="w-12 h-12 rounded-full border-2 border-white dark:border-[#0b0d1b] bg-[#533afd] text-white hover:bg-[#4434d4] flex items-center justify-center shadow-lg transition-transform hover:scale-110 active:scale-95 cursor-pointer"
+              class="w-12 h-12 rounded-full border-2 border-white dark:border-[#050608] bg-[#533afd] text-white hover:bg-[#4434d4] flex items-center justify-center shadow-lg transition-transform hover:scale-110 active:scale-95 cursor-pointer"
               title={t.converter.swap}
               aria-label={t.converter.swap}
             >
@@ -123,7 +123,7 @@ const currencies = Object.keys(currencyData);
           </div>
 
           <!-- To Currency Box -->
-          <div class="bg-[#f6f9fc] dark:bg-[#12162e] border border-[#e3e8ee] dark:border-[#22284c] rounded-2xl p-5 sm:p-6 transition-all hover:border-[#a8c3de]">
+          <div class="bg-[#f6f9fc] dark:bg-[#0e1117] border border-[#e3e8ee] dark:border-[#1e2433] rounded-2xl p-5 sm:p-6 transition-all hover:border-[#a8c3de]">
             <div class="flex items-center justify-between mb-3">
               <label for="toAmount" class="text-xs font-mono font-semibold uppercase tracking-wider text-[#64748d] dark:text-[#94a3b8]">
                 {t.converter.to}
@@ -135,10 +135,10 @@ const currencies = Object.keys(currencyData);
                 type="number"
                 id="toAmount"
                 placeholder="0.00"
-                class="w-full bg-white dark:bg-[#0b0d1b] text-[#533afd] dark:text-[#665efd] border border-[#e3e8ee] dark:border-[#22284c] rounded-xl px-4 py-3 text-2xl sm:text-3xl font-[300] font-tabular focus:outline-none focus:border-[#533afd] transition-colors shadow-2xs font-bold"
+                class="w-full bg-white dark:bg-[#050608] text-[#533afd] dark:text-[#665efd] border border-[#e3e8ee] dark:border-[#1e2433] rounded-xl px-4 py-3 text-2xl sm:text-3xl font-[300] font-tabular focus:outline-none focus:border-[#533afd] transition-colors shadow-2xs font-bold"
                 readonly
               />
-              <select id="toCurrency" class="w-full bg-white dark:bg-[#0b0d1b] text-[#0d253d] dark:text-white border border-[#e3e8ee] dark:border-[#22284c] rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#533afd] transition-colors cursor-pointer shadow-2xs">
+              <select id="toCurrency" class="w-full bg-white dark:bg-[#050608] text-[#0d253d] dark:text-white border border-[#e3e8ee] dark:border-[#1e2433] rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#533afd] transition-colors cursor-pointer shadow-2xs">
                 {currencies.map((code) => (
                   <option value={code} selected={code === defaultTo}>
                     {currencyData[code].symbol} {code} — {currencyData[code].name}
@@ -150,13 +150,13 @@ const currencies = Object.keys(currencyData);
         </div>
 
         <!-- Quick Amount Presets & Transaction Tools -->
-        <div class="mt-8 pt-6 border-t border-[#e3e8ee] dark:border-[#22284c] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="mt-8 pt-6 border-t border-[#e3e8ee] dark:border-[#1e2433] flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-1.5 flex-wrap justify-center sm:justify-start">
             <span class="text-xs font-mono text-[#64748d] dark:text-[#94a3b8] mr-1">Presets:</span>
             {[10, 50, 100, 500, 1000, 5000].map((amt) => (
               <button
                 type="button"
-                class="preset-amt-btn px-3 py-1.5 text-xs font-tabular rounded-full border border-[#e3e8ee] dark:border-[#22284c] bg-white dark:bg-[#12162e] hover:border-[#533afd] hover:text-[#533afd] dark:hover:text-[#665efd] transition-colors cursor-pointer text-[#273951] dark:text-white shadow-2xs"
+                class="preset-amt-btn px-3 py-1.5 text-xs font-tabular rounded-full border border-[#e3e8ee] dark:border-[#1e2433] bg-white dark:bg-[#0e1117] hover:border-[#533afd] hover:text-[#533afd] dark:hover:text-[#665efd] transition-colors cursor-pointer text-[#273951] dark:text-white shadow-2xs"
                 data-amount={amt}
               >
                 ${amt}
@@ -196,7 +196,7 @@ const currencies = Object.keys(currencyData);
         </div>
 
         <!-- Exchange Rate Info Footer -->
-        <div class="mt-5 pt-4 border-t border-[#e3e8ee] dark:border-[#22284c] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
+        <div class="mt-5 pt-4 border-t border-[#e3e8ee] dark:border-[#1e2433] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
           <p class="text-[#273951] dark:text-[#e2e8f0]">
             <span id="rateText" class="font-medium font-tabular text-[#0d253d] dark:text-white">{t.converter.fetchingRate}</span>
             <span id="rateTime" class="text-[#64748d] dark:text-[#94a3b8] font-mono ml-2"></span>
@@ -238,7 +238,7 @@ const currencies = Object.keys(currencyData);
           const [from, to] = item.pair.split('-');
           return (
             <button 
-              class="popular-pair-btn stripe-card p-4 text-left group cursor-pointer bg-white dark:bg-[#12162e]"
+              class="popular-pair-btn stripe-card p-4 text-left group cursor-pointer bg-white dark:bg-[#0e1117]"
               data-from={from}
               data-to={to}
             >
@@ -258,7 +258,7 @@ const currencies = Object.keys(currencyData);
     <!-- Stripe 3-Column Architectural Features Strip -->
     <div class="max-w-4xl mx-auto px-2 sm:px-0">
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div class="stripe-card p-6 bg-white dark:bg-[#12162e]">
+        <div class="stripe-card p-6 bg-white dark:bg-[#0e1117]">
           <div class="w-10 h-10 rounded-xl bg-[#e8e8fd] dark:bg-[#1c1e54] text-[#533afd] dark:text-[#665efd] flex items-center justify-center mb-4">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -268,7 +268,7 @@ const currencies = Object.keys(currencyData);
           <p class="text-xs text-[#64748d] dark:text-[#94a3b8] leading-relaxed font-light">{t.features.feat1Desc}</p>
         </div>
 
-        <div class="stripe-card p-6 bg-white dark:bg-[#12162e]">
+        <div class="stripe-card p-6 bg-white dark:bg-[#0e1117]">
           <div class="w-10 h-10 rounded-xl bg-[#f5e9d4] dark:bg-[#181d38] text-[#9b6829] flex items-center justify-center mb-4">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -278,7 +278,7 @@ const currencies = Object.keys(currencyData);
           <p class="text-xs text-[#64748d] dark:text-[#94a3b8] leading-relaxed font-light">{t.features.feat2Desc}</p>
         </div>
 
-        <div class="stripe-card p-6 bg-white dark:bg-[#12162e]">
+        <div class="stripe-card p-6 bg-white dark:bg-[#0e1117]">
           <div class="w-10 h-10 rounded-xl bg-[#e8f7ee] dark:bg-[#122e1e] text-[#10b981] flex items-center justify-center mb-4">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>

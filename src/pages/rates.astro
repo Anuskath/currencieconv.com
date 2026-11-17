@@ -50,7 +50,7 @@ const allCurrencies = [
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {popularPairs.map((pair) => (
-            <div class="stripe-card p-6 bg-white dark:bg-[#12162e]">
+            <div class="stripe-card p-6 bg-white dark:bg-[#0e1117]">
               <div class="flex items-center justify-between mb-4">
                 <div>
                   <p class="text-base font-medium text-[#0d253d] dark:text-white">{pair.from} → {pair.to}</p>
@@ -75,7 +75,7 @@ const allCurrencies = [
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {allCurrencies.map((currency) => (
-            <a href={`/currencies/${currency.code}/`} class="stripe-card p-4 bg-white dark:bg-[#12162e] group flex items-center justify-between text-decoration-none">
+            <a href={`/currencies/${currency.code}/`} class="stripe-card p-4 bg-white dark:bg-[#0e1117] group flex items-center justify-between text-decoration-none">
               <div>
                 <p class="text-sm font-semibold text-[#0d253d] dark:text-white group-hover:text-[#533afd] dark:group-hover:text-[#665efd] transition-colors">
                   {currency.symbol} {currency.code}

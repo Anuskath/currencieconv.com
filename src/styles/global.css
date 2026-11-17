@@ -2,7 +2,7 @@
 
 @layer base {
   :root {
-    /* Stripe Design Language Colors */
+    /* Stripe Design Language Colors - Light Mode */
     --color-primary: #533afd;
     --color-primary-deep: #4434d4;
     --color-primary-press: #2e2b8c;
@@ -38,26 +38,26 @@
   }
 
   html.dark {
-    /* Dark dashboard track polarity */
-    --color-canvas: #0b0d1b;
-    --color-canvas-soft: #12162e;
-    --color-canvas-cream: #181d38;
-    --color-ink: #f8fafc;
-    --color-ink-secondary: #e2e8f0;
+    /* Pure Pitch Jet-Black Dark Mode (#000000 / #090a0f) */
+    --color-canvas: #050608;
+    --color-canvas-soft: #0e1117;
+    --color-canvas-cream: #141720;
+    --color-ink: #ffffff;
+    --color-ink-secondary: #f1f5f9;
     --color-ink-mute: #94a3b8;
-    --color-hairline: #22284c;
-    --color-hairline-input: #384277;
+    --color-hairline: #1e2433;
+    --color-hairline-input: #2d3748;
 
-    --canvas: #0b0d1b;
-    --canvas-soft: #12162e;
-    --canvas-cream: #181d38;
+    --canvas: #050608;
+    --canvas-soft: #0e1117;
+    --canvas-cream: #141720;
     --primary: #665efd;
     --on-primary: #ffffff;
-    --ink: #f8fafc;
+    --ink: #ffffff;
     --body: #e2e8f0;
     --mute: #94a3b8;
-    --hairline: #22284c;
-    --hairline-input: #384277;
+    --hairline: #1e2433;
+    --hairline-input: #2d3748;
   }
 
   html {
@@ -105,6 +105,10 @@
   overflow: hidden;
 }
 
+html.dark .stripe-mesh-hero {
+  background-color: #050608;
+}
+
 .stripe-mesh-hero::before {
   content: "";
   position: absolute;
@@ -126,8 +130,14 @@
 }
 
 html.dark .stripe-mesh-hero::before {
-  opacity: 0.35;
-  filter: blur(70px);
+  background: 
+    radial-gradient(ellipse 65% 55% at 15% 25%, rgba(83, 58, 253, 0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 60% at 40% 15%, rgba(249, 107, 238, 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 65% at 75% 20%, rgba(83, 58, 253, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 50% at 90% 40%, rgba(234, 34, 97, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 45% at 50% 65%, rgba(30, 36, 51, 0.5) 0%, transparent 75%);
+  opacity: 0.65;
+  filter: blur(80px);
 }
 
 /* Stripe Pill Button Primary */
@@ -170,7 +180,7 @@ html.dark .stripe-mesh-hero::before {
   background-color: #ffffff;
   color: var(--color-primary) !important;
   border: 1px solid var(--color-hairline-input);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1;
   padding: 8px 18px;
@@ -180,6 +190,12 @@ html.dark .stripe-mesh-hero::before {
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
+}
+
+html.dark .btn-stripe-secondary {
+  background-color: #0e1117;
+  border-color: #1e2433;
+  color: #665efd !important;
 }
 
 .btn-stripe-secondary:hover {
@@ -219,26 +235,37 @@ html.dark .pill-tag-soft {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+html.dark .stripe-card {
+  background-color: #090b10;
+  border-color: #1e2433;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
 .stripe-card:hover {
   border-color: #c7d2fe;
   box-shadow: 0 8px 24px rgba(0, 55, 112, 0.08), 0 2px 6px rgba(0, 55, 112, 0.04);
+}
+
+html.dark .stripe-card:hover {
+  border-color: #384277;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
 }
 
 /* Stripe Dashboard / Converter Card */
 .stripe-dashboard-card {
   background-color: var(--color-canvas);
   border: 1px solid var(--color-hairline);
-  border-radius: 16px;
+  border-radius: 18px;
   box-shadow: 
     0 1px 3px rgba(0, 55, 112, 0.08), 
-    0 12px 32px rgba(0, 55, 112, 0.08),
+    0 16px 36px rgba(0, 55, 112, 0.08),
     0 2px 6px rgba(0, 55, 112, 0.04);
 }
 
 html.dark .stripe-dashboard-card {
-  background-color: var(--color-canvas-soft);
-  border-color: var(--color-hairline);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  background-color: #090b10;
+  border-color: #1e2433;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.85);
 }
 
 /* Stripe Form Input */
@@ -246,12 +273,18 @@ html.dark .stripe-dashboard-card {
   background-color: var(--color-canvas);
   color: var(--color-ink);
   border: 1px solid var(--color-hairline-input);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 10px 14px;
   font-size: 15px;
   font-weight: 300;
   transition: all 0.15s ease;
   font-feature-settings: "tnum" on;
+}
+
+html.dark .stripe-input {
+  background-color: #050608;
+  color: #ffffff;
+  border-color: #2d3748;
 }
 
 .stripe-input:focus {
@@ -268,17 +301,8 @@ html.dark .stripe-dashboard-card {
 }
 
 html.dark .card-cream-band {
-  background-color: var(--color-canvas-cream);
-  border-color: var(--color-hairline);
-}
-
-/* Featured Dark Tier (Stripe Dark-App shell) */
-.card-pricing-featured {
-  background-color: var(--color-brand-dark-900);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(28, 30, 84, 0.35);
+  background-color: #0e1117;
+  border-color: #1e2433;
 }
 
 .container-app {

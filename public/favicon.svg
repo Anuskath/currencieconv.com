@@ -1,23 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <linearGradient id="stripeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#533afd" />
-      <stop offset="50%" stop-color="#665efd" />
-      <stop offset="100%" stop-color="#f96bee" />
+      <stop offset="100%" stop-color="#665efd" />
     </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#533afd" flood-opacity="0.35"/>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
     </filter>
   </defs>
-  <!-- Background Pill Rounded Container -->
-  <rect x="2" y="2" width="44" height="44" rx="14" fill="url(#stripeGrad)" filter="url(#glow)"/>
+
+  <!-- Deep Dark Slate Background Container -->
+  <rect width="64" height="64" rx="16" fill="#090a0f" />
+  <rect x="1" y="1" width="62" height="62" rx="15" stroke="#22284c" stroke-width="1.5" />
+
+  <!-- Outer Interlocking Circular Exchange Rings -->
+  <!-- Top Right Currency Arc with Arrow -->
+  <path d="M22 17C28 13 41 14 47 23M47 23L47 16M47 23L40 22" stroke="url(#primaryGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
   
-  <!-- Modern Interlocking Currency Arrows / Exchange glyph -->
-  <!-- Top Right Arrow -->
-  <path d="M15 19H33M33 19L27 13M33 19L27 25" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Bottom Left Arrow -->
-  <path d="M33 29H15M15 29L21 23M15 29L21 35" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  
-  <!-- Subtle center coin dot -->
-  <circle cx="24" cy="24" r="2.5" fill="#ffffff" opacity="0.9"/>
+  <!-- Bottom Left Currency Arc with Arrow -->
+  <path d="M42 47C36 51 23 50 17 41M17 41L17 48M17 41L24 42" stroke="#f96bee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Center Floating Gold/Amber Coin Badge -->
+  <circle cx="32" cy="32" r="10.5" fill="#181d38" stroke="#384277" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="32" y="37" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" text-anchor="middle">₹</text>
 </svg>

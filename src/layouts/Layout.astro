@@ -56,7 +56,7 @@ const ogLocale = localeMap[lang] || 'en_US';
 		<!-- Google Fonts Inter with ss01 and tnum OpenType support -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 		<!-- Google AdSense -->
 		<meta name="google-adsense-account" content="ca-pub-6659190524197116" />
@@ -119,15 +119,20 @@ const ogLocale = localeMap[lang] || 'en_US';
 		<!-- Schema.org JSON-LD (page-specific, passed as prop) -->
 		{schemaMarkup && <script type="application/ld+json" set:html={schemaMarkup} />}
 		
-		<!-- Dark Mode Script (runs before page renders) -->
-		<script>
-			const isDark = localStorage.getItem('darkMode') === 'true';
-			if (isDark) {
-				document.documentElement.classList.add('dark');
-			}
+		<!-- Immediate Dark Mode Script Execution (Zero Flash) -->
+		<script is:inline>
+			(function() {
+				const saved = localStorage.getItem('darkMode');
+				const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (saved === 'true' || (saved === null && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			})();
 		</script>
 	</head>
-	<body class="bg-white dark:bg-[#0b0d1b] text-[#0d253d] dark:text-[#f8fafc] flex flex-col min-h-screen">
+	<body class="bg-white dark:bg-[#050608] text-[#0d253d] dark:text-[#ffffff] flex flex-col min-h-screen transition-colors duration-200">
 		<Header currentPath={currentPath} lang={lang} />
 		<main class="flex-1">
 			<slot />
