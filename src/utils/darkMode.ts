@@ -1,21 +1,47 @@
-// Dark mode utility
+// Dark mode utility with icon synchronization
 export function initDarkMode() {
-  const isDark = localStorage.getItem('darkMode') === 'true' || 
-                 window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const saved = localStorage.getItem('darkMode');
+  let isDark = false;
   
-  if (isDark) {
-    document.documentElement.classList.add('dark');
+  if (saved !== null) {
+    isDark = saved === 'true';
+  } else {
+    isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
   
+  applyTheme(isDark);
   return isDark;
 }
 
 export function toggleDarkMode() {
-  const isDark = document.documentElement.classList.toggle('dark');
-  localStorage.setItem('darkMode', isDark.toString());
-  return isDark;
+  const currentIsDark = document.documentElement.classList.contains('dark');
+  const nextIsDark = !currentIsDark;
+  applyTheme(nextIsDark);
+  localStorage.setItem('darkMode', nextIsDark.toString());
+  return nextIsDark;
 }
 
-export function getDarkMode() {
-  return document.documentElement.classList.contains('dark');
+export function applyTheme(isDark: boolean) {
+  if (isDark) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+
+  const sunIcon = document.getElementById('sunIcon');
+  const moonIcon = document.getElementById('moonIcon');
+
+  if (sunIcon && moonIcon) {
+    if (isDark) {
+      sunIcon.classList.remove('hidden');
+      sunIcon.classList.add('block');
+      moonIcon.classList.remove('block');
+      moonIcon.classList.add('hidden');
+    } else {
+      sunIcon.classList.remove('block');
+      sunIcon.classList.add('hidden');
+      moonIcon.classList.remove('hidden');
+      moonIcon.classList.add('block');
+    }
+  }
 }
