@@ -124,11 +124,12 @@ html.dark .stripe-mesh-hero {
     radial-gradient(ellipse 65% 65% at 75% 20%, rgba(83, 58, 253, 0.35) 0%, transparent 60%),
     radial-gradient(ellipse 55% 50% at 90% 40%, rgba(234, 34, 97, 0.22) 0%, transparent 60%),
     radial-gradient(ellipse 70% 45% at 50% 65%, rgba(185, 185, 249, 0.45) 0%, transparent 75%);
-  filter: blur(55px);
-  transform: skewY(-4.5deg);
+  filter: blur(48px);
+  transform: translate3d(0, 0, 0) skewY(-4.5deg);
   transform-origin: top left;
   pointer-events: none;
   z-index: 0;
+  will-change: opacity;
 }
 
 html.dark .stripe-mesh-hero::before {
@@ -139,7 +140,7 @@ html.dark .stripe-mesh-hero::before {
     radial-gradient(ellipse 55% 50% at 90% 40%, rgba(234, 34, 97, 0.15) 0%, transparent 60%),
     radial-gradient(ellipse 70% 45% at 50% 65%, rgba(30, 36, 51, 0.5) 0%, transparent 75%);
   opacity: 0.65;
-  filter: blur(80px);
+  filter: blur(48px);
 }
 
 /* Stripe Pill Button Primary */
