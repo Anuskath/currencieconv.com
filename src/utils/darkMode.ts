@@ -16,24 +16,8 @@ export function initDarkMode() {
 export function toggleDarkMode() {
   const currentIsDark = document.documentElement.classList.contains('dark');
   const nextIsDark = !currentIsDark;
-
-  // Freeze all transitions for the instant switch
-  const style = document.createElement('style');
-  style.id = '__theme-freeze';
-  style.textContent = '*, *::before, *::after { transition: none !important; }';
-  document.head.appendChild(style);
-
   applyTheme(nextIsDark);
   localStorage.setItem('darkMode', nextIsDark.toString());
-
-  // Re-enable transitions after the paint settles (next frame)
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const el = document.getElementById('__theme-freeze');
-      if (el) el.remove();
-    });
-  });
-
   return nextIsDark;
 }
 

@@ -322,3 +322,138 @@ html.dark .card-cream-band {
     padding-right: 2rem;
   }
 }
+
+/* ============================================
+   DARK MODE OVERRIDES (Tailwind v4 compatible)
+   All dark:bg/text/border arbitrary classes are
+   handled here via html.dark selectors instead
+   ============================================ */
+
+/* Body */
+html.dark body {
+  background-color: #050608;
+  color: #ffffff;
+}
+
+/* Header */
+html.dark header {
+  background-color: rgba(5, 6, 8, 0.9);
+  border-color: #1e2433;
+}
+
+/* Mobile Menu */
+html.dark #mobileMenu {
+  background-color: #050608;
+  border-color: #1e2433;
+}
+
+/* Converter input boxes container */
+html.dark .converter-from-box,
+html.dark .converter-to-box {
+  background-color: #0e1117;
+  border-color: #1e2433;
+}
+
+/* Inputs & selects inside converter */
+input[type="number"],
+select {
+  background-color: #ffffff;
+  color: #0d253d;
+  border-color: #e3e8ee;
+  caret-color: #533afd;
+}
+
+#toAmount {
+  color: #533afd !important;
+}
+
+html.dark input[type="number"],
+html.dark select {
+  background-color: #050608 !important;
+  color: #ffffff !important;
+  border-color: #1e2433 !important;
+  caret-color: #665efd !important;
+}
+
+html.dark #toAmount {
+  color: #665efd !important;
+}
+
+/* Swap button border */
+html.dark #swapBtn {
+  border-color: #050608;
+}
+
+/* Preset buttons */
+html.dark .preset-amt-btn {
+  background-color: #0e1117;
+  border-color: #1e2433;
+  color: #ffffff;
+}
+
+/* Popular pair buttons / feature cards */
+html.dark .popular-pair-btn,
+html.dark .feature-card {
+  background-color: #0e1117;
+}
+
+/* Footer */
+html.dark footer {
+  background-color: #050608;
+  border-color: #1e2433;
+}
+
+/* Dividers */
+html.dark .dark-divider {
+  border-color: #1e2433;
+}
+
+/* Lang menu button & dropdown */
+html.dark #langMenuBtn {
+  background-color: #0e1117;
+  border-color: #1e2433;
+  color: #ffffff;
+}
+html.dark #langMenuDropdown {
+  background-color: #0e1117;
+  border-color: #1e2433;
+}
+html.dark #langMenuDropdown a {
+  color: #ffffff;
+}
+html.dark #langMenuDropdown a:hover {
+  background-color: #161b26;
+}
+
+/* Dark mode toggle button */
+html.dark #darkModeToggle {
+  background-color: #0e1117;
+  border-color: #1e2433;
+  color: #ffffff;
+}
+
+/* Mobile hamburger */
+html.dark #mobileMenuBtn {
+  background-color: #0e1117;
+  border-color: #1e2433;
+  color: #ffffff;
+}
+
+/* Index page section */
+html.dark .index-content-section {
+  background-color: #050608;
+  border-color: #1e2433;
+}
+
+/* Index page cards */
+html.dark .index-feature-card {
+  background-color: #0e1117;
+}
+
+/* Nav links in mobile */
+html.dark nav a {
+  color: #cbd5e1;
+}
+html.dark nav a:hover {
+  background-color: #0e1117;
+}

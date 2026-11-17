@@ -83,6 +83,8 @@ const currencies = Object.keys(currencyData);
                 value="1"
                 min="0"
                 step="any"
+                inputmode="decimal"
+                autocomplete="off"
               />
               <select id="fromCurrency" class="w-full bg-white dark:bg-[#050608] text-[#0d253d] dark:text-white border border-[#e3e8ee] dark:border-[#1e2433] rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#533afd] transition-colors cursor-pointer shadow-2xs">
                 {currencies.map((code) => (
@@ -136,7 +138,10 @@ const currencies = Object.keys(currencyData);
                 id="toAmount"
                 placeholder="0.00"
                 class="w-full bg-white dark:bg-[#050608] text-[#533afd] dark:text-[#665efd] border border-[#e3e8ee] dark:border-[#1e2433] rounded-xl px-4 py-3 text-2xl sm:text-3xl font-[300] font-tabular focus:outline-none focus:border-[#533afd] transition-colors shadow-2xs font-bold"
-                readonly
+                min="0"
+                step="any"
+                inputmode="decimal"
+                autocomplete="off"
               />
               <select id="toCurrency" class="w-full bg-white dark:bg-[#050608] text-[#0d253d] dark:text-white border border-[#e3e8ee] dark:border-[#1e2433] rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#533afd] transition-colors cursor-pointer shadow-2xs">
                 {currencies.map((code) => (
@@ -337,7 +342,7 @@ const currencies = Object.keys(currencyData);
     return {};
   }
 
-  async function updateExchangeRate(isManualRefresh = false) {
+  async function updateExchangeRate(isManualRefresh = false, source: 'from' | 'to' = 'from') {
     const fromSelect = document.getElementById('fromCurrency') as HTMLSelectElement;
     const toSelect = document.getElementById('toCurrency') as HTMLSelectElement;
     const fromInput = document.getElementById('fromAmount') as HTMLInputElement;
@@ -350,7 +355,6 @@ const currencies = Object.keys(currencyData);
 
     const fromCurrency = fromSelect.value;
     const toCurrency = toSelect.value;
-    const fromAmount = parseFloat(fromInput.value) || 0;
 
     if (isManualRefresh && refreshIcon) {
       refreshIcon.classList.add('rotate-180');
@@ -371,11 +375,30 @@ const currencies = Object.keys(currencyData);
       }
     }
 
-    const toAmount = (fromAmount * rate).toFixed(2);
+    if (!rate || isNaN(rate)) rate = 1;
+
+    // Two-way calculation
+    if (source === 'from') {
+      const valStr = fromInput.value.trim();
+      if (valStr === '') {
+        toInput.value = '';
+      } else {
+        const fromAmount = parseFloat(valStr) || 0;
+        toInput.value = (fromAmount * rate).toFixed(2);
+      }
+    } else {
+      const valStr = toInput.value.trim();
+      if (valStr === '') {
+        fromInput.value = '';
+      } else {
+        const toAmount = parseFloat(valStr) || 0;
+        fromInput.value = rate > 0 ? (toAmount / rate).toFixed(2) : '0';
+      }
+    }
+
     const fromSymbol = (window as any).currencyData?.[fromCurrency]?.symbol || fromCurrency;
     const toSymbol = (window as any).currencyData?.[toCurrency]?.symbol || toCurrency;
 
-    toInput.value = toAmount;
     if (rateText) {
       rateText.textContent = `1 ${fromSymbol} ${fromCurrency} = ${rate.toFixed(4)} ${toSymbol} ${toCurrency}`;
     }
@@ -401,14 +424,15 @@ const currencies = Object.keys(currencyData);
       const temp = fromSelect.value;
       fromSelect.value = toSelect.value;
       toSelect.value = temp;
-      updateExchangeRate();
+      updateExchangeRate(false, 'from');
     }
   }
 
-  // Event listeners
-  document.getElementById('fromAmount')?.addEventListener('input', () => updateExchangeRate());
-  document.getElementById('fromCurrency')?.addEventListener('change', () => updateExchangeRate());
-  document.getElementById('toCurrency')?.addEventListener('change', () => updateExchangeRate());
+  // Event listeners for inputs and selectors
+  document.getElementById('fromAmount')?.addEventListener('input', () => updateExchangeRate(false, 'from'));
+  document.getElementById('toAmount')?.addEventListener('input', () => updateExchangeRate(false, 'to'));
+  document.getElementById('fromCurrency')?.addEventListener('change', () => updateExchangeRate(false, 'from'));
+  document.getElementById('toCurrency')?.addEventListener('change', () => updateExchangeRate(false, 'from'));
 
   document.getElementById('swapBtn')?.addEventListener('click', handleSwap);
   document.getElementById('swapBtnMobile')?.addEventListener('click', handleSwap);
@@ -418,7 +442,7 @@ const currencies = Object.keys(currencyData);
     if (fromSelect && liveRatesCache[fromSelect.value]) {
       delete liveRatesCache[fromSelect.value];
     }
-    updateExchangeRate(true);
+    updateExchangeRate(true, 'from');
   });
 
   document.querySelectorAll('.popular-pair-btn').forEach((btn) => {
